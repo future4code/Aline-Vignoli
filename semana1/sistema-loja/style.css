@@ -57,10 +57,6 @@ h2 {
     padding: 10px;
 }
 
-.descricao-produtoS {
-    color: blue;
-}
-
 #tabela-produtos {
     margin: auto;
     width: 70%;
@@ -84,21 +80,20 @@ img {
 }
 
 #div-rodape {
-    background-color: #FFF;
     color: #000;
     padding: 10px;
 }
 
 #texto-rodape {
     font-size: 20px;
+    font-weight: bold;
 }
 
-#div-redes-sociais {
-    background-color: #FFF;
+#div-rodape, #div-redes-sociais, .icones-redes-sociais {
+    background-color:#B0C4DE;
 }
 
 .icones-redes-sociais {
-    background-color: #FFF;
     width: 3vw;
     margin: 10px;
 }
@@ -122,7 +117,16 @@ input {
     padding: 5px;
 }
 
-#button-add {
+#form-pesquisa {
+    padding: 10px;
+    width: 400px;
+}
+
+#input-pesquisa {
+    width: 80%;
+}
+
+#button-add, #button-buscar {
     padding: 5px;
     width: 100%;
     background-color: #BA55D3;
@@ -130,11 +134,15 @@ input {
     text-transform: uppercase;
 }
 
-#button-add:hover {
+#button-buscar {
+    width: 15%;
+}
+
+#button-add:hover, #button-buscar:hover {
     background-color: #9370DB;
 }
 
-#button-add:active {
+#button-add:active, #button-buscar:active {
     background-color: #4B0082;
 }
 
