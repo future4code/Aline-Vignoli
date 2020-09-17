@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #FFF;
+}
+
+.div-cabecalho {
+    padding: 10px;
+}
+
+h1 {
+    font-size: 40px;
+    color: #BA55D3;
+}
+
+.div-menu {
+    padding: 30px;
+    width: 100%;
+}
+
+a {
+    color: #9370DB;
+    display: inline-block;
+    padding: 10px 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover {
+    background-color:#9370DB;
+    color: #FFF;
+}
+
+a:active {
+    background-color:#4B0082;
+}
+
+.div-conteudo {
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+h2 {
+    padding: 10px;
+}
+
+.foto-produtos {
+    width: 200px;
+    padding: 10px;
+}
+
+.descricao-produtoS {
+    color: blue;
+}
+
+#tabela-produtos {
+    margin: auto;
+    width: 70%;
+}
+
+th {
+    padding: 10px;
+    background-color: #9370DB;
+}
+
+tr, td {
+    border: 2px #4B0082 solid;
+}
+
+img {
+    width: 100px;
+}
+
+#form-add-produto {
+    display: block;
+}
+
+#div-rodape {
+    background-color: #FFF;
+    color: #000;
+    padding: 10px;
+}
+
+#texto-rodape {
+    font-size: 20px;
+}
+
+#div-redes-sociais {
+    background-color: #FFF;
+}
+
+.icones-redes-sociais {
+    background-color: #FFF;
+    width: 3vw;
+    margin: 10px;
+}
+
+form {
+    display: inline-block;
+    width: 300px;
+}
+
+.item-form {
+    padding: 10px;
+}
+
+label {
+    padding: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+}
+
+#button-add {
+    padding: 5px;
+    width: 100%;
+    background-color: #BA55D3;
+    color: #FFF;
+    text-transform: uppercase;
+}
+
+#button-add:hover {
+    background-color: #9370DB;
+}
+
+#button-add:active {
+    background-color: #4B0082;
+}
+
+ul {
+    margin-bottom: 20px;
+}
+
+ul li {
+    font-style: italic;
+    margin: auto;
+    padding: 10px;
+    text-decoration: none;
+}
