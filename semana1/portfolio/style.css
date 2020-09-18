@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Open Sans Condensed', Arial, Helvetica, sans-serif;
+}
+
+.div-menu {
+    background-color: #A52A2A;
+}
+
+.item-menu {
+    display: inline-block;
+    padding: 10px;
+}
+
+.item-menu a, button {
+    display: inline-block;
+    height: 100%;
+    text-decoration: none;
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    color: #FFF;
+}
+
+.item-menu:hover {
+    background-color: #CD5C5C;
+}
+
+button {
+    background-color: #CD5C5C;;
+}
+
+button:hover{
+    background-color: #B22222;
+}
+
+
+h1 {
+    margin-top: 20px;
+}
+
+h1, h2 {
+    padding: 10px;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+p {
+    text-align: center;
+}
+
+#container-pagina-principal {
+    margin: 10px;
+    background-color:#CD5C5C;
+    border-radius: 5px;
+}
+
+#minha-bio {
+    color: #FFF;
+    font-size: 2vw;
+    font-family: 'Anton', sans-serif;
+    margin: 10px;
+    display: inline-block;
+    text-align: left;
+}
+
+#td-foto-perfil {
+    width: 25%;
+}
+
+#td-minha-bio {
+    width: 75%;
+}
+
+#foto-perfil {
+    border-radius: 5px;
+    width: 90%;
+    margin: 20px;
+    opacity: 0.3;
+}
+
+.container {
+    padding: 50px;
+}
+
+.div-listas {
+    padding: 10px;
+}
+
+h4 {
+    padding: 5px;
+}
+
+#container-galeria {
+    padding: 5%;
+    width: 100%;
+    text-align: center;
+}
+
+.img-galeria {
+    margin: auto;
+    width: 70%;
+}
+
+th {
+    padding: 10px;
+}
+
+.div-rodape {
+    padding: 10px;
+}
+
+form {
+    display: inline-block;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+}
+
+#wrapper {
+    display: inline-block
+}
