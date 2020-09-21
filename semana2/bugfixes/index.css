@@ -71,6 +71,14 @@ div img {
     margin-left: 5px;
 }
 
+.icone:hover {
+    opacity: 0.3;
+}
+
+.icone:active {
+    opacity: 1;
+}
+
 
 /** 
   *
