@@ -25,6 +25,10 @@ input {
     width: 500px;
 }
 
+button, input {
+    outline: none;
+}
+
 button:focus {
     color: white;
 }
