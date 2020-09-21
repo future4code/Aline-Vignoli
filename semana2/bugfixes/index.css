@@ -41,10 +41,6 @@ div>p:first-child {
     display: inline;
 }
 
-div img {
-    background: black;
-}
-
 .botao-amarelo {
     background-color: #ffaf43;
     width: 250px;
@@ -94,6 +90,7 @@ div img {
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    list-style-position: inside;
 }
 
 #container-para-comprar {
