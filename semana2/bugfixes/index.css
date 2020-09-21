@@ -9,6 +9,10 @@
     padding: 0;
 }
 
+body {
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+}
+
 h2 {
     background-color: #fe7e02;
     padding: 10px 5px 10px 5px;
@@ -105,6 +109,13 @@ div:last-child {
 
 div:last-child {
     position: relative;
+}
+
+#campo-texto {
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px black solid;
+    border-left: none;
 }
 
 table {
