@@ -9,7 +9,8 @@ body {
 
 .green-background {
     background-color: green;
-    grid-column-start: 1 / 5;
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
 
 .yellow-background {
@@ -38,13 +39,12 @@ body {
 
 #main-container {
     display: grid;
-    grid-template-columns: repeat(4, 25vw);
-    grid-template-rows: 10vh 2fr 1fr 10vh;
+    height: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 10vh 60vh 20vh 10vh;
 }
 
 #top-container {
     display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: 1;
-    grid-column: 1 / 5;
+    grid-template-columns: 1fr 1fr;
 }
