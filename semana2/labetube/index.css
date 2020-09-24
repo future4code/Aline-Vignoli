@@ -107,6 +107,9 @@ h2 {
 @media only screen and (max-width: 600px) {
     main {
         grid-template: 0.5fr 3fr 0.5fr 3fr 0.5fr 3fr 0.5fr 3fr/1fr;
+    }
+
+    .container-video-detalhe {
         height: 80vh;
     }
 
