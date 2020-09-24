@@ -1,0 +1,172 @@
+/* Etapa 1 */
+#pond {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Etapa 2 */
+#pond {
+    display: flex;
+    justify-content: center;
+}
+
+/* Etapa 3 */
+#pond {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Etapa 4 */
+#pond {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Etapa 5 */
+#pond {
+    display: flex;  
+    align-items: flex-end;
+}
+
+/* Etapa 6 */
+#pond {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Etapa 7 */
+#pond {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+/* Etapa 8 */
+#pond {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* Etapa 9 */
+#pond {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Etapa 10 */
+#pond {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+/* Etapa 11 */
+#pond {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Etapa 12 */
+#pond {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+}
+
+/* Etapa 13 */
+#pond {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* Etapa 14 */
+#pond {
+    display: flex;
+}
+  
+.yellow {
+    order: 1;
+}
+
+/* Etapa 15 */
+#pond {
+    display: flex;
+}
+  
+.red {
+    order: -1;
+}
+
+/* Etapa 16 */
+#pond {
+    display: flex;
+    align-items: flex-start;
+}
+  
+.yellow {
+    align-self: flex-end;
+}
+
+/* Etapa 17 */
+#pond {
+    display: flex;
+    align-items: flex-start;
+}
+  
+.yellow {
+order: 1;
+align-self: flex-end;
+}
+
+/* Etapa 18 */
+#pond {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Etapa 19 */
+#pond {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+/* Etapa 20 */
+#pond {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+/* Etapa 21 */
+#pond {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+/* Etapa 22 */
+#pond {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+}
+
+/* Etapa 23 */
+#pond {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-content: center;
+}
+
+/* Etapa 24 */
+#pond {
+    display: flex;
+    flex-flow: column-reverse wrap-reverse;
+    align-content: space-between;
+    justify-content: center;
+}

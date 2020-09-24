@@ -1,0 +1,99 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    color: white;
+}
+
+.green-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    width: 20%;
+}
+
+.yellow-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    width: 80%;
+}
+
+.pink-background {
+    display: flex;
+    background-color: fuchsia;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.blue-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    width: 75%;
+}
+
+.red-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    width: 100%;
+    height: 12.5vh;
+}
+
+.lightgreen-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgreen;
+    width: 100%;
+    height: 12.5vh;
+}
+
+.purple-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: purple;
+    height: 7.5vh;
+}
+
+/* Exercicio */
+#top-container {
+    display: flex;
+    flex-direction: row;
+    height: 7.5vh;
+}
+
+#middle-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#vertical-middle-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25vw;
+}
+
+#blank {
+    width: 25vw;
+    display: flex;
+}
+
+#image, #extra {
+    display: flex;
+}
+
+#content2 {
+    display: flex;
+    width: 50vw;
+}
