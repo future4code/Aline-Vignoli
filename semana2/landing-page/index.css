@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1F1F24;
+}
+
+nav {
+    font-weight: bold;
+    font-size: 20px;
+    color: #cdcdcd;
+}
+
+ul {
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+li, a {
+    display: inline-block;
+    padding: 2vw;
+}
+
+main {
+    background-color: #cdcdcd;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+#section-principal {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template: 1fr / 1fr 1fr;
+    padding: 30px;
+    background-color: #cdcdcd;
+}
+
+h3 {
+    font-size: 38px;
+}
+
+h4 {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+#div-grupo-valores-emprestimo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.valores-emprestimo {
+    padding: 1.5vw;
+    background-color: #1F1F24 ;
+    border-radius: 10px;
+}
+
+#outro-valor {
+    background-color: #D2C2B0;
+    border: black 2px solid;
+}
+
+#section-vantagens {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 30px;
+    background-color: #FFF;
+}
+
+#section-simular-emprestimo {
+    text-align: center;
+    padding: 30px;
+    background-color: #fcecd9;
+}
+
+#div-grupo-simular-emprestimo {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.simular-emprestimo {
+    border-radius: 10px;
+    background-color: #8a7d6f;
+    color: #FFF;
+    text-align: center;
+    font-weight: bold;
+    padding: 1.5VW;
+    width: 15%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#botao-simular-emprestimo {
+    color: #000;
+}
+
+#div-sobre-nos {
+    margin: 0;
+    padding: 20px 20%;
+    text-align: center;
+}
+
+footer {
+    background-color: #8a7d6f;
+    height: 200px;
+}
+
+#logo-upfour {
+    width: 25vw;
+}
+
+#mulher-negra-laptop {
+    grid-row: 1 /2;
+    grid-column: 1 / 2;
+    width: 90%;
+}
+
+#mulher-negra-celular {
+    width: 25%;
+}
+
+/* Responsivo */
