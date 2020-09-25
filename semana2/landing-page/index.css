@@ -1,12 +1,14 @@
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
-    width: 100vw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+
+/* Estilizacoes do header*/
 header {
     display: flex;
     justify-content: space-between;
@@ -34,6 +36,8 @@ li, a {
     padding: 2vw;
 }
 
+
+/* Estilizações gerais */
 main {
     background-color: #cdcdcd;
 }
@@ -42,6 +46,7 @@ div {
     margin-bottom: 20px;
 }
 
+/* Estilizacao sessao principal */
 #section-principal {
     display: grid;
     justify-items: center;
@@ -76,6 +81,8 @@ h4 {
     border: black 2px solid;
 }
 
+/* Sessao vantagens*/
+
 #section-vantagens {
     display: grid;
     align-items: center;
@@ -84,6 +91,8 @@ h4 {
     background-color: #FFF;
 }
 
+
+/* Sessao simule seu emprestimo */
 #section-simular-emprestimo {
     text-align: center;
     padding: 30px;
@@ -99,7 +108,6 @@ h4 {
     border-radius: 10px;
     background-color: #8a7d6f;
     color: #FFF;
-    text-align: center;
     font-weight: bold;
     padding: 1.5VW;
     width: 15%;
@@ -111,6 +119,8 @@ h4 {
     color: #000;
 }
 
+
+/* Sessao sobre nos*/
 #div-sobre-nos {
     margin: 0;
     padding: 20px 20%;
@@ -119,9 +129,9 @@ h4 {
 
 footer {
     background-color: #8a7d6f;
-    height: 200px;
 }
 
+/* imagens*/
 #logo-upfour {
     width: 25vw;
 }
@@ -137,3 +147,62 @@ footer {
 }
 
 /* Responsivo */
+@media only screen and (min-width:370px) and (max-width:500px){
+
+    nav {
+        font-size: 12px;
+    }
+
+    li, a {
+        padding: 1.5vw;
+    }
+
+    div {
+        margin-bottom: 0;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 26px;
+    }
+
+    h4 {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    #section-principal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #div-grupo-valores-emprestimo, #div-grupo-simular-emprestimo {
+        flex-wrap: wrap;
+    }
+
+    #mulher-negra-celular {
+        width: 50%;
+    }
+
+    .simular-emprestimo {
+        width: 100%;
+        height: 3em;
+    }
+
+    #outro-valor {
+        text-align: center;
+        margin-top: 3vw;
+        width: 100%;
+    }
+
+    p {
+        text-align:center;
+        margin: 2vw 0;
+    }
+
+    footer, .simular-emprestimo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
