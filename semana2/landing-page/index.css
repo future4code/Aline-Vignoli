@@ -53,7 +53,6 @@ div {
     align-items: center;
     grid-template: 1fr / 1fr 1fr;
     padding: 30px;
-    background-color: #cdcdcd;
 }
 
 h3 {
@@ -95,7 +94,6 @@ h4 {
     background-color: #FFF;
 }
 
-
 /* Sessao simule seu emprestimo */
 #section-simular-emprestimo {
     text-align: center;
@@ -109,12 +107,12 @@ h4 {
 }
 
 .simular-emprestimo {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     border-radius: 10px;
     background-color: #8a7d6f;
     color: #FFF;
     font-weight: bold;
-    padding: 1.5VW;
+    padding: 1.3VW;
     width: 15%;
     display: flex;
     flex-wrap: wrap;
@@ -142,6 +140,17 @@ footer {
     background-color: #8a7d6f;
 }
 
+#voltar-ao-topo {
+    color: #1F1F24;
+    padding-bottom: 0;
+    padding-top: 4vw;
+    font-style: italic;
+}
+
+#voltar-ao-topo:hover {
+    color: #FFF;
+}
+
 /* imagens*/
 #logo-upfour {
     width: 25vw;
@@ -164,10 +173,6 @@ footer {
         justify-content: center;
         display: flex;
         flex-wrap: wrap;
-    }
-
-    #logo-upfour {
-        width: 80%;
     }
 
     nav {
@@ -201,10 +206,6 @@ footer {
         font-size: 4vw;
     }
 
-    #mulher-negra-celular {
-        width: 50%;
-    }
-
     .simular-emprestimo {
         font-size: 3vw;
         width: 100%;
@@ -227,5 +228,13 @@ footer {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    #logo-upfour {
+        width: 80%;
+    }
+
+    #mulher-negra-celular {
+        width: 50%;
     }
 }
