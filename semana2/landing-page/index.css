@@ -81,6 +81,10 @@ h4 {
     border: black 2px solid;
 }
 
+#outro-valor:hover {
+    background-color: #8a7d6f;
+}
+
 /* Sessao vantagens*/
 
 #section-vantagens {
@@ -113,10 +117,16 @@ h4 {
     width: 15%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 
 #botao-simular-emprestimo {
     color: #000;
+}
+
+a:hover, #botao-simular-emprestimo:hover {
+    color: #D2C2B0;
 }
 
 
@@ -147,7 +157,7 @@ footer {
 }
 
 /* Responsivo */
-@media only screen and (min-width:370px) and (max-width:500px){
+@media only screen and (min-width:350px) and (max-width:500px){
 
     nav {
         font-size: 12px;
@@ -200,7 +210,7 @@ footer {
         margin: 2vw 0;
     }
 
-    footer, .simular-emprestimo {
+    footer {
         display: flex;
         justify-content: center;
         align-items: center;
