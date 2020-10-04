@@ -22,11 +22,11 @@ if ( confirm("Quer iniciar uma nova rodada?") ){
    let segundaCartaComputador = comprarCarta() 
 
    if ( primeiraCartaUsuario.valor === 11 && segundaCartaUsuario.valor === 11 ){
-      console.log("JOGUE NOVAMENTE")
+      console.log("Você tirou dois A's, vamos dar as cartas novamente!")
       primeiraCartaUsuario = comprarCarta()
       segundaCartaUsuario = comprarCarta()
    }else if ( primeiraCartaComputador.valor === 11 && segundaCartaComputador.valor === 11 ){
-      console.log("JOGUE NOVAMENTE")
+      console.log("O computador tirou dois A's, vamos dar as cartas novamente!")
       primeiraCartaComputador = comprarCarta()
       segundaCartaComputador = comprarCarta()
    }else{
@@ -50,12 +50,8 @@ if ( confirm("Quer iniciar uma nova rodada?") ){
          }
 
          if ( pontuacaoUsuario > 21 ){
-            alert(`Suas cartas são ${primeiraCartaUsuario.texto} ${segundaCartaUsuario.texto} ${cartasCompradasTexto} . Sua pontuação é ${pontuacaoUsuario}."
-            "As cartas do computador são ${primeiraCartaComputador.texto} ${segundaCartaComputador.texto}. A pontuação do computador é ${pontuacaoComputador}." 
-            "O computador ganhou!`)
+            alert(`Suas cartas são ${primeiraCartaUsuario.texto} ${segundaCartaUsuario.texto} ${cartasCompradasTexto} . Sua pontuação é ${pontuacaoUsuario}. As cartas do computador são ${primeiraCartaComputador.texto} ${segundaCartaComputador.texto}. A pontuação do computador é ${pontuacaoComputador}. O computador ganhou!`)
          }else {
-            
-
             console.log(`Usuário - cartas: ${primeiraCartaUsuario.texto} ${segundaCartaUsuario.texto} - pontuação: ${pontuacaoUsuario}`)
             console.log(`Computador - cartas: ${primeiraCartaComputador.texto} ${segundaCartaComputador.texto} - pontuação: ${pontuacaoComputador}`)
 
@@ -83,4 +79,3 @@ if ( confirm("Quer iniciar uma nova rodada?") ){
 }else {
    console.log("O jogo acabou!")
 }
-
