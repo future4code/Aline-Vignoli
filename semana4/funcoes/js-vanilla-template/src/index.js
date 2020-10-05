@@ -144,7 +144,7 @@ const array = [10, 23, 45, 78, 90, 52, 35, 67, 84, 22]
 
 //EXERCICIO 2
 //a.
-const numeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
+// const numeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
 
 // let numerosParesVezesDois = (array) => {
 //     let arrayDeParesVezesDois = []
@@ -190,9 +190,13 @@ const numeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
 // console.log(indiceMaiorNumero)
 
 // //d.
-let inverterArray = (array) => {
-    return array.reverse()
-}
+// let inverterArray = (array) => {
+//     let arrayInvertido = []
+//     for ( let i = array.length; i >= 0 ; i-- ){
+//         arrayInvertido.push(array[i])
+//     }
+//     return arrayInvertido
+// }
 
-const arrayInvertido = inverterArray(numeros)
-console.log(arrayInvertido)
+// const arrayInvertido = inverterArray(numeros)
+// console.log(arrayInvertido)
