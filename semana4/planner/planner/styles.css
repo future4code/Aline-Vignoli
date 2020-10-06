@@ -11,6 +11,10 @@ header {
     align-items: center;
 }
 
+button {
+    margin-left: 0.5%;
+}
+
 section {
     display: flex;
     justify-content: space-evenly;
@@ -25,8 +29,4 @@ section {
 
 ul {
     margin-left: 10%;
-}
-
-.done {
-    text-decoration: line-through;
 }
