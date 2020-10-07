@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+#h2, p {
+    margin-bottom: 10px;
+}
+
+.autor {
+    font-style: italic;
+}
+
 #formulario {
     border: 1px dotted black;
     padding: 10px;
@@ -42,4 +50,11 @@ button {
 #container-de-posts {
     margin: 10px;
     border-top: 3px double rgb(77, 77, 77);
+}
+
+/* Responsivo */
+@media only screen and (max-width: 380px){
+    #formulario, img {
+        width: 95vw;
+    }
 }

@@ -4,25 +4,38 @@ const getInputValues = () => {
     let postContent = document.getElementById('conteudo-post')
     let postImage = document.getElementById('imagem-post')
 
-    // verifyInputValues(postTitle.value, 'Preencha o título da postagem!')
-    // verifyInputValues(postAuthor.value, 'Preencha o autor(a) da postagem!')
-    // verifyInputValues(postContent.value, 'Escreva um conteúdo antes de postar!')
-
-    setPostObject(postTitle.value, postAuthor.value, postContent.value, postImage.value)
-
-    postTitle.value = ""
-    postAuthor.value = ""
-    postContent.value = ""
-    postImage.value = ""
+    if (  verifyInputValues(postTitle.value, postAuthor.value, postContent.value) && verifyImageLink(postImage.value) ){
+        setPostObject(postTitle.value, postAuthor.value, postContent.value, postImage.value)
+        postTitle.value = ""
+        postAuthor.value = ""
+        postContent.value = ""
+        postImage.value = ""
+    }
 }
 
-// const verifyInputValues = (field, message) => {
-//     if (field !== ""){
-//         return true
-//     }else {
-//         window.alert(message)
-//     }
-// }
+const verifyInputValues = (titleField, authorField, contentField) => {
+    if ( titleField !== ""){
+        if ( authorField !== ""){
+            if ( contentField !== ""){
+                return true
+            }else {
+                window.alert('Escreva um conteúdo para postar!')
+            }
+        }else {
+            window.alert('Informe o nome do(a) autor(a)!')
+        }
+    }else {
+        window.alert('Informe o título da postagem!')
+    }
+}
+
+const verifyImageLink = (imageUrl) =>{
+    if ( imageUrl.includes('http')){
+        return true
+    }else {
+        window.alert('Insira um link para a imagem!')
+    }
+}
 
 const setPostObject = (title, author, content, image) => {
     let newPost = {
@@ -39,8 +52,5 @@ const setPostObject = (title, author, content, image) => {
 
 const listPosts = (post) => {
     const postsContainer = document.getElementById('postagens')
-    postsContainer.innerHTML += `<h2>${post.title}</h2><p>${post.author}</p><p>${post.content}</p><img src=${post.image}>`
+    postsContainer.innerHTML += `<h2>${post.title}</h2><p class="autor">${post.author}</p><p>${post.content}</p><img src=${post.image}>`
 }
-
-
-
