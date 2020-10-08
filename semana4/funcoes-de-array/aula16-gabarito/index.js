@@ -24,11 +24,11 @@ function imprimirExtrato(){
     // AQUI VEM A IMPLEMENTAÇÃO
     arrDespesas.forEach((despesa, index, despesas)=> {
         if (despesa.tipo === 'alimentação'){
-            gastoAlimentacao = despesa.valor
+            gastoAlimentacao += despesa.valor
         }else if (despesa.tipo === 'utilidades'){
-            gastoUtilidades = despesa.valor
+            gastoUtilidades += despesa.valor
         }else {
-            gastoViagem = despesa.valor
+            gastoViagem += despesa.valor
         }
     })
 
