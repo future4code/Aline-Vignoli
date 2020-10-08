@@ -2,7 +2,6 @@ let arrDespesas = []
 imprimirDespesas(arrDespesas)
 imprimirExtrato()
 
-
 // PRIMEIRO
 function imprimirDespesas(despesas){
     let divDespesas = document.getElementById('despesas')
@@ -14,7 +13,6 @@ function imprimirDespesas(despesas){
     })
 }
 
-
 // SEGUNDO 
 function imprimirExtrato(){
     let divExtrato = document.getElementById('extrato')
@@ -22,7 +20,6 @@ function imprimirExtrato(){
     let gastoAlimentacao = 0
     let gastoUtilidades = 0
     let gastoViagem = 0
-
 
     // AQUI VEM A IMPLEMENTAÇÃO
     arrDespesas.forEach((despesa, index, despesas)=> {
@@ -41,7 +38,6 @@ function imprimirExtrato(){
                                         Utilidades: R$${gastoUtilidades} | Viagem: R$${gastoViagem}</p>`
 }
 
-
 function limparFiltros() {
     document.getElementById('tipoFiltro').value = ""
     document.getElementById('valorFiltroMin').value = ""
@@ -50,8 +46,6 @@ function limparFiltros() {
     // RECARREGA A LISTA DE DESPESAS ORIGINAL
     imprimirDespesas(arrDespesas)
 }
-
-
 
 function adicionarDespesa(){
     let valorCdt = document.getElementById('valorCadastro')
@@ -70,7 +64,6 @@ function adicionarDespesa(){
         valorCdt.value = ""
         tipoCtd.value = ""
         descricaoCtd.value = ""
-
         
         limparFiltros()
         imprimirDespesas(arrDespesas)
@@ -80,8 +73,6 @@ function adicionarDespesa(){
     }
 }
 
-
-
 // TERCEIRO
 function filtrarDespesas(){
     // inputs
@@ -89,30 +80,30 @@ function filtrarDespesas(){
     let inputValorMax = document.getElementById('valorFiltroMax')
 
     let tipoFiltro = document.getElementById('tipoFiltro').value
-    let valorMin = Number(inputValorMin).value
-    let valorMax = Number(inputValorMax).value
+    let valorMin = Number(inputValorMin.value)
+    let valorMax = Number(inputValorMax.value)
 
     // VALIDACAO DOS CAMPOS
     if ( validarInputs(inputValorMin, inputValorMax) ){
         if ( validarValor(inputValorMin) && validarValor(inputValorMax) ){
-            // AQUI NESSA VARIÁVEL VEM A IMPLEMENTAÇÃO
-            let despesasFiltradas = arrDespesas.filter((despesa)=>{
-                if ( tipoFiltro === despesa.tipo && despesa.valor >= valorMin && despesa.valor <= valorMax ){
-                    return true
-                }
-            })
-
-            imprimirDespesas(despesasFiltradas)
+            if ( validarValorMinEMax(inputValorMin, inputValorMax) ){
+                // AQUI NESSA VARIÁVEL VEM A IMPLEMENTAÇÃO
+                let despesasFiltradas = arrDespesas.filter((despesa)=>{
+                    if ( tipoFiltro === despesa.tipo && despesa.valor >= valorMin && despesa.valor <= valorMax ){
+                        return true
+                    } 
+                })
+                imprimirDespesas(despesasFiltradas)
+            }else {
+                window.alert("O valor mínimo não pode ser maior do que o valor máximo!")
+            }
         }else {
-            alert("Insira apenas números positivos")
+            window.alert("Insira apenas números positivos")
         }
     }else {
-        alert("Preencha os campos para filtrar")
+        window.alert("Preencha os campos para filtrar")
     }
 }
-
-
-
 
 // FunÇoes que fazem validaÇoes dos inputs de criaÇao de despesas 
 
@@ -148,6 +139,9 @@ function validarInputs(valorMin, valorMax){
     return false
 }
 
-function validarValorMinimo(valorMin){
-
+function validarValorMinMax(valorMin, valorMax){
+    if ( parseInt(valorMin.value) < parseInt(valorMax.value) ){
+        return true
+    }
+    return false
 }
