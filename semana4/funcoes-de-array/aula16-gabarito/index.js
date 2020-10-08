@@ -83,13 +83,15 @@ function filtrarDespesas(){
     let valorMin = Number(inputValorMin.value)
     let valorMax = Number(inputValorMax.value)
 
+    console.log(valorMax)
+
     // VALIDACAO DOS CAMPOS
     if ( validarInputs(inputValorMin, inputValorMax) ){
         if ( validarValor(inputValorMin) && validarValor(inputValorMax) ){
-            if ( validarValorMinEMax(inputValorMin, inputValorMax) ){
+            if ( validarValorMinMax(inputValorMin, inputValorMax) ){
                 // AQUI NESSA VARIÁVEL VEM A IMPLEMENTAÇÃO
                 let despesasFiltradas = arrDespesas.filter((despesa)=>{
-                    if ( tipoFiltro === despesa.tipo && despesa.valor >= valorMin && despesa.valor <= valorMax ){
+                    if ( tipoFiltro === despesa.tipo && despesa.valor >= valorMin && despesa.valor <= valorMax){
                         return true
                     } 
                 })
