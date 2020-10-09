@@ -187,13 +187,28 @@ Abaixo estão as correções:
 // }
 
 // 3. 
-const filme = {
-    titulo: '"Garota,Interrompida"',
-    ano: 2000,
-    diretor: 'James Mangold',
-    elenco: ['Winona Ryder', 'Angelina Jolie', 'Clea DuVall', 'Brittany Murphy']
+// const filme = {
+//     titulo: '"Garota,Interrompida"',
+//     ano: 2000,
+//     diretor: 'James Mangold',
+//     elenco: ['Winona Ryder', 'Angelina Jolie', 'Clea DuVall', 'Brittany Murphy']
+// }
+
+// let mensagem = `Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.elenco}`
+
+// console.log(mensagem)
+
+// 4.
+const pessoa = {
+    nome: 'Germana',
+    idade: 37,
+    email: 'emaildage@gmail.com',
+    endereco: 'Rua das Gaivotas, 420'
 }
 
-let mensagem = `Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.elenco}`
+let novaPessoa = {
+    ... pessoa,
+    nome: "Anonimo"
+}
 
-console.log(mensagem)
+console.log(novaPessoa.nome)
