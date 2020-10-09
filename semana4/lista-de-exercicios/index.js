@@ -38,3 +38,17 @@ No primeiro console.log será impresso a quantidade de elementos no array numero
 No segundo console.log será impresso a quantidade de elementos no array1(números pares), que será 6.
 No terceiro console.log será impresso a quantidade de elementos no array2(números ímpares), que será 8.
 */
+
+//4
+/*
+Primeiro é declarado um array chamado numeros, que contém números diversos.
+Em seguida é criada uma variável let chamada numero1, que recebe inicialmente o valor infinito.
+E abaixo dela, uma variável let chamada numero2, que recebe inicialmente zero.
+Depois disso nós temos um 'for' que itera o array numeros,e testa um elemento de cada vez:
+Se o primeiro elemento do array for menor do que o numero1(que é infinito), o numero1 vai agora receber o valor desse elemento.
+Ainda dentro do 'for' tem uma estrutura que vai testar se o elemento do array for maior do que numero2 (que é 0), o numero2 vai receber o valor desse elemento.
+Assim ele vai pegar todos os elementos do array, um por um, e fazer essas comparações, atualizando o numero1 para ser o menor número até o momento, e o numero2 para ser o maior número até o momento.
+Com essa estrutura nós vamos poder saber qual é o maior número do array numeros, e qual é o menor número do array numeros.
+No console irá imprimir primeiro o menor número, que é -10
+E em seguida, o maior número, 1590.
+*/
