@@ -1,4 +1,4 @@
-// EXERCICIOS DE INTERPRETAÇÃO DE CÓDIGO (o que faz, como faz, o que é impresso)
+// EXERCICIOS DE INTERPRETAÇÃO DE CÓDIGO
 
 // 1.
 /*
@@ -52,3 +52,24 @@ Com essa estrutura nós vamos poder saber qual é o maior número do array numer
 No console irá imprimir primeiro o menor número, que é -10
 E em seguida, o maior número, 1590.
 */
+
+// EXERCICIOS DE LÓGICA DE PROGRAMAÇÃO
+//1.
+// const numbers = [0, 1, 2, 3, 4, 5, 6]
+
+// PRIMEIRA MANEIRA - WHILE
+// let i = 0
+// while (i < numbers.length){
+//     console.log(numbers[i])
+//     i++
+// }
+
+// SEGUNDA MANEIRA - FOR
+// for (let i = 0; i < numbers.length; i++ ){
+//     console.log(numbers[i])
+// }
+
+// TERCEIRA MANEIRA - FOR OF
+// for (let number of numbers){
+//     console.log(number)
+// }
