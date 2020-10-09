@@ -199,16 +199,39 @@ Abaixo estão as correções:
 // console.log(mensagem)
 
 // 4.
-const pessoa = {
-    nome: 'Germana',
-    idade: 37,
-    email: 'emaildage@gmail.com',
-    endereco: 'Rua das Gaivotas, 420'
-}
+// const pessoa = {
+//     nome: 'Germana',
+//     idade: 37,
+//     email: 'emaildage@gmail.com',
+//     endereco: 'Rua das Gaivotas, 420'
+// }
 
-let novaPessoa = {
-    ... pessoa,
-    nome: "Anonimo"
-}
+// let novaPessoa = {
+//     ... pessoa,
+//     nome: "Anonimo"
+// }
 
-console.log(novaPessoa.nome)
+// console.log(novaPessoa.nome)
+
+// EXERCICIOS DE FUNÇÕES DE ARRAY
+// 1.
+// const pessoas = [
+// 	{ nome: "Pedro", idade: 20 },
+// 	{ nome: "João", idade: 10 },
+// 	{ nome: "Paula", idade: 12 },
+// 	{ nome: "Artur", idade: 89 } 
+// ]
+
+// const adultos = pessoas.filter((pessoa)=>{
+//     if ( pessoa.idade >= 20){
+//         return pessoa
+//     }
+// })
+
+// const criancasEAdolescentes = pessoas.filter((pessoa)=>{
+//     if ( pessoa.idade < 20){
+//         return pessoa
+//     }
+// })
+
+// console.log(adultos)
