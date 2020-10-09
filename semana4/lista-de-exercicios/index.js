@@ -166,8 +166,22 @@ Abaixo estão as correções:
 // }
 
 // 2. 
-const meuAlerta = ()=>{
-    window.alert("Hello Future4")
-}
+// const meuAlerta = ()=>{
+//     window.alert("Hello Future4")
+// }
 
-meuAlerta()
+// meuAlerta()
+
+// EXERCICIOS DE OBJETOS
+// 1. 
+
+// 2.
+const criarRetangulo = (lado1, lado2)=>{
+    const retangulo = {
+        largura: lado1,
+        altura: lado2,
+        perimetro: 2 * (lado1 + lado2),
+        area: lado1 * lado2
+    }
+    return retangulo
+}
