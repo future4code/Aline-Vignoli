@@ -176,12 +176,24 @@ Abaixo estão as correções:
 // 1. 
 
 // 2.
-const criarRetangulo = (lado1, lado2)=>{
-    const retangulo = {
-        largura: lado1,
-        altura: lado2,
-        perimetro: 2 * (lado1 + lado2),
-        area: lado1 * lado2
-    }
-    return retangulo
+// const criarRetangulo = (lado1, lado2)=>{
+//     const retangulo = {
+//         largura: lado1,
+//         altura: lado2,
+//         perimetro: 2 * (lado1 + lado2),
+//         area: lado1 * lado2
+//     }
+//     return retangulo
+// }
+
+// 3. 
+const filme = {
+    titulo: '"Garota,Interrompida"',
+    ano: 2000,
+    diretor: 'James Mangold',
+    elenco: ['Winona Ryder', 'Angelina Jolie', 'Clea DuVall', 'Brittany Murphy']
 }
+
+let mensagem = `Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.elenco}`
+
+console.log(mensagem)
