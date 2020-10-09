@@ -235,3 +235,47 @@ Abaixo estão as correções:
 // })
 
 // console.log(adultos)
+
+// 2.
+// const array = [1, 2, 3, 4, 5, 6]
+
+//a)
+// const numerosVezesDois = (array)=>{
+//     let novoArray = []
+//     array.forEach((numero)=>{
+//         novoArray.push(numero*2)
+//     })
+//     return novoArray
+// }
+
+// const novoArray = numerosVezesDois(array)
+// console.log(novoArray)
+
+//b)
+// const numerosVezesTresEmString = (array)=>{
+//     let novoArray = []
+//     array.forEach((numero)=>{
+//         let numeroString = numero*3
+//         novoArray.push(numeroString.toString())
+//     })
+//     return novoArray
+// }
+
+// const novoArray = numerosVezesTresEmString(array)
+// console.log(novoArray)
+
+//c)
+// const arrayStringsParImpar = (array)=>{
+//     let novoArray = []
+//     array.forEach((numero)=>{
+//         if ( numero%2 === 0){
+//             novoArray.push(`${numero} é par`)
+//         }else{
+//             novoArray.push(`${numero} é ímpar`)
+//         }
+//     })
+//     return novoArray
+// }
+
+// const novoArray = arrayStringsParImpar(array)
+// console.log(novoArray)
