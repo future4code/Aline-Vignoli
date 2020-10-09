@@ -109,9 +109,28 @@ Feito essas correções, o código estava imprimindo 1 número a mais do que dev
 Abaixo estão as correções:
 */
 
-const quantidadeDeNumerosPares = Number(prompt('Digite um número:'))
-let i = 0
-while(i < quantidadeDeNumerosPares) {
-  console.log(i*2)
-  i++
+// const quantidadeDeNumerosPares = Number(prompt('Digite um número:'))
+// let i = 0
+// while(i < quantidadeDeNumerosPares) {
+//   console.log(i*2)
+//   i++
+// }
+
+// 4.
+const classificaTriangulo = (a, b, c) =>{
+    let equilatero = a === b && a === c
+    let isosceles = a === b || a === c || b === c
+    let mensagem = ""
+
+    if ( equilatero ){
+        mensagem = 'Equilátero'
+    }else if ( isosceles ){
+        mensagem = 'Isósceles'
+    }else {
+        mensagem = 'Escaleno'
+    }
+    return mensagem
 }
+
+const resultado = classificaTriangulo(10,10,10)
+console.log(`Este é um triângulo ${resultado}`)
