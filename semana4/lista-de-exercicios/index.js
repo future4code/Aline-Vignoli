@@ -55,24 +55,38 @@ E em seguida, o maior número, 1590.
 
 // EXERCICIOS DE LÓGICA DE PROGRAMAÇÃO
 //1.
-// const numbers = [0, 1, 2, 3, 4, 5, 6]
+// const numbers = [0, 1, 2, 3, 4, 5, 6, 7]
 
 // PRIMEIRA MANEIRA - WHILE
-// let i = 0
-// while (i < numbers.length){
-//     console.log(numbers[i])
-//     i++
+// const iterarArray = (array)=>{
+//     let i = 0
+//     while (i < array.length){
+//         console.log(array[i])
+//         i++
+//     }
 // }
+
+// CHAMADA DA FUNÇÃO
+// iterarArray(numbers)
 
 // SEGUNDA MANEIRA - FOR
-// for (let i = 0; i < numbers.length; i++ ){
-//     console.log(numbers[i])
+// const iterarArray = (array)=>{
+//     for (let i = 0; i < array.length; i++ ){
+//         console.log(array[i])
+//     }
 // }
 
+// iterarArray(numbers)
+
 // TERCEIRA MANEIRA - FOR OF
-// for (let number of numbers){
-//     console.log(number)
+// const iterarArray = (array)=>{
+//     for (let element of array){
+//         console.log(element)
+//     }
 // }
+
+// iterarArray(numbers)
+
 
 //2.
 /*
@@ -86,3 +100,18 @@ booleano4 = false
 //c) true && true -> resultado = true
 //d) true || false -> resultado = true
 //e) false || true -> resultado = true
+
+// 3.
+/*
+O código não funciona primeiro porque a variável quantidadeDeNumerosPares não foi inicializada.
+O código gera um loop infinito pois a variável i não está sendo incrementada no fim do while, por tanto a condição de continuidade nunca deixa de ser verdadeira.
+Feito essas correções, o código estava imprimindo 1 número a mais do que deveria, pois a condição de continuidade estava testando menor OU igual, ao invéz de testar apenas enquanto for menor. 
+Abaixo estão as correções:
+*/
+
+const quantidadeDeNumerosPares = Number(prompt('Digite um número:'))
+let i = 0
+while(i < quantidadeDeNumerosPares) {
+  console.log(i*2)
+  i++
+}
