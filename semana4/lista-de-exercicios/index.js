@@ -117,20 +117,42 @@ Abaixo estão as correções:
 // }
 
 // 4.
-const classificaTriangulo = (a, b, c) =>{
-    let equilatero = a === b && a === c
-    let isosceles = a === b || a === c || b === c
-    let mensagem = ""
+// const classificaTriangulo = (a, b, c) =>{
+//     let equilatero = a === b && a === c
+//     let isosceles = a === b || a === c || b === c
+//     let mensagem = ""
 
-    if ( equilatero ){
-        mensagem = 'Equilátero'
-    }else if ( isosceles ){
-        mensagem = 'Isósceles'
+//     if ( equilatero ){
+//         mensagem = 'Equilátero'
+//     }else if ( isosceles ){
+//         mensagem = 'Isósceles'
+//     }else {
+//         mensagem = 'Escaleno'
+//     }
+//     return mensagem
+// }
+
+// const resultado = classificaTriangulo(10,10,10)
+// console.log(`Este é um triângulo ${resultado}`)
+
+// 5.
+const numero1 = Number(prompt('Digite um número:'))
+const numero2 = Number(prompt('Digite outro número:'))
+
+const verificaMaiorNumero = (a, b)=> {
+    if ( a > b ){
+        console.log('O maior é:', a)
+        console.log(b + ' não é divisível por ' + a)
+        console.log(a + ' é divisível por ' + b)
+        console.log('A diferença entre eles é', a - b)
+    }else if ( b > a ){
+        console.log('O maior é:', b)
+        console.log(a + ' não é divisível por ' + b)
+        console.log(b + ' é divisível por ' + a)
+        console.log('A diferença entre eles é', b - a)
     }else {
-        mensagem = 'Escaleno'
+        alert('Os dois números são iguais!')
     }
-    return mensagem
 }
 
-const resultado = classificaTriangulo(10,10,10)
-console.log(`Este é um triângulo ${resultado}`)
+verificaMaiorNumero(numero1, numero2)
