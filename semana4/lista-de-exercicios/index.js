@@ -73,3 +73,16 @@ E em seguida, o maior número, 1590.
 // for (let number of numbers){
 //     console.log(number)
 // }
+
+//2.
+/*
+booleano1 = true
+booleano2 = false
+booleano3 = true
+booleano4 = false
+*/
+//a) true && false && true -> resultado = false
+//b) false || true -> resultado = false
+//c) true && true -> resultado = true
+//d) true || false -> resultado = true
+//e) false || true -> resultado = true
