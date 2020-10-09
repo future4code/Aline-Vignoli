@@ -25,5 +25,16 @@ A variável novoMontante recebe o retorno da função investeDinheiro passando c
 A variável segundoMontante recebe o retorno da função investeDinheiro passando como tipo de investimento "Tesouro Direto", e como valor de investimento 200.
 No fim do código o primeiro console.log irá imprimir o valor 165.
 Já o segundo console.log irá imprimir undefined e o programa vai exibir um alert "TIPO DE INVESTIMENTO INFORMADO INCORRETO!" para o usuário, pois o tipo "Tesouro Direto" não corresponde à nenhuma das opções do switch.
+*/
 
+//3
+/*
+Primeiro é declarado um array chamado numeros, que contém números diversos.
+Abaixo são criados dois arrays vazios (arra1 e array2).
+Em seguinda nós temos um 'for' que percorre cada elemento do array principal (numeros), e verifica:
+Se o resto da divisão dessa elemento por dois for igual a zero, quer dizer que o número é par. Nesse caso, esse número será adicionado ao array1, atravéz da função 'push'.
+Se não, quer dizer que o número é ímpar, e nesse caso será adicionado ao array2, atravéz do 'push'.
+No primeiro console.log será impresso a quantidade de elementos no array numeros, dessa forma: "Quantidade total de números 14"
+No segundo console.log será impresso a quantidade de elementos no array1(números pares), que será 6.
+No terceiro console.log será impresso a quantidade de elementos no array2(números ímpares), que será 8.
 */
