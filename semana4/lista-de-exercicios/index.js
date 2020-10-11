@@ -291,14 +291,25 @@ const pessoas = [
 	{ nome: "Soter", idade: 70, altura: 1.9}
 ]
 
-const pessoasComPermissao = pessoas.filter((pessoa)=>{
+// const pessoasComPermissao = pessoas.filter((pessoa)=>{
+//     let alturaMinima = pessoa.altura >= 1.5
+//     let faixaEtaria = pessoa.idade >= 14 && pessoa.idade <= 60 
+//     if ( alturaMinima && faixaEtaria ){
+//         return true
+//     }
+//     return false
+// })
+
+// console.log(pessoasComPermissao)
+
+// b)
+const pessoasSemPermissao = pessoas.filter((pessoa)=>{
     let alturaMinima = pessoa.altura >= 1.5
     let faixaEtaria = pessoa.idade >= 14 && pessoa.idade <= 60 
-    if ( alturaMinima && faixaEtaria ){
-        console.log(pessoa.nome)
+    if ( !alturaMinima || !faixaEtaria ){
         return true
     }
     return false
 })
 
-console.log(pessoasComPermissao)
+console.log(pessoasSemPermissao)
