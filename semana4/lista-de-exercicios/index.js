@@ -315,15 +315,40 @@ Abaixo estão as correções:
 // console.log(pessoasSemPermissao)
 
 // 4.
-const consultas = [
-	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
-	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
-	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
-	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
-]
+// const consultas = [
+// 	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+// 	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+// 	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+// 	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+// ]
 
-const consultasNaoCanceladas = consultas.filter((consulta)=>{
-    return consulta.cancelada === false
-})
+// const emailsNaoCanceladas = []
+// const emailsCanceladas = []
 
-console.log(consultasNaoCanceladas)
+// const gerarEmailsConsultas = (array)=>{
+// 	array.forEach((consulta)=>{
+// 		let textoEmail = ""
+// 		let genero = ""
+// 		let lembrete = ""
+	
+// 		if ( consulta.genero === "feminino"){
+// 			genero = "Sra."
+// 			lembrete = "lembrá-la"
+// 		}else {
+// 			genero = "Sr."
+// 			lembrete = "lembrá-lo"
+// 		}
+	
+// 		if ( consulta.cancelada === false ){
+// 			textoEmail = `Olá, ${genero} ${consulta.nome}. Estamos enviando esta mensagem para ${lembrete} da sua consulta no dia ${consulta.dataDaConsulta}. Por favor, acuse o recebimento desse e-mail.` 
+// 			emailsNaoCanceladas.push(textoEmail)
+// 		}else {
+// 			textoEmail = `Olá, ${genero} ${consulta.nome}. Infelizmente, sua consulta marcada para o dia ${consulta.dataDaConsulta} foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la.` 
+// 			emailsCanceladas.push(textoEmail)
+// 		}
+// 	})
+// }
+
+// gerarEmailsConsultas(consultas)
+// console.log(emailsNaoCanceladas)
+// console.log(emailsCanceladas)
