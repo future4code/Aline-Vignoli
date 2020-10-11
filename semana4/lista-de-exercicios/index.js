@@ -87,7 +87,6 @@ E em seguida, o maior número, 1590.
 
 // iterarArray(numbers)
 
-
 //2.
 /*
 booleano1 = true
@@ -159,11 +158,47 @@ Abaixo estão as correções:
 
 // EXERCICIOS DE FUNÇÕES
 // 1.
-// const numeros = [20, 30, 5, 241, 2, 700, 54, 61]
+// const numeros = [20, 183, 5, 300, 241, 2, 721, 54, 61, 1030, 7, 13]
+
+// let maiorNumero = 0
+// let segundoMaiorNumero = 0
+// let menorNumero = Infinity
+// let segundoMenorNumero = Infinity
+// copiaArray = []
 
 // const segundoMaiorSegundoMenor = (array)=> {
+//     copiaArray = array.map((numero)=>{
+//         return numero
+//     })
 
+//     for ( let numero of copiaArray ){
+//         if ( numero < menorNumero ){
+//             menorNumero = numero
+//         }
+
+//         if ( numero > maiorNumero ){
+//             maiorNumero = numero
+//         }
+//     }
+
+//     copiaArray.splice(copiaArray.indexOf(menorNumero), 1)
+//     copiaArray.splice(copiaArray.indexOf(maiorNumero), 1)
+
+//     for ( let numero of copiaArray ){
+//         if ( numero < segundoMenorNumero ){
+//             segundoMenorNumero = numero
+//         }
+
+//         if ( numero > segundoMaiorNumero ){
+//             segundoMaiorNumero = numero
+//         }
+//     }
 // }
+
+// segundoMaiorSegundoMenor(numeros)
+
+// console.log(segundoMaiorNumero)
+// console.log(segundoMenorNumero)
 
 // 2. 
 // const meuAlerta = ()=>{
