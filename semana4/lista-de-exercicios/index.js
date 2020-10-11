@@ -209,6 +209,11 @@ Abaixo estão as correções:
 
 // EXERCICIOS DE OBJETOS
 // 1. 
+/*
+Arrays são um grupo de variáveis, normalmente não ordenadas, que pode armazenar diferentes valores. pode ser uma coleção de números, elementos diversos, strings. Quando queremos guardar uma lista de dados com características parecidas, podemos agrupá-los em um array.
+Já objetos seriam variáveis que pode apresentar dados de maneira mais organizada e mais próxima da realidade. Em um mesmo objeto podemos adicionar diversas propriedades/características de maneira mais próxima do nosso mundo. Objetos são protótipos mais complexo e podemos separar e organizar os dados dentro de cada um deles de forma mais inteligente e fácil de acessar.
+Podemos ainda criar um array de objetos, para armazenar mais de um objetos, e cada um deles vai possuir suas próprias característica para diferenciá-los entre si.
+*/
 
 // 2.
 // const criarRetangulo = (lado1, lado2)=>{
