@@ -282,14 +282,14 @@ Abaixo estão as correções:
 
 // 3.
 // a)
-const pessoas = [
-	{ nome: "Paula", idade: 12, altura: 1.8},
-	{ nome: "João", idade: 20, altura: 1.3},
-	{ nome: "Pedro", idade: 15, altura: 1.9},
-	{ nome: "Luciano", idade: 22, altura: 1.8},
-	{ nome: "Artur", idade: 10, altura: 1.2},
-	{ nome: "Soter", idade: 70, altura: 1.9}
-]
+// const pessoas = [
+// 	{ nome: "Paula", idade: 12, altura: 1.8},
+// 	{ nome: "João", idade: 20, altura: 1.3},
+// 	{ nome: "Pedro", idade: 15, altura: 1.9},
+// 	{ nome: "Luciano", idade: 22, altura: 1.8},
+// 	{ nome: "Artur", idade: 10, altura: 1.2},
+// 	{ nome: "Soter", idade: 70, altura: 1.9}
+// ]
 
 // const pessoasComPermissao = pessoas.filter((pessoa)=>{
 //     let alturaMinima = pessoa.altura >= 1.5
@@ -303,13 +303,27 @@ const pessoas = [
 // console.log(pessoasComPermissao)
 
 // b)
-const pessoasSemPermissao = pessoas.filter((pessoa)=>{
-    let alturaMinima = pessoa.altura >= 1.5
-    let faixaEtaria = pessoa.idade >= 14 && pessoa.idade <= 60 
-    if ( !alturaMinima || !faixaEtaria ){
-        return true
-    }
-    return false
+// const pessoasSemPermissao = pessoas.filter((pessoa)=>{
+//     let alturaMinima = pessoa.altura >= 1.5
+//     let faixaEtaria = pessoa.idade >= 14 && pessoa.idade <= 60 
+//     if ( !alturaMinima || !faixaEtaria ){
+//         return true
+//     }
+//     return false
+// })
+
+// console.log(pessoasSemPermissao)
+
+// 4.
+const consultas = [
+	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+]
+
+const consultasNaoCanceladas = consultas.filter((consulta)=>{
+    return consulta.cancelada === false
 })
 
-console.log(pessoasSemPermissao)
+console.log(consultasNaoCanceladas)
