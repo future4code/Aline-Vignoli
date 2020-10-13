@@ -1,4 +1,5 @@
 import React from 'react';
+import logoPesquisa from './img/search-icon.png';
 import './App.css';
 
 function App() {
@@ -12,8 +13,15 @@ function App() {
     <div>
       <div className="tela-inteira">
         <header>
+          <div>
             <h1>Lab Tube</h1>
-            <input type="text" placeholder="Busca" id="campoDeBusca" />
+          </div>
+          <div className="pesquisar">
+            <input type="text" placeholder="Pesquisar" id="campoDeBusca" />
+            <div id="div-botao-pesquisa">
+              <input id="botao-pesquisa" type="image" src={logoPesquisa} alt='lupa-de-pesquisar'/>
+            </div> 
+          </div>  
         </header>
 
         <main>

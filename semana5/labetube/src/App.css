@@ -12,32 +12,42 @@ body {
 }
 
 header {
-  background-color: orange;
+  background-color: #FFF;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
-  height: 10%;
+  height: 8%;
 }
 
 main {
-  min-height: 80%;
+  min-height: 100%;
   display: flex;
 }
 
 .menu-vertical {
-  flex-basis: 200px;
-  border-right-style: solid;
-  border-right-width: thin;
+  width: 25vw;
+}
+
+ul {
+  padding-inline-start: 0;
 }
 
 .botoes-meunu-vertical {
   list-style-type: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.botoes-meunu-vertical:hover {
+  background-color: #ebebeb;
 }
 
 .painel-de-videos {
+  background-color: #F9F9F9;
   padding-left: 20px;
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-right: 20px;
   flex-grow: 1;
   display: grid;
   grid-template-columns: repeat(4, 24.8% 0.2%);
@@ -89,10 +99,10 @@ main {
   display: grid;
   grid-template-rows: 3fr 1fr;
   grid-template-columns: 1fr;
-  border-style: solid;
-  border-width: thin; 
+  padding: 10px; 
   align-items: start;
   justify-items: stretch;
+  cursor: pointer;
 }
 
 
@@ -114,3 +124,35 @@ h4 {
   margin-left: 20px;
 }
 
+.pesquisar {
+  display: flex;
+  margin: auto;
+}
+
+#campoDeBusca {
+  height: 4vh;
+  width: 40vw;
+  padding-left: 5px;
+  border: #cdcdcd 1px solid;
+}
+
+#div-botao-pesquisa {
+  display: flex;
+  justify-content: center;
+  background-color: #F0F0F0;
+  width: 5vw;
+  border: #cdcdcd 1px solid;
+}
+
+#div-botao-pesquisa:hover {
+  background-color: #ebebeb
+}
+
+#botao-pesquisa {
+  width: 20px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
