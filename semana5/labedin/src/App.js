@@ -1,10 +1,18 @@
 import React from 'react';
 import './App.css';
 import foto from './img/aline-perfil.png';
-import logoLabenu from './img/labenu_logo.png';
+import logoLabenu from './img/labenu-logo.png';
 import logoCorpoFechadoFloripa from './img/corpo-fechado-floripa.jpg';
 import iconeEmail from './img/email-icon.png';
 import iconeMap from './img/local-icon-map.png';
+import iconeIngles from './img/english-icon.png';
+import iconeGit from './img/git-icon.png';
+import iconeJava from './img/java-icon.png';
+import iconeHTML from './img/html-icon.png';
+import iconeCSS from './img/css-icon.png';
+import iconeJS from './img/js-icon.png';
+import iconeAndroid from './img/android-icon.png';
+import iconeFirebase from './img/firebase-icon.png';
 import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
 import CardPequeno from './components/CardPequeno/CardPequeno';
@@ -50,6 +58,49 @@ function App() {
           imagem={logoCorpoFechadoFloripa} 
           nome="Corpo Fechado Floripa" 
           descricao="CEO e Tatuadora." 
+        />
+      </div>
+
+      <div className="page-section-container">
+        <h2>Competências</h2>
+        <CardPequeno
+          imagem={iconeIngles}
+          nome="Inglês avançado"
+        />
+
+        <CardPequeno
+          imagem={iconeGit}
+          nome="GIT"
+        />
+
+        <CardPequeno
+          imagem={iconeJava}
+          nome="Java"
+        />
+
+        <CardPequeno
+          imagem={iconeAndroid}
+          nome="Desenvolvimento Mobile com Android Studio"
+        />
+
+        <CardPequeno
+          imagem={iconeFirebase}
+          nome="Firebase"
+        />
+
+        <CardPequeno
+          imagem={iconeHTML}
+          nome="HTML5"
+        />
+
+        <CardPequeno
+          imagem={iconeCSS}
+          nome="CSS3"
+        />
+
+        <CardPequeno
+          imagem={iconeJS}
+          nome="Javascript"
         />
       </div>
 
