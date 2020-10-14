@@ -1,16 +1,15 @@
 import React from 'react';
-import './CardPequeno.css';
+import './CardLista.css';
 
-function CardPequeno(props){
+function CardLista(props){
     return (
-        <div className="smallcard-container">
+        <div className="listcard-container">
             <img src={props.imagem}/>
             <div>
                 <h4>{props.nome}</h4>
-                <p>{props.descricao}</p>
             </div>
         </div>
     )
 }
 
-export default CardPequeno;
+export default CardLista;

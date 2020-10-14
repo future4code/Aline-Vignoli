@@ -8,7 +8,7 @@
     margin: 10px auto;
 }
 
-.image-button-container > img {
+.image-button-container > a > img {
     width: 30px;
     margin-right: 10px;
 }

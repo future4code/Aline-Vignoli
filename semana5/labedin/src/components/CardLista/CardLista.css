@@ -1,0 +1,19 @@
+.listcard-container {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #808080;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    height: 70px;
+}
+
+.listcard-container > img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.listcard-container > div {
+    display: flex;
+    gap: 10px;
+    justify-items: flex-start;
+}
