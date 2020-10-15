@@ -1,0 +1,158 @@
+body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+
+.tela-inteira {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  height: 8%;
+}
+
+main {
+  min-height: 100%;
+  display: flex;
+}
+
+.menu-vertical {
+  width: 25vw;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+.botoes-meunu-vertical {
+  list-style-type: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.botoes-meunu-vertical:hover {
+  background-color: #ebebeb;
+}
+
+.painel-de-videos {
+  background-color: #F9F9F9;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-right: 20px;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 24.8% 0.2%);
+  grid-template-rows: repeat(4, 270px 20px);
+}
+
+.media1 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.media2 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.media3 {
+  grid-column-start: 5;
+  grid-row-start: 1;
+}
+
+.media4 {
+  grid-column-start: 7;
+  grid-row-start: 1;
+}
+
+.media5 {
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+.media6 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+
+.media7 {
+  grid-column-start: 5;
+  grid-row-start: 3;
+}
+
+.media8 {
+  grid-column-start: 7;
+  grid-row-start: 3;
+}
+
+
+.box-pagina-principal {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr;
+  padding: 10px; 
+  align-items: start;
+  justify-items: stretch;
+  cursor: pointer;
+}
+
+
+footer {
+  height: 10%;
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.box-pagina-principal > img {
+  width: 100%;
+  height: 200px;
+}
+
+h4 {
+  margin-left: 20px;
+}
+
+.pesquisar {
+  display: flex;
+  margin: auto;
+}
+
+#campoDeBusca {
+  height: 4vh;
+  width: 40vw;
+  padding-left: 5px;
+  border: #cdcdcd 1px solid;
+}
+
+#div-botao-pesquisa {
+  display: flex;
+  justify-content: center;
+  background-color: #F0F0F0;
+  width: 5vw;
+  border: #cdcdcd 1px solid;
+}
+
+#div-botao-pesquisa:hover {
+  background-color: #ebebeb
+}
+
+#botao-pesquisa {
+  width: 20px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
