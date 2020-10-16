@@ -33,7 +33,6 @@ class App extends React.Component {
   }
 
   postar = ()=> {
-
     if ( this.validarInputs(
       this.state.valorInputUsuario,
       this.state.valorInputFotoUsuario,
@@ -99,12 +98,13 @@ class App extends React.Component {
   `
 
   render() {
-    const listaDePosts = this.state.posts.map((post)=>{
+    const listaDePosts = this.state.posts.map((post, id)=>{
       return (
         <Post
           nomeUsuario={post.nomeUsuario}
           fotoUsuario={post.fotoUsuario}
           fotoPost={post.fotoPost}
+          key={id}
         />
       )
     })

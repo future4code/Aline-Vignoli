@@ -1,5 +1,4 @@
-import React from 'react'
-import './Post.css'
+import React from 'react';
 import styled from 'styled-components';
 
 import {IconeComContador} from '../IconeComContador/IconeComContador'
@@ -21,7 +20,8 @@ class Post extends React.Component {
     comentando: false,
     compartilhando: false,
     numeroComentarios: 0,
-    salvo: false
+    salvo: false,
+    comentarios: []
   }
 
   onClickCurtida = () => {
@@ -46,11 +46,16 @@ class Post extends React.Component {
     })
   }
 
-  aoEnviarComentario = () => {
+  aoEnviarComentario = (comentario) => {
     this.setState({
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1
     })
+
+		//Copiar array de comentarios, adicionando o novoComentario
+		const novoArrayComentarios = [...this.state.comentarios, comentario]
+		//Atualiza o estado "comentarios" com o "novoArrayComentarios"
+    this.setState({ comentarios: novoArrayComentarios})
   }
 
   onClickSalvar = () => {
@@ -112,6 +117,14 @@ class Post extends React.Component {
     width: 100%;
   `
 
+  DivComentarios = styled.div`
+    background-color: #DCDCDC;
+    margin: 10px;
+    padding: 1px 10px 1px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+  `
+
   render() {
     let iconeCurtida
 
@@ -140,6 +153,14 @@ class Post extends React.Component {
     }else {
       iconeSalvo = iconeSalvoBranco
     }
+
+    const listaComentarios = this.state.comentarios.map((comentario, id)=>{
+      return (
+        <this.DivComentarios>
+          <p key={id}>{comentario}</p>
+        </this.DivComentarios>
+      )
+    })
 
     return <this.DivPostContainer>
       <this.DivPostHeader>
@@ -173,6 +194,7 @@ class Post extends React.Component {
       </this.DivPostFooter>
       {componenteCompartilhar}
       {componenteComentario}
+      {listaComentarios}
     </this.DivPostContainer>
   }
 }

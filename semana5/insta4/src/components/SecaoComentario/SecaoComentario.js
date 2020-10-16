@@ -3,14 +3,13 @@ import './SecaoComentario.css'
 
 export class SecaoComentario extends Component {
 	state = {
-		valorInputComentario: ''
+		valorInputComentario: '',
 	}
 
 	onChangeComentario = (event)=>{
 		this.setState({
 			valorInputComentario: event.target.value
 		})
-		console.log(this.state.valorInputComentario)
 	}
 
 	render() {
@@ -21,7 +20,7 @@ export class SecaoComentario extends Component {
 				value={this.state.valorInputComentario}
 				onChange={this.onChangeComentario}
 			/>
-			<button onClick={this.props.aoEnviar}>Enviar</button>
+			<button onClick={()=>this.props.aoEnviar(this.state.valorInputComentario)}>Enviar</button>
 		</div>
 	}
 }
