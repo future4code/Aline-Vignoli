@@ -42,7 +42,7 @@ class App extends React.Component {
       const novoPost = {
         nomeUsuario: this.state.valorInputUsuario,
         fotoUsuario: this.state.valorInputFotoUsuario,
-        fotoPost: this.valorInputFotoPost
+        fotoPost: this.state.valorInputFotoPost
       }
   
       //Copiar array de posts, adicionando o novoPost

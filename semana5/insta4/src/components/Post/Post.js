@@ -1,5 +1,6 @@
 import React from 'react'
 import './Post.css'
+import styled from 'styled-components';
 
 import {IconeComContador} from '../IconeComContador/IconeComContador'
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
@@ -78,6 +79,39 @@ class Post extends React.Component {
     }    
   }
 
+  //Estilizacao
+  DivPostContainer = styled.div`
+    border: 1px solid gray;
+    width: 300px;
+    margin-bottom: 10px;
+  `
+
+  DivPostHeader = styled.div`
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  `
+
+  DivPostFooter = styled.div`
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: space-between;
+  `
+
+  ImgUserPhoto = styled.img`
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+  `
+
+  ImgPostPhoto = styled.img`
+    width: 100%;
+  `
+
   render() {
     let iconeCurtida
 
@@ -107,19 +141,19 @@ class Post extends React.Component {
       iconeSalvo = iconeSalvoBranco
     }
 
-    return <div className={'post-container'}>
-      <div className={'post-header'}>
-        <img className={'user-photo'} src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
+    return <this.DivPostContainer>
+      <this.DivPostHeader>
+        <this.ImgUserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
         <p>{this.props.nomeUsuario}</p>
         <IconeSalvos
           icone={iconeSalvo}
           onClickIcone={this.onClickSalvar}
         />
-      </div>
+      </this.DivPostHeader>
 
-      <img className={'post-photo'} src={this.props.fotoPost} alt={'Imagem do post'}/>
+      <this.ImgPostPhoto src={this.props.fotoPost} alt={'Imagem do post'}/>
 
-      <div className={'post-footer'}>
+      <this.DivPostFooter>
         <IconeComContador
           icone={iconeCurtida}
           onClickIcone={this.onClickCurtida}
@@ -136,10 +170,10 @@ class Post extends React.Component {
           icone={iconeCompartilhar}
           onClickIcone={this.onClickCompartilhar}
         />
-      </div>
+      </this.DivPostFooter>
       {componenteCompartilhar}
       {componenteComentario}
-    </div>
+    </this.DivPostContainer>
   }
 }
 
