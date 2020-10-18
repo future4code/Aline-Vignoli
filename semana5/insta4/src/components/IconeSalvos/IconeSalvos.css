@@ -1,0 +1,14 @@
+.icon-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-container img {
+    margin-right: 5px;
+}
+
+.save-icon-container {
+    align-self: center;
+    margin-left: auto;
+    margin-right: 5px;
+}
