@@ -4,7 +4,7 @@ import './styles.css'
 
 const TarefaList = styled.ul`
   padding: 0;
-  width: 200px;
+  width: 300px;
 `
 
 const Tarefa = styled.li`
@@ -17,6 +17,13 @@ const InputsContainer = styled.div`
   grid-auto-flow: column;
   gap: 10px;
 `
+
+const TarefaContainer = styled.div`
+  align-items: center;
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+` 
 
 class App extends React.Component {
     state = {
@@ -31,10 +38,13 @@ class App extends React.Component {
 
   componentDidMount() {
     const tarefaString = localStorage.getItem("tarefas")
-        const tarefaObjeto = JSON.parse(tarefaString)
-        this.setState({
-            tarefas: tarefaObjeto
-        })
+    const tarefaObjeto = JSON.parse(tarefaString)
+
+    if (tarefaObjeto){
+      this.setState({
+        tarefas: tarefaObjeto
+      })
+    }
   };
 
   onChangeInput = (event) => {
@@ -51,6 +61,14 @@ class App extends React.Component {
     const novoArrayTarefas = [...this.state.tarefas, novaTarefa]
     this.setState({tarefas: novoArrayTarefas})
     this.setState( {inputValue: ''})
+  }
+
+  removerTarefa = (id) => {
+    const listaAtualizada = this.state.tarefas.filter((tarefa) => {
+      return tarefa.id !== id
+    })
+
+    this.setState({tarefas: listaAtualizada})
   }
 
   selectTarefa = (id) => {
@@ -105,12 +123,16 @@ class App extends React.Component {
         <TarefaList>
           {listaFiltrada.map(tarefa => {
             return (
-              <Tarefa
+              <TarefaContainer>
+                <Tarefa
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
               >
                 {tarefa.texto}
+                
               </Tarefa>
+              <button onClick={() => this.removerTarefa(tarefa.id)}>Apagar</button>
+              </TarefaContainer>
             )
           })}
         </TarefaList>
