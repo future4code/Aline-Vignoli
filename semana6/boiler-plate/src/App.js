@@ -29,7 +29,9 @@ class App extends React.Component {
     state = {
       tarefas: [],
       inputValue: '',
-      filtro: ''
+      filtro: '',
+      editando: false,
+      inputEdicaoValue: ''
     }
 
   componentDidUpdate() {
@@ -63,12 +65,17 @@ class App extends React.Component {
     this.setState( {inputValue: ''})
   }
 
-  removerTarefa = (id) => {
+  apagarTarefa = (id) => {
     const listaAtualizada = this.state.tarefas.filter((tarefa) => {
       return tarefa.id !== id
     })
 
     this.setState({tarefas: listaAtualizada})
+  }
+
+  editarTarefa = (id) => {
+    //Funcao esta incompleta, por enquanto apenas mostrando e escondendo o input editar
+    this.setState({editando: !this.state.editando})
   }
 
   selectTarefa = (id) => {
@@ -89,6 +96,10 @@ class App extends React.Component {
 
   onChangeFilter = (event) => {
     this.setState({filtro: event.target.value})
+  }
+
+  apagarTodas = () => {
+    this.setState({tarefas: []})
   }
 
   render() {
@@ -131,11 +142,14 @@ class App extends React.Component {
                 {tarefa.texto}
                 
               </Tarefa>
-              <button onClick={() => this.removerTarefa(tarefa.id)}>Apagar</button>
+              <button onClick={() => this.apagarTarefa(tarefa.id)}>Apagar</button>
+              <button onClick={() => this.editarTarefa(tarefa.id)}>Editar</button>
               </TarefaContainer>
             )
           })}
+          {this.state.editando && <input value={this.state.inputEdicaoValue}/>}
         </TarefaList>
+        {this.state.tarefas.length!==0 && <button onClick={this.apagarTodas}>Apagar todas</button>}
       </div>
     )
   }
