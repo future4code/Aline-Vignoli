@@ -5,11 +5,12 @@ import axios from 'axios';
 import Header from './components/Header';
 import UsersList from './components/UsersList/UsersList';
 import SignUpForm from './components/SignUpForm';
-import UserProfile from './components/UsersList/UserProfile';
 
 const MainContainer = styled.div`
+  padding: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 `
 

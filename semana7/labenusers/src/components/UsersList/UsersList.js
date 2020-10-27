@@ -4,6 +4,28 @@ import axios from 'axios';
 import UserCard from './UserCard';
 import UserProfile from './UserProfile';
 
+const MainContainer = styled.div`
+  background-color: #836FFF;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0.1px 2px 3px #000;
+  padding: 30px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
+
+const Tittle = styled.h2` 
+  text-shadow: 0.1px 2px 1px #000;
+  margin: auto;
+  color: #FFF;
+`
+
+const List = styled.ul`
+  padding-inline-start: 0;
+`
+
 class UsersList extends React.Component{
 
   state = {
@@ -45,15 +67,15 @@ class UsersList extends React.Component{
     })
 
     return (
-      <div>
-        <h2>{this.state.displayUserDetails ? "Detalhes" :"Usuários Cadastrados"}</h2>
+      <MainContainer>
+        <Tittle>{this.state.displayUserDetails ? "Detalhes" :"Usuários Cadastrados"}</Tittle>
         {this.state.displayUserDetails ? 
           <UserProfile 
             viewProfile={this.viewUserProfile}
             selectedUser={this.state.selectedUser}/> :
-          <ul>{renderedList}</ul>
+          <List>{renderedList}</List>
         }
-      </div>
+      </MainContainer>
     );
   }
 }
