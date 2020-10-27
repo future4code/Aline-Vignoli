@@ -7,8 +7,8 @@ class UserCard extends React.Component{
   render(){
     return (
       <div>
-        <li>{this.props.user.name}</li>
-    <button onClick={()=> this.props.clickToRemove(this.props.user)}>Deletar</button>
+        <li onClick={()=> this.props.getUser(this.props.user.id)}>{this.props.user.name}</li>
+        <button onClick={()=> this.props.clickToRemove(this.props.user)}>Deletar</button>
       </div>
     );
   }

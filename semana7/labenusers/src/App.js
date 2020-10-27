@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from './components/Header';
 import UsersList from './components/UsersList/UsersList';
 import SignUpForm from './components/SignUpForm';
+import UserProfile from './components/UsersList/UserProfile';
 
 const MainContainer = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ class App extends React.Component{
     usersList: [],
     nameValue: "",
     emailValue: "",
-    homePage: true
+    homePage: true,
   }
 
   onChangeNameValue = (event) => {
@@ -90,12 +91,11 @@ class App extends React.Component{
         <Header changePage={this.changePage} isHomePage={this.state.homePage}/>
         {this.state.homePage ? 
         <SignUpForm
-        nameValue={this.state.nameValue}
-        onChangeName={this.onChangeNameValue}
-        emailValue={this.state.emailValue}
-        onChangeEmail={this.onChangeEmailValue}
-        signUpClick={this.createUser}
-        /> : 
+          nameValue={this.state.nameValue}
+          onChangeName={this.onChangeNameValue}
+          emailValue={this.state.emailValue}
+          onChangeEmail={this.onChangeEmailValue}
+          signUpClick={this.createUser}/> : 
         <UsersList
           list={this.state.usersList}
           renderList={this.getAllUsers}
