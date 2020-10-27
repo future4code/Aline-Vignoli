@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
 const FormContainer = styled.div`
     padding: 10px;
