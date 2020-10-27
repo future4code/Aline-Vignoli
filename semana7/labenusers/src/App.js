@@ -15,28 +15,7 @@ const MainContainer = styled.div`
 class App extends React.Component{
 
   state = {
-    usersList: [
-      // {
-      //   id: "1",
-      //   name: "Aline Vignoli",
-      //   email: "nyhv.contato@gmail.com"
-      // },
-      // {
-      //   id: "2",
-      //   name: "Germana Whoops",
-      //   email: "ge@gmail.com"
-      // },
-      // {
-      //   id: "3",
-      //   name: "Hilton Tints",
-      //   email: "hilton@gmail.com"
-      // },
-      // {
-      //   id: "4",
-      //   name: "Pessoa Muito Loca",
-      //   email: "pessoa@gmail.com"
-      // }
-    ],
+    usersList: [],
     nameValue: "",
     emailValue: "",
     homePage: true
@@ -79,28 +58,30 @@ class App extends React.Component{
         Authorization: "aline-vignoli-dumont"
       }
     }).then(response => {
-      alert("Usuario cadastrado com sucesso!")
+      window.alert("Usuario cadastrado com sucesso!")
       this.setState({nameValue: ""})
       this.setState({emailValue: ""})
     }).catch(error => {
-      alert("Erro ao cadastrar usuário")
+      window.alert("Erro ao cadastrar usuário")
       console.log(error.message)
     })
   }
 
   deleteUser = (user) => {
-    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${user.id}`,
-    {
-      headers: {
-        Authorization: "aline-vignoli-dumont"
-      }
-    }).then(response => {
-      alert(`O usuário ${user.name} foi removido!`)
-      this.getAllUsers()
-    }).catch(error => {
-      alert("Erro ao deletar usuário")
-      console.log(error.message)
-    })
+    if (window.confirm(`Tem certeza que deseja deletar "${user.name}" da sua lista de usuários?`)) {
+        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${user.id}`,
+      {
+        headers: {
+          Authorization: "aline-vignoli-dumont"
+        }
+      }).then(response => {
+        window.alert(`${user.name} foi removido(a) com sucesso!`)
+        this.getAllUsers()
+      }).catch(error => {
+        window.alert("Erro ao deletar usuário")
+        console.log(error.message)
+      })
+    }
   }
 
   render(){
