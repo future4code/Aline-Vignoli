@@ -4,6 +4,7 @@ import axios from 'axios';
 import UserCard from './UserCard';
 import UserProfile from './UserProfile';
 
+//STYLED COMPONENTS
 const MainContainer = styled.div`
   background-color: #836FFF;
   width: 400px;
@@ -26,15 +27,44 @@ const List = styled.ul`
   padding-inline-start: 0;
 `
 
+//DATABASE CONFIG
+const baseURL = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
+const axiosConfig = {
+  headers: {
+    Authorization: "aline-vignoli-dumont"    
+  }
+}
+
 class UsersList extends React.Component{
 
   state = {
+    usersList: [],
     displayUserDetails: false,
     selectedUser: {}
   }
 
   componentDidMount = () => {
-    this.props.renderList()
+    this.getAllUsers()
+  }
+
+  getAllUsers = () => {
+    axios.get( baseURL , axiosConfig ).then(response => {
+      this.setState({usersList: response.data})
+    }).catch(error => {
+      console.log(error.message)
+    })
+  }
+
+  deleteUser = (user) => {
+    if ( window.confirm(`Tem certeza que deseja deletar "${user.name}" da sua lista de usuários?`) ) {
+        axios.delete(`${baseURL}/${user.id}`, axiosConfig ).then(() => {
+        window.alert(`${user.name} foi removido(a) com sucesso!`)
+        this.getAllUsers()
+      }).catch(error => {
+        window.alert("Erro ao deletar usuário")
+        console.log(error.message)
+      })
+    }
   }
 
   viewUserProfile = () => {
@@ -43,32 +73,27 @@ class UsersList extends React.Component{
 
   getUserById = (userId) => {
     this.viewUserProfile()
-    axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
-    {
-    headers: {
-        Authorization: "aline-vignoli-dumont"
-    }
-    }).then(response => {
-    this.setState({selectedUser: response.data})
+    axios.get(`${baseURL}/${userId}`, axiosConfig ).then(response => {
+      this.setState({selectedUser: response.data})
     }).catch(error => {
-    console.log(error.message)
+      console.log(error.message)
     })
- }
+  }
 
   render(){
-    const renderedList = this.props.list.map(user => {
-      return <UserCard 
-      key={user.id} 
-      user={user} 
-      clickToRemove={this.props.clickToRemove}
-      viewProfile={this.viewUserProfile}
-      getUser={this.getUserById}
-      />   
+    const renderedList = this.state.usersList.map(user => {
+      return ( 
+        <UserCard 
+          key={user.id} 
+          user={user} 
+          clickToRemove={this.deleteUser}
+          getUser={this.getUserById} /> 
+      ) 
     })
 
     return (
       <MainContainer>
-        <Tittle>{this.state.displayUserDetails ? "Detalhes" :"Usuários Cadastrados"}</Tittle>
+        <Tittle>{this.state.displayUserDetails ? "Detalhes" : "Usuários Cadastrados"}</Tittle>
         {this.state.displayUserDetails ? 
           <UserProfile 
             viewProfile={this.viewUserProfile}

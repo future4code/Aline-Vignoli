@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+//STYLED COMPONENTS
 const FormContainer = styled.div`
     background-color: #836FFF;
     width: 400px;
@@ -35,6 +36,7 @@ const Button = styled.button`
     padding: 5px;
 ` 
 
+//DATABASE CONFIG
 const baseURL = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
 const axiosConfig = {
   headers: {

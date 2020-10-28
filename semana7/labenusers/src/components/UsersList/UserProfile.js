@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+//STYLED COMPONENTS
 const ProfileContainer = styled.div`
   background-color: #FFF;
   width: 80%;

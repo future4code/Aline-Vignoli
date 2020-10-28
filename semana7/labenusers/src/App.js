@@ -6,6 +6,7 @@ import Header from './components/Header';
 import UsersList from './components/UsersList/UsersList';
 import SignUpForm from './components/SignUpForm';
 
+//STYLED COMPONENTS
 const MainContainer = styled.div`
   padding: 20px;
   display: flex;
@@ -17,55 +18,18 @@ const MainContainer = styled.div`
 class App extends React.Component{
 
   state = {
-    usersList: [],
-    homePage: true,
+    homePage: true
   }
 
   changePage = () => {
     this.setState({homePage: !this.state.homePage})
   }
 
-  getAllUsers = () => {
-    axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-    {
-      headers: {
-        Authorization: "aline-vignoli-dumont"
-      }
-    }).then(response => {
-      this.setState({usersList: response.data})
-    }).catch(error => {
-      console.log(error.message)
-    })
-  }
-
-  deleteUser = (user) => {
-    if (window.confirm(`Tem certeza que deseja deletar "${user.name}" da sua lista de usuários?`)) {
-        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${user.id}`,
-      {
-        headers: {
-          Authorization: "aline-vignoli-dumont"
-        }
-      }).then(() => {
-        window.alert(`${user.name} foi removido(a) com sucesso!`)
-        this.getAllUsers()
-      }).catch(error => {
-        window.alert("Erro ao deletar usuário")
-        console.log(error.message)
-      })
-    }
-  }
-
   render(){
     return (
       <MainContainer>
         <Header changePage={this.changePage} isHomePage={this.state.homePage}/>
-        {this.state.homePage ? 
-        <SignUpForm /> : 
-        <UsersList
-          list={this.state.usersList}
-          renderList={this.getAllUsers}
-          clickToRemove={this.deleteUser}/>
-        }
+        {this.state.homePage ? <SignUpForm /> : <UsersList />}
       </MainContainer>
     );
   }
