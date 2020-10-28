@@ -44,12 +44,6 @@ const SaveIcon = styled.img`
   }
 `
 
-const Button = styled.button`
-  margin: auto; 
-  width: 30%;
-  padding: 10px;
-` 
-
 //DATABASE CONFIG
 const baseURL = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
 const axiosConfig = {
@@ -88,24 +82,43 @@ class SignUpForm extends React.Component{
     this.setState({ emailValue: event.target.value})
   }
 
+  editUser = (userId) => {
+    const body = {
+      name: this.state.nameValue,
+      email: this.state.emailValue
+    }
+
+    axios.put( `${baseURL}/${userId}`, body, axiosConfig ).then(() => { 
+      window.alert("Cadastro atualizado!")
+      this.setState({nameValue: "", emailValue:""})
+      this.props.renderUpdatedUser()
+      this.props.renderUpdateList()
+    }).catch(error => {
+      window.alert("Erro ao editar usuário")
+      console.log(error.message)
+    })
+  }
+
   render(){
+
     return (
       <FormContainer>
           <InputContainer>
             <Input
-              placeholder={"Nome"}
+              placeholder={this.props.editMode ? this.props.userToEdit.name : "Nome" }
               value={this.state.nameValue}
               onChange={this.onChangeNameValue}
             />
           </InputContainer>
           <InputContainer>
             <Input
-              placeholder={"E-mail"}
+              placeholder={this.props.editMode ? this.props.userToEdit.email : "E-mail" }
               value={this.state.emailValue}
               onChange={this.onChangeEmailValue}
             />
           </InputContainer>
-          <SaveIcon src={saveIcon} onClick={this.createUser}/>
+          <SaveIcon src={saveIcon} 
+            onClick={this.props.editMode ? () => this.editUser(this.props.userToEdit.id) : this.createUser }/>
       </FormContainer>
     );
   }

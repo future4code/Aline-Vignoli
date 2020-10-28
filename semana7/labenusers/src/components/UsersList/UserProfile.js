@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import goBackIcon from '../../img/back-icon.jpg';
+import SignUpForm from '../SignUpForm';
 
 //STYLED COMPONENTS
 const ProfileContainer = styled.div`
@@ -10,6 +11,7 @@ const ProfileContainer = styled.div`
   padding: 30px;
   margin: 10px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 10px;
 `
@@ -30,11 +32,33 @@ const GoBackIcon = styled.img`
 
 class UserProfile extends React.Component{
 
+    state = {
+        isFormVisible: false
+    }
+
+    handleFormVisibility = () => {
+        this.setState({ isFormVisible: !this.state.isFormVisible })
+    }
+
     render(){
-        return (
-        <ProfileContainer>
+
+        const renderInfo = <div>
             <p><strong>Nome:</strong> {this.props.selectedUser.name}</p>
             <p><strong>E-mail:</strong> {this.props.selectedUser.email}</p>
+            <button onClick={this.handleFormVisibility}>Editar</button>
+        </div>   
+
+        const renderForm = <div>
+            <SignUpForm 
+                editMode={this.state.isFormVisible}
+                userToEdit={this.props.selectedUser}
+                renderUpdatedUser={this.props.getUser}
+                renderUpdateList={this.props.getAllUsers}/>
+            </div>
+
+        return (
+        <ProfileContainer>
+            {this.state.isFormVisible ? renderForm : renderInfo }
             <GoBackIcon src={goBackIcon} onClick={this.props.viewProfile}/>
         </ProfileContainer>
         );

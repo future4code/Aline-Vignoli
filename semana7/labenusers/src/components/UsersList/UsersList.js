@@ -97,7 +97,9 @@ class UsersList extends React.Component{
         {this.state.displayUserDetails ? 
           <UserProfile 
             viewProfile={this.viewUserProfile}
-            selectedUser={this.state.selectedUser}/> :
+            selectedUser={this.state.selectedUser}
+            getUser={this.getUserById}
+            getAllUsers={this.getAllUsers}/> :
           <List>{renderedList}</List>
         }
       </MainContainer>
