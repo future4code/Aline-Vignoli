@@ -38,8 +38,8 @@ const SaveIcon = styled.img`
   padding: 5px;
   &:hover {
       transition: 0.1s all ease-in;
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       cursor: pointer;
   }
 `
