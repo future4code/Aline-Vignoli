@@ -13,6 +13,10 @@ const ProfileContainer = styled.div`
   gap: 10px;
 `
 
+const Button = styled.button`
+    padding: 5px;
+`
+
 class UserProfile extends React.Component{
 
     render(){
@@ -20,7 +24,7 @@ class UserProfile extends React.Component{
         <ProfileContainer>
             <p>Nome: {this.props.selectedUser.name}</p>
             <p>E-mail: {this.props.selectedUser.email}</p>
-            <button onClick={this.props.viewProfile}>Voltar</button>
+            <Button onClick={this.props.viewProfile}>Voltar</Button>
         </ProfileContainer>
         );
     }
