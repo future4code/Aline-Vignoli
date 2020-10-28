@@ -1,39 +1,53 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import saveIcon from '../img/save-icon.png';
 
 //STYLED COMPONENTS
 const FormContainer = styled.div`
-    background-color: #836FFF;
-    width: 400px;
-    border-radius: 5px;
-    box-shadow: 0.1px 2px 3px #000;
-    padding: 30px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  background-color: #836FFF;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0.1px 2px 3px #000;
+  padding: 30px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `
 
 const InputContainer = styled.div`
-    width: 100%;
-    align-items: center;
-    display: flex;
-    gap: 10px;
-`
-
-const Label = styled.label`
-    width: 15%;
-    padding: 5px;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  gap: 10px;
 `
 
 const Input = styled.input`
-    width: 90%;
-    padding: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+`
+
+const SaveIcon = styled.img`
+  align-self: center;
+  width: 46px;
+  height: 46px;
+  margin: 10px;
+  padding: 5px;
+  &:hover {
+      transition: 0.1s all ease-in;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+  }
 `
 
 const Button = styled.button`
-    padding: 5px;
+  margin: auto; 
+  width: 30%;
+  padding: 10px;
 ` 
 
 //DATABASE CONFIG
@@ -78,22 +92,20 @@ class SignUpForm extends React.Component{
     return (
       <FormContainer>
           <InputContainer>
-            <Label for="name">Nome:</Label>
             <Input
-              id="name"
+              placeholder={"Nome"}
               value={this.state.nameValue}
               onChange={this.onChangeNameValue}
             />
           </InputContainer>
           <InputContainer>
-            <Label for="email">E-mail:</Label>
             <Input
-              id="email"
+              placeholder={"E-mail"}
               value={this.state.emailValue}
               onChange={this.onChangeEmailValue}
             />
           </InputContainer>
-          <Button onClick={this.createUser}>CADASTRAR</Button>
+          <SaveIcon src={saveIcon} onClick={this.createUser}/>
       </FormContainer>
     );
   }

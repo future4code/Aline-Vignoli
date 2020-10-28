@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import Header from './components/Header';
 import UsersList from './components/UsersList/UsersList';
 import SignUpForm from './components/SignUpForm';

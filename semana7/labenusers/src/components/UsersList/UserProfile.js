@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import goBackIcon from '../../img/back-icon.jpg';
 
 //STYLED COMPONENTS
 const ProfileContainer = styled.div`
   background-color: #FFF;
-  width: 80%;
   border-radius: 5px;
   box-shadow: 0.1px 2px 3px #000;
   padding: 30px;
@@ -14,8 +14,18 @@ const ProfileContainer = styled.div`
   gap: 10px;
 `
 
-const Button = styled.button`
+const GoBackIcon = styled.img`
+    align-self: center;
+    width: 46px;
+    height: 46px;
+    margin: 10px;
     padding: 5px;
+    &:hover {
+        transition: 0.1s all ease-in;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
 `
 
 class UserProfile extends React.Component{
@@ -23,9 +33,9 @@ class UserProfile extends React.Component{
     render(){
         return (
         <ProfileContainer>
-            <p>Nome: {this.props.selectedUser.name}</p>
-            <p>E-mail: {this.props.selectedUser.email}</p>
-            <Button onClick={this.props.viewProfile}>Voltar</Button>
+            <p><strong>Nome:</strong> {this.props.selectedUser.name}</p>
+            <p><strong>E-mail:</strong> {this.props.selectedUser.email}</p>
+            <GoBackIcon src={goBackIcon} onClick={this.props.viewProfile}/>
         </ProfileContainer>
         );
     }

@@ -7,10 +7,10 @@ import UserProfile from './UserProfile';
 //STYLED COMPONENTS
 const MainContainer = styled.div`
   background-color: #836FFF;
-  width: 400px;
+  width: 50vw;
   border-radius: 5px;
   box-shadow: 0.1px 2px 3px #000;
-  padding: 30px;
+  padding: 10px;
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -93,7 +93,7 @@ class UsersList extends React.Component{
 
     return (
       <MainContainer>
-        <Tittle>{this.state.displayUserDetails ? "Detalhes" : "Usuários Cadastrados"}</Tittle>
+        <Tittle>{this.state.displayUserDetails ? this.state.selectedUser.name : "Usuários Cadastrados"}</Tittle>
         {this.state.displayUserDetails ? 
           <UserProfile 
             viewProfile={this.viewUserProfile}
