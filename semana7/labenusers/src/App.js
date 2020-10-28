@@ -18,17 +18,7 @@ class App extends React.Component{
 
   state = {
     usersList: [],
-    nameValue: "",
-    emailValue: "",
     homePage: true,
-  }
-
-  onChangeNameValue = (event) => {
-    this.setState({ nameValue: event.target.value})
-  }
-
-  onChangeEmailValue = (event) => {
-    this.setState({ emailValue: event.target.value})
   }
 
   changePage = () => {
@@ -48,27 +38,6 @@ class App extends React.Component{
     })
   }
 
-  createUser = () => {
-    const body = {
-      name: this.state.nameValue,
-      email: this.state.emailValue
-    }
-
-    axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", body, 
-    {
-      headers: {
-        Authorization: "aline-vignoli-dumont"
-      }
-    }).then(response => {
-      window.alert("Usuario cadastrado com sucesso!")
-      this.setState({nameValue: ""})
-      this.setState({emailValue: ""})
-    }).catch(error => {
-      window.alert("Erro ao cadastrar usuário")
-      console.log(error.message)
-    })
-  }
-
   deleteUser = (user) => {
     if (window.confirm(`Tem certeza que deseja deletar "${user.name}" da sua lista de usuários?`)) {
         axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${user.id}`,
@@ -76,7 +45,7 @@ class App extends React.Component{
         headers: {
           Authorization: "aline-vignoli-dumont"
         }
-      }).then(response => {
+      }).then(() => {
         window.alert(`${user.name} foi removido(a) com sucesso!`)
         this.getAllUsers()
       }).catch(error => {
@@ -91,12 +60,7 @@ class App extends React.Component{
       <MainContainer>
         <Header changePage={this.changePage} isHomePage={this.state.homePage}/>
         {this.state.homePage ? 
-        <SignUpForm
-          nameValue={this.state.nameValue}
-          onChangeName={this.onChangeNameValue}
-          emailValue={this.state.emailValue}
-          onChangeEmail={this.onChangeEmailValue}
-          signUpClick={this.createUser}/> : 
+        <SignUpForm /> : 
         <UsersList
           list={this.state.usersList}
           renderList={this.getAllUsers}

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const FormContainer = styled.div`
     background-color: #836FFF;
@@ -34,7 +35,42 @@ const Button = styled.button`
     padding: 5px;
 ` 
 
+const baseURL = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
+const axiosConfig = {
+  headers: {
+    Authorization: "aline-vignoli-dumont"    
+  }
+}
+
 class SignUpForm extends React.Component{
+
+  state = {
+    nameValue: "",
+    emailValue: "",
+  }
+
+  createUser = () => {
+    const body = {
+      name: this.state.nameValue,
+      email: this.state.emailValue
+    }
+
+    axios.post( baseURL, body, axiosConfig ).then(() => { 
+      window.alert("Usuario cadastrado com sucesso!")
+      this.setState({nameValue: "", emailValue:""})
+    }).catch(error => {
+      window.alert("Erro ao cadastrar usuário")
+      console.log(error.message)
+    })
+  }
+
+  onChangeNameValue = (event) => {
+    this.setState({ nameValue: event.target.value})
+  }
+
+  onChangeEmailValue = (event) => {
+    this.setState({ emailValue: event.target.value})
+  }
 
   render(){
     return (
@@ -43,19 +79,19 @@ class SignUpForm extends React.Component{
             <Label for="name">Nome:</Label>
             <Input
               id="name"
-              value={this.props.nameValue}
-              onChange={this.props.onChangeName}
+              value={this.state.nameValue}
+              onChange={this.onChangeNameValue}
             />
           </InputContainer>
           <InputContainer>
             <Label for="email">E-mail:</Label>
             <Input
               id="email"
-              value={this.props.emailValue}
-              onChange={this.props.onChangeEmail}
+              value={this.state.emailValue}
+              onChange={this.onChangeEmailValue}
             />
           </InputContainer>
-          <Button onClick={this.props.signUpClick}>CADASTRAR</Button>
+          <Button onClick={this.createUser}>CADASTRAR</Button>
       </FormContainer>
     );
   }
