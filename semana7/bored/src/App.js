@@ -1,8 +1,6 @@
 import './App.css';
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import Filter from './components/Filter';
 import Activities from './components/Activities';
 import boredLogo from './img/bored-icon.png';
 
