@@ -4,14 +4,25 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Filter from './components/Filter';
 import Activities from './components/Activities';
+import boredLogo from './img/bored-icon.png';
 
 const Header = styled.header`
-  height: 15vh;
+  font-family: "Arial Black", Gadget, sans-serif;
+  padding: 2.5vh;
+  gap: 2.5vh;
   display: flex;
   background-color: #8E249F;
   color: #FFF;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+`
+
+const Logo = styled.img `
+  width: 8vw;
+`
+
+const StyledH2= styled.h2 `
+  font-size: 2.5vw;
 `
 
 class App extends React.Component {
@@ -20,7 +31,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header>
-          <h2>Bored? We can help you to find something to do!</h2>
+          <Logo src={boredLogo} alt={"bored emoji"}/>
+          <StyledH2>Bored? We can help you to find something to do!</StyledH2>
         </Header>
         <Activities />
       </div>
