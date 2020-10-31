@@ -25,7 +25,7 @@ class AddTrackForm extends React.Component {
                 />
                 <input 
                     value={this.props.trackURLValue}
-                    placeholder={"Nome da Playlist"}
+                    placeholder={"url da música"}
                     type={"text"}
                     onChange={this.props.onChangeUrl}
                 />

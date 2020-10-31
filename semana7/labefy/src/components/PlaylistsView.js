@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import AddTrackForm from './AddTrackForm';
+import rightArrow from '../img/right-arrow.jpg';
+import downArrow from '../img/arrow.jpg';
 
 const Container = styled.div`
     display: flex;
@@ -12,6 +14,24 @@ const Container = styled.div`
     width: 40vw;
     background-color: #D34DDD;
 `
+
+const PlaylistsContainer = styled.ul`
+    text-align: left;
+    padding: 10px;
+`
+
+const ListItem = styled.li`
+    padding: 10px;
+`
+
+const Icons = styled.img`
+    border-radius: 5px;
+    width: 24px;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.7
+    }
+` 
 
 const baseURL = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
 const axiosConfig = {
@@ -24,11 +44,13 @@ class PlaylistsView extends React.Component {
 
     state = {
         playlists: [],
+        playlistTracks: [],
         selectedPlaylistId: "",
         trackName: "",
         trackArtist: "",
         trackURL: "",
-        isAddTrackFormVisible: false
+        isAddTrackFormVisible: false,
+        isTrackListVisible: false
     }
 
     componentDidMount = () => {
@@ -70,6 +92,18 @@ class PlaylistsView extends React.Component {
         })
     }
 
+    getPlaylistTracks = (playlistId) => {
+        axios.get( `${baseURL}/${playlistId}/tracks`, axiosConfig )
+        .then(response => {
+            this.setState({ 
+                isTrackListVisible: !this.state.isTrackListVisible,
+                playlistTracks: response.data.result.tracks,
+                selectedPlaylistId : playlistId })
+        }).catch(error => {
+            console.log(error.message)
+        })
+    }
+
     handleAddTrackForm = (playlistId) => {
         this.setState({ 
             isAddTrackFormVisible: !this.state.isAddTrackFormVisible, 
@@ -90,13 +124,27 @@ class PlaylistsView extends React.Component {
     }
 
     render () {
+        const renderedTracks = this.state.playlistTracks.map((track => {
+            return (
+                <li key={track.id}>
+                    <p>{track.name}</p>
+                    <p>{track.artist}</p>
+                    <audio src={track.url} controls={true}/>
+                </li>
+            )
+        }))
+
         const renderedPlaylists = this.state.playlists.map((playlist => {
+            const isSelected = playlist.id === this.state.selectedPlaylistId
+            const isEmpty = this.state.playlistTracks.length === 0
             return ( 
-                <li key={playlist.id}>
+                <ListItem key={playlist.id}>   
+                    <Icons src={isSelected && this.state.isTrackListVisible ? downArrow : rightArrow} onClick={() => this.getPlaylistTracks(playlist.id)}/>
                     {playlist.name}
                     <button onClick={() => this.handleAddTrackForm(playlist.id)}>add músicas</button>
                     <button onClick={() => this.deletePlaylist(playlist.id)}>del</button>
-                    {this.state.isAddTrackFormVisible && playlist.id === this.state.selectedPlaylistId ?             <AddTrackForm 
+                    {this.state.isAddTrackFormVisible && isSelected ?             
+                        <AddTrackForm 
                         handleAddTrackForm={this.handleAddTrackForm}
                         playlistId={playlist.id}
                         trackNameValue={this.state.trackName}
@@ -107,13 +155,19 @@ class PlaylistsView extends React.Component {
                         onChangeUrl={this.onChangeUrl}
                         addTrackToPlaylist={this.addTrackToPlaylist}
                     /> : <div></div>}
-                </li>
+                    <ul>
+                        { this.state.isTrackListVisible && !isEmpty && isSelected ?
+                        renderedTracks : <div></div>}
+                    </ul>
+                </ListItem>
             )
         }))
 
         return (
             <Container>
-                {renderedPlaylists}
+                <PlaylistsContainer>
+                    {renderedPlaylists}
+                </PlaylistsContainer>
             </Container>
         );
     }
