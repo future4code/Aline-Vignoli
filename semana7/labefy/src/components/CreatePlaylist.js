@@ -1,5 +1,38 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const MainContainer =  styled.div`
+    margin: auto;
+    width: 20vw;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+`
+
+const Input = styled.input`
+    width: 100%;
+    padding: 10px;
+`
+
+const ButtonsContainer = styled.div`
+    width: 110%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2vw;
+`
+
+const MainButton = styled.button`
+    width: 100%;
+    border: none;
+    outline: 0px auto;
+    background-color: #AB3131;
+    padding: 10px;
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+`
 
 class CreatePlaylist extends React.Component {
 
@@ -34,16 +67,18 @@ class CreatePlaylist extends React.Component {
     render () {
 
         return (
-            <div>
-                <input 
+            <MainContainer>
+                <Input 
                     value={this.state.playlistNameValue}
                     placeholder={"Nome da Playlist"}
                     type={"text"}
                     onChange={this.onChangePlaylistName}
                 />
-                <button onClick={this.props.cancelButton}>Cancelar</button>
-                <button onClick={this.createPlaylist}>Salvar</button>
-            </div>
+                <ButtonsContainer>
+                    <MainButton onClick={this.props.cancelButton}>Cancelar</MainButton>
+                    <MainButton onClick={this.createPlaylist}>Salvar</MainButton>
+                </ButtonsContainer>
+            </MainContainer>
         );
     }
 }

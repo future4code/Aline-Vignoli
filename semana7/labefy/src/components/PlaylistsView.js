@@ -12,7 +12,7 @@ const Container = styled.div`
     padding: 2vw;
     gap: 10px;
     width: 40vw;
-    background-color: #D34DDD;
+    background-color: rgba(0, 0, 0, 0.42);
 `
 
 const PlaylistsContainer = styled.ul`

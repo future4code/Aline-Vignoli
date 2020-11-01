@@ -7,12 +7,25 @@ import PlaylistsView from './components/PlaylistsView';
 
 const MainContainer = styled.div`
   display: flex;
-  background-color: #CDCDCD;
+  background-color: rgba(199, 63, 63, 0.29);
   height: 100vh;
+  padding-top: 20px;
 `
 
 const ContentContainer = styled.div`
+  justify-content: center;
   flex-grow: 1;
+`
+
+const MainButton = styled.button`
+  border: none;
+  outline: 0px auto;
+  background-color: #AB3131;
+  padding: 10px;
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
 `
 
 class App extends React.Component {
@@ -35,7 +48,7 @@ class App extends React.Component {
     const homePage = (
       <div>
         <h3>Bem vinda(o) ao Labefy, que tal começar criando uma playlist?</h3>
-        <button onClick={this.handleCreatePlaylist}>Criar playlist</button>
+        <MainButton onClick={this.handleCreatePlaylist}>CRIAR PLAYLIST</MainButton>
       </div>
     )
 
