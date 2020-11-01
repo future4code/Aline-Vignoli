@@ -1,7 +1,10 @@
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   background-color: #000;
   color: #FFF;
+  height: 100vh;
 }
 
 .App-logo {

@@ -11,25 +11,26 @@ const MainContainer =  styled.div`
 `
 
 const Input = styled.input`
-    width: 100%;
+    border-radius: 5px;
     padding: 10px;
 `
 
 const ButtonsContainer = styled.div`
-    width: 110%;
     display: flex;
     justify-content: space-between;
-    gap: 2vw;
+    gap: 10%;
 `
 
 const MainButton = styled.button`
     width: 100%;
     border: none;
     outline: 0px auto;
+    border-radius: 5px;
+    color: #FFF;
     background-color: #AB3131;
     padding: 10px;
     &:hover {
-        opacity: 0.5;
+        opacity: 0.7;
         cursor: pointer;
     }
 `

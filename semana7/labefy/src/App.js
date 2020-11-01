@@ -8,8 +8,8 @@ import PlaylistsView from './components/PlaylistsView';
 const MainContainer = styled.div`
   display: flex;
   background-color: rgba(199, 63, 63, 0.29);
-  height: 100vh;
   padding-top: 20px;
+  flex-grow: 1;
 `
 
 const ContentContainer = styled.div`
@@ -20,10 +20,12 @@ const ContentContainer = styled.div`
 const MainButton = styled.button`
   border: none;
   outline: 0px auto;
+  border-radius: 5px;
+  color: #FFF;
   background-color: #AB3131;
   padding: 10px;
   &:hover {
-    opacity: 0.5;
+    opacity: 0.7;
     cursor: pointer;
   }
 `
