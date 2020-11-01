@@ -46,23 +46,33 @@ class CreatePlaylist extends React.Component {
     }
 
     createPlaylist = () => {
-        const baseURL = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
-        const body = {
-            name: this.state.playlistNameValue
-        }
-        const axiosConfig = {
-            headers: {
-                Authorization: 'aline-vignoli-dumont'
-            }
-        }
 
-        axios.post( baseURL, body, axiosConfig )
-        .then(()=> {
-            this.setState({playlistNameValue: ""})
-            window.alert("Sua playlist foi criada!")
-        }).catch(error => {
-            console.log(error.message)
+        let playlistNames = this.props.playlists.filter(playlist => {
+            return playlist.name === this.state.playlistNameValue
         })
+    
+        if( playlistNames.lenght !== 1){
+            const baseURL = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
+            const body = {
+                name: this.state.playlistNameValue
+            }
+            const axiosConfig = {
+                headers: {
+                    Authorization: 'aline-vignoli-dumont'
+                }
+            }
+
+            axios.post( baseURL, body, axiosConfig )
+            .then(()=> {
+                this.setState({playlistNameValue: ""})
+                window.alert("Sua playlist foi criada!")
+            }).catch(error => {
+                if ( error.message === "Request failed with status code 400"){
+                    window.alert("Essa playlist já existe!")
+                }
+                console.log(error.message)              
+            })
+        }   
     }
 
     render () {

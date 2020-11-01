@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Header from './components/Header';
 import CreatePlaylist from './components/CreatePlaylist';
 import PlaylistsView from './components/PlaylistsView';
@@ -30,11 +31,28 @@ const MainButton = styled.button`
   }
 `
 
+const baseURL = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
+const axiosConfig = {
+    headers: {
+        Authorization: 'aline-vignoli-dumont'
+    }
+}
+
 class App extends React.Component {
 
   state = {
     createPlaylistActive : false,
-    playlistView : false
+    playlistView : false,
+    playlists: []
+  }
+
+  getAllPlaylists = () => {
+    axios.get( baseURL, axiosConfig )
+    .then(response => {
+        this.setState({ playlists: response.data.result.list })
+    }).catch(error => {
+        console.log(error.message)
+    })
   }
 
   showPlaylists = () => {
@@ -54,7 +72,7 @@ class App extends React.Component {
       </div>
     )
 
-    const createPlaylistPage = <CreatePlaylist cancelButton={this.handleCreatePlaylist}/>
+    const createPlaylistPage = <CreatePlaylist playlists={this.state.playlists} cancelButton={this.handleCreatePlaylist}/>
 
     return (
       <div className="App">
@@ -63,7 +81,7 @@ class App extends React.Component {
           <ContentContainer>
             {this.state.createPlaylistActive ? createPlaylistPage : homePage }
           </ContentContainer>
-          {this.state.playlistView && <PlaylistsView/>}
+          {this.state.playlistView && <PlaylistsView getPlaylists={this.getAllPlaylists} playlists={this.state.playlists}/>}
         </MainContainer>
       </div>
     );

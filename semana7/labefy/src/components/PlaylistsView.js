@@ -86,7 +86,6 @@ const axiosConfig = {
 class PlaylistsView extends React.Component {
 
     state = {
-        playlists: [],
         playlistTracks: [],
         selectedPlaylistId: "",
         trackName: "",
@@ -97,21 +96,17 @@ class PlaylistsView extends React.Component {
     }
 
     componentDidMount = () => {
-        this.getAllPlaylists()
+        this.props.getPlaylists()
     }
 
-    componentDidUpdate = () => {
-        this.getAllPlaylists()
-        this.getPlaylistTracks()
-    }
+    componentDidUpdate = (prevProps, prevState) => {
+        if(prevProps.playlists !== this.props.playlists) {
+            this.props.getPlaylists()
+        }
 
-    getAllPlaylists = () => {
-        axios.get( baseURL, axiosConfig )
-        .then(response => {
-            this.setState({ playlists: response.data.result.list })
-        }).catch(error => {
-            console.log(error.message)
-        })
+        if (prevState.playlistTracks !== this.state.playlistTracks){
+            this.getPlaylistTracks()
+        }
     }
 
     deletePlaylist = (playlistId) => {
@@ -189,7 +184,7 @@ class PlaylistsView extends React.Component {
             )
         }))
 
-        const renderedPlaylists = this.state.playlists.map((playlist => {
+        const renderedPlaylists = this.props.playlists.map((playlist => {
             const isSelected = playlist.id === this.state.selectedPlaylistId
             const isEmpty = this.state.playlistTracks.length === 0
             return ( 
