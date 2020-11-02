@@ -7,18 +7,15 @@ import downArrow from '../img/arrow.jpg';
 import removePlaylist from '../img/remove-playlist.png';
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 2vw;
-    gap: 10px;
-    width: 40vw;
+    width: 30vw;
     background-color: rgba(0, 0, 0, 0.42);
 `
 
 const PlaylistsContainer = styled.ul`
     display: flex;
     flex-direction: column;
+    margin: 0;
     padding: 0;
 `
 
@@ -109,14 +106,16 @@ class PlaylistsView extends React.Component {
         }
     }
 
-    deletePlaylist = (playlistId) => {
-        axios.delete( `${baseURL}/${playlistId}`, axiosConfig )
-        .then(() => {
-            window.alert("Playlist removida!")
-            this.getAllPlaylists()
-        }).catch(error => {
-            console.log(error.message)
-        })
+    deletePlaylist = (playlist) => {
+        if ( window.confirm (`Tem certeza que deseja excluir a playlist "${playlist.name}" da sua biblioteca?`) ){
+            axios.delete( `${baseURL}/${playlist.id}`, axiosConfig )
+            .then(() => {
+                window.alert("Playlist removida com sucesso!")
+                this.getAllPlaylists()
+            }).catch(error => {
+                console.log(error.message)
+            })
+        }
     }
 
     addTrackToPlaylist = (playlistId) => {
@@ -145,10 +144,14 @@ class PlaylistsView extends React.Component {
     getPlaylistTracks = (playlistId) => {
         axios.get( `${baseURL}/${playlistId}/tracks`, axiosConfig )
         .then(response => {
-            this.setState({ 
-                isTrackListVisible: !this.state.isTrackListVisible,
-                playlistTracks: response.data.result.tracks,
-                selectedPlaylistId : playlistId })
+            if ( response.data.result.tracks.length !== 0 ){
+                this.setState({ 
+                    isTrackListVisible: !this.state.isTrackListVisible,
+                    playlistTracks: response.data.result.tracks,
+                    selectedPlaylistId : playlistId })
+            }else {
+                window.alert("Você ainda não adicionou músicas para essa playlist")
+            }
         }).catch(error => {
             console.log(error.message)
         })
@@ -195,10 +198,10 @@ class PlaylistsView extends React.Component {
                     </PlaylistNameContainer>  
                     <ButtonsContainer>
                         <AddTrackButton onClick={() => this.handleAddTrackForm(playlist.id)}>adicionar música</AddTrackButton>
-                        <Icons src={removePlaylist} onClick={() => this.deletePlaylist(playlist.id)}/>
+                        <Icons src={removePlaylist} onClick={() => this.deletePlaylist(playlist)}/>
                     </ButtonsContainer>
                     {this.state.isAddTrackFormVisible && isSelected ?             
-                        <AddTrackForm 
+                    <AddTrackForm 
                         handleAddTrackForm={this.handleAddTrackForm}
                         playlistId={playlist.id}
                         trackNameValue={this.state.trackName}

@@ -41,38 +41,45 @@ class CreatePlaylist extends React.Component {
         playlistNameValue: ""
     }
 
-    onChangePlaylistName = (event) => {
-        this.setState({ playlistNameValue: event.target.value })
+    createPlaylist = () => {
+        const baseURL = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
+        const body = {
+            name: this.state.playlistNameValue
+        }
+        const axiosConfig = {
+            headers: {
+                Authorization: 'aline-vignoli-dumont'
+            }
+        }
+
+        axios.post( baseURL, body, axiosConfig )
+        .then(()=> {
+            this.setState({playlistNameValue: ""})
+            window.alert("Playlist criada com sucesso!")
+        }).catch(error => {
+            if ( error.message === "Request failed with status code 400"){
+                window.alert("Você já tem uma playlist com esse nome!")
+            }
+            console.log(error.message)              
+        })
     }
 
-    createPlaylist = () => {
-
-        let playlistNames = this.props.playlists.filter(playlist => {
-            return playlist.name === this.state.playlistNameValue
-        })
-    
-        if( playlistNames.lenght !== 1){
-            const baseURL = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
-            const body = {
-                name: this.state.playlistNameValue
-            }
-            const axiosConfig = {
-                headers: {
-                    Authorization: 'aline-vignoli-dumont'
-                }
-            }
-
-            axios.post( baseURL, body, axiosConfig )
-            .then(()=> {
-                this.setState({playlistNameValue: ""})
-                window.alert("Sua playlist foi criada!")
-            }).catch(error => {
-                if ( error.message === "Request failed with status code 400"){
-                    window.alert("Essa playlist já existe!")
-                }
-                console.log(error.message)              
+    verifyPlaylistNameValue = () => {
+        if ( this.state.playlistNameValue !== "" ){
+            const playlistNames = this.props.playlists.filter(playlist => {
+                return playlist.name === this.state.playlistNameValue
             })
-        }   
+
+            if ( playlistNames.lenght !== 1 ){
+                this.createPlaylist()
+            }
+        }else {
+            window.alert("Por favor, informe o nome da playlist")
+        }
+    }
+
+    onChangePlaylistName = (event) => {
+        this.setState({ playlistNameValue: event.target.value })
     }
 
     render () {
@@ -87,7 +94,7 @@ class CreatePlaylist extends React.Component {
                 />
                 <ButtonsContainer>
                     <MainButton onClick={this.props.cancelButton}>Cancelar</MainButton>
-                    <MainButton onClick={this.createPlaylist}>Salvar</MainButton>
+                    <MainButton onClick={this.verifyPlaylistNameValue}>Salvar</MainButton>
                 </ButtonsContainer>
             </MainContainer>
         );

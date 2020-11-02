@@ -9,11 +9,11 @@ import PlaylistsView from './components/PlaylistsView';
 const MainContainer = styled.div`
   display: flex;
   background-color: rgba(199, 63, 63, 0.29);
-  padding-top: 20px;
-  flex-grow: 1;
 `
 
 const ContentContainer = styled.div`
+  height: 70vh;
+  padding-top: 10vh;
   justify-content: center;
   flex-grow: 1;
 `
