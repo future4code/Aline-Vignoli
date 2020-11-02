@@ -12,6 +12,7 @@ const Container = styled.header`
 `
 
 const Tittle = styled.h1`
+    font-family: "Fjalla One", Arial, Helvetica, sans-serif;
     font-size: 3em;
 `
 
@@ -29,7 +30,7 @@ class Header extends React.Component {
     render () {
         return (
         <Container>
-            <Tittle>LABEFY</Tittle>
+            <Tittle>Labefy</Tittle>
             <PlaylistIcon src={playlistIcon} onClick={this.props.showPlaylists}/>
         </Container>
         );

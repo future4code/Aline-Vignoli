@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FormContainer = styled.div`
+    margin-top: 2vh;
     align-self: flex-end;
     width: 29vw;
     display: flex;
@@ -10,6 +11,8 @@ const FormContainer = styled.div`
 `
 
 const Input = styled.input`
+    font-size: 20px;
+    font-family: "Overpass", Arial, Helvetica, sans-serif;
     border-radius: 5px;
     padding: 10px;
 `
@@ -23,6 +26,9 @@ const ButtonsContainer = styled.div`
 `
 
 const MainButton = styled.button`
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: "Fjalla One", Arial, Helvetica, sans-serif;
     width: 100%;
     border: none;
     outline: 0px auto;

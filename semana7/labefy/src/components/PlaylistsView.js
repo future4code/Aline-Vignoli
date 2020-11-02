@@ -10,6 +10,8 @@ const Container = styled.div`
     padding: 2vw;
     width: 30vw;
     background-color: rgba(0, 0, 0, 0.42);
+    font-size: 20px;
+    font-family: "Overpass", Arial, Helvetica, sans-serif;
 `
 
 const PlaylistsContainer = styled.ul`
@@ -48,11 +50,9 @@ const ButtonsContainer = styled.div`
     gap: 10px;
 `
 
-const PlaylistNameContainer = styled.span`
-   
-`
-
 const AddTrackButton = styled.button`
+    font-size: 14px;
+    font-family: "Overpass", Arial, Helvetica, sans-serif;
     border: none;
     border-radius: 5px;
     color: #FFF;
@@ -69,7 +69,8 @@ const TrackName = styled.h4`
 `
 
 const TrackArtist = styled.p`
-    font-size: 12px;
+    font-size: 14px;
+    font-family: "Overpass", Arial, Helvetica, sans-serif;
     margin: 3px;
 `
 
@@ -192,10 +193,11 @@ class PlaylistsView extends React.Component {
             const isEmpty = this.state.playlistTracks.length === 0
             return ( 
                 <ListItem key={playlist.id}> 
-                    <PlaylistNameContainer>
-                        <Icons src={isSelected && this.state.isTrackListVisible ? downArrow : rightArrow} onClick={() => this.getPlaylistTracks(playlist.id)}/>
-                        <span>{playlist.name}</span>
-                    </PlaylistNameContainer>  
+                    <Icons 
+                        src={isSelected && this.state.isTrackListVisible ? downArrow : rightArrow} 
+                        onClick={() => this.getPlaylistTracks(playlist.id)}
+                    />
+                    <span>{playlist.name}</span>
                     <ButtonsContainer>
                         <AddTrackButton onClick={() => this.handleAddTrackForm(playlist.id)}>adicionar música</AddTrackButton>
                         <Icons src={removePlaylist} onClick={() => this.deletePlaylist(playlist)}/>
@@ -223,7 +225,9 @@ class PlaylistsView extends React.Component {
         return (
             <Container>
                 <PlaylistsContainer>
-                    {renderedPlaylists}
+                    {this.props.playlists.length !== 0 ? 
+                    renderedPlaylists : 
+                    <div>Você vai ver suas playlists aqui</div>}
                 </PlaylistsContainer>
             </Container>
         );

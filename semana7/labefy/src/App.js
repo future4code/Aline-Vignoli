@@ -18,13 +18,21 @@ const ContentContainer = styled.div`
   flex-grow: 1;
 `
 
+const HomePageText = styled.h2`
+  font-size: 30px;
+  font-family: "Fjalla One", Arial, Helvetica, sans-serif;
+`
+
 const MainButton = styled.button`
+  font-weight: bolder;
+  font-size: 30px;
+  font-family: "Fjalla One", Arial, Helvetica, sans-serif;
   border: none;
   outline: 0px auto;
   border-radius: 5px;
   color: #FFF;
   background-color: #AB3131;
-  padding: 10px;
+  padding: 20px;
   &:hover {
     opacity: 0.7;
     cursor: pointer;
@@ -67,7 +75,7 @@ class App extends React.Component {
 
     const homePage = (
       <div>
-        <h3>Bem vinda(o) ao Labefy, que tal começar criando uma playlist?</h3>
+        <HomePageText>Bem vinda(o) ao Labefy, que tal começar criando uma playlist?</HomePageText>
         <MainButton onClick={this.handleCreatePlaylist}>CRIAR PLAYLIST</MainButton>
       </div>
     )
