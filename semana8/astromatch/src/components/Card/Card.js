@@ -24,31 +24,34 @@ const ButtonsContainer = styled.div`
 
 const Card = (props) => {
 
-  const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/aline-vignoli/person"
-  
   const [profile, setProfile] = useState({})
+  const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/aline-vignoli/person"
 
-  // useEffect(() => {
-  //   axios.get(baseUrl).then(response=> {
-  //     return response.data.profile
-  //   }).catch(error => {
-  //     console.log(error.message)
-  //   })
-  // })
+  const getProfileToChoose = () => {
+    axios.get(baseUrl).then(response=> {
+      setProfile(response.data.profile) 
+    }).catch(error => {
+      console.log(error.message)
+    })
+  }
+
+  useEffect(() => {
+    getProfileToChoose()
+  },[])
 
   return (
     <CardContainer>
       <Header/>
       <Profile 
-        photo={"https://picsum.photos/200/300"}
-        name="Aline"
-        age="32"
-        bio="Minha descrição blablab asdjajsdasd asd aisjdasd asduhuhasd adsada"
+        photo={profile.photo}
+        name={profile.name}
+        age={profile.age}
+        bio={profile.bio}
       />
       <ButtonsContainer>
         <Button buttonText="see matches"/>
-        <Button buttonText="pass"/>
-        <Button buttonText="like"/>
+        <Button onClick={getProfileToChoose} buttonText="pass"/>
+        <Button onClick={getProfileToChoose} buttonText="like"/>
       </ButtonsContainer>
     </CardContainer>
   );

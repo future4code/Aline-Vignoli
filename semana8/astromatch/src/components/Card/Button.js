@@ -9,7 +9,7 @@ const RoundButton = styled.button`
 
 const Button = (props) => {
   return (
-    <RoundButton>{props.buttonText}</RoundButton>
+    <RoundButton onClick={props.onClick}>{props.buttonText}</RoundButton>
   );
 }
 
