@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import Header from '../Header'
 import Profile from './Profile'
-import Button from './Button'
-
-const CardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 600px;
-  background-color: #FFF;
-  align-items: center;
-`
+import { Button, SmallButton } from './Button'
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -25,11 +15,24 @@ const ButtonsContainer = styled.div`
 const Card = (props) => {
 
   const [profile, setProfile] = useState({})
-  const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/aline-vignoli/person"
+  const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/aline-vignoli"
 
   const getProfileToChoose = () => {
-    axios.get(baseUrl).then(response=> {
+    axios.get(`${baseUrl}/person`).then(response=> {
       setProfile(response.data.profile) 
+    }).catch(error => {
+      console.log(error.message)
+    })
+  }
+
+  const choosePerson = (id, isMatch) => {
+    const body = {
+      id: id,
+      choice: isMatch
+    }
+
+    axios.post(`${baseUrl}/choose-person`, body ).then(()=> {
+      getProfileToChoose()
     }).catch(error => {
       console.log(error.message)
     })
@@ -40,8 +43,7 @@ const Card = (props) => {
   },[])
 
   return (
-    <CardContainer>
-      <Header/>
+    <div>
       <Profile 
         photo={profile.photo}
         name={profile.name}
@@ -49,11 +51,11 @@ const Card = (props) => {
         bio={profile.bio}
       />
       <ButtonsContainer>
-        <Button buttonText="see matches"/>
-        <Button onClick={getProfileToChoose} buttonText="pass"/>
-        <Button onClick={getProfileToChoose} buttonText="like"/>
+        <SmallButton onClick={props.changePage} buttonText="matches"/>
+        <Button onClick={choosePerson} isMatch={false} id={profile.id} buttonText="pass"/>
+        <Button onClick={choosePerson} isMatch={true} id={profile.id} buttonText="like"/>
       </ButtonsContainer>
-    </CardContainer>
+    </div>
   );
 }
 

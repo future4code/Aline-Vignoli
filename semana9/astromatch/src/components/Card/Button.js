@@ -7,10 +7,24 @@ const RoundButton = styled.button`
     width: 90px;
 `
 
-const Button = (props) => {
+const RoundSmallButton = styled.button`
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+`
+
+export const Button = (props) => {
   return (
-    <RoundButton onClick={props.onClick}>{props.buttonText}</RoundButton>
+    <RoundButton 
+      onClick={() => props.onClick(props.id, props.isMatch)}
+    >{props.buttonText}</RoundButton>
   );
 }
 
-export default Button;
+export const SmallButton = (props) => {
+  return (
+    <RoundSmallButton 
+      onClick={props.onClick}
+    >{props.buttonText}</RoundSmallButton>
+  );
+}
