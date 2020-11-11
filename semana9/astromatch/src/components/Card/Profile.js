@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   width: 350px;
-  height: 400px;
+  height: 380px;
 `
 
 const Info = styled.div`

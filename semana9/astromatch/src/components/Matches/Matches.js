@@ -6,8 +6,20 @@ import HomeIcon from '@material-ui/icons/Home';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import ListItem from './ListItemCard'
 
+const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const ButtonsContainer = styled.div`
+    display: flex; 
+`
+
 const ListContainer = styled.div`
+    border-radius: 10px;
     height: 400px;
+    width: 380px;
     overflow: auto;
 `
 
@@ -36,22 +48,31 @@ const Matches = (props) => {
 
     useEffect(() => {
         getMatches()
-        console.log(matches)
     },[])
 
     const iconHome = <HomeIcon fontSize="large" color="primary"/>
     const iconDelete = <DeleteSweepIcon fontSize="large" color="secondary"/>
 
     return (
-        <div>
-            <SmallButton onClick={props.changePage} buttonIcon={iconHome} tooltip=""/>
-            <SmallButton onClick={clear} buttonIcon={iconDelete} tooltip="limpar matches"/>
+        <MainContainer>
             <ListContainer>
                 {matches.map((profile => {
-                    return (<ListItem key={profile.id} name={profile.name} age={profile.age} photo={profile.photo}/>)
+                    return (
+                        <ListItem 
+                            id={profile.id}
+                            key={profile.id} 
+                            name={profile.name} 
+                            age={profile.age} 
+                            photo={profile.photo}
+                        />
+                    )
                 }))}
             </ListContainer>
-        </div>
+            <ButtonsContainer>
+                <SmallButton onClick={props.changePage} buttonIcon={iconHome} tooltip=""/>
+                <SmallButton onClick={clear} buttonIcon={iconDelete} tooltip="limpar matches"/>
+            </ButtonsContainer>
+        </MainContainer>
     );
 }
 

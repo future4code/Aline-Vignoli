@@ -3,6 +3,22 @@ import styled from 'styled-components'
 import Header from './components/Header'
 import Card from './components/Card/Card'
 import Matches from './components/Matches/Matches'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
+import { dark } from '@material-ui/core/styles/createPalette'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#A173BF",
+      dark: "#301840"
+    },
+    secondary: {
+      main: "#F21B6A",
+    },
+  },
+});
 
 const MainContainer = styled.div`
   * {
@@ -35,12 +51,14 @@ function App() {
   }
 
   return (
-    <MainContainer>
+    <MuiThemeProvider theme={theme}>
+      <MainContainer>
       <CardContainer>
       <Header/>
       {isProfilePage ? <Card changePage={changePage}/> : <Matches changePage={changePage}/> } 
       </CardContainer>
     </MainContainer>
+    </MuiThemeProvider>    
   );
 }
 

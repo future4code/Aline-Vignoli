@@ -46,7 +46,7 @@ const Card = (props) => {
     getProfileToChoose()
   },[])
 
-  const iconMatches = <GroupRoundedIcon fontSize="small" color="terceary"/>
+  const iconMatches = <GroupRoundedIcon fontSize="small" color="info"/>
   const iconFavorite = <FavoriteRoundedIcon fontSize="large" color="primary"/>
   const iconPass = <CloseRounded fontSize="large" color="secondary"/>
 
