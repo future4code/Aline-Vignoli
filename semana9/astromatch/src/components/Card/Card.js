@@ -59,7 +59,7 @@ const Card = (props) => {
         bio={profile.bio}
       />
       <ButtonsContainer>
-        <SmallButton onClick={props.changePage} buttonIcon={iconMatches}/>
+        <SmallButton onClick={props.changePage} buttonIcon={iconMatches} tooltip="ver matches"/>
         <Button onClick={choosePerson} isMatch={false} id={profile.id} buttonIcon={iconPass}/>
         <Button onClick={choosePerson} isMatch={true} id={profile.id} buttonIcon={iconFavorite}/>
       </ButtonsContainer>

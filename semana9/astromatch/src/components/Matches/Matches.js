@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { SmallButton } from '../Card/Button'
-import IconButton from '@material-ui/core/IconButton';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import HomeIcon from '@material-ui/icons/Home';
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import ListItem from './ListItemCard'
+
+const ListContainer = styled.div`
+    height: 400px;
+    overflow: auto;
+`
 
 const Matches = (props) => {
 
@@ -33,15 +39,18 @@ const Matches = (props) => {
         console.log(matches)
     },[])
 
-    const iconFavorite = <FavoriteRoundedIcon fontSize="large" color="primary"/>
+    const iconHome = <HomeIcon fontSize="large" color="primary"/>
+    const iconDelete = <DeleteSweepIcon fontSize="large" color="secondary"/>
 
     return (
         <div>
-            <SmallButton onClick={props.changePage} buttonIcon={iconFavorite}/>
-            <SmallButton onClick={clear} buttonIcon="limpar matches"/>
-            {matches.map((profile => {
-                return (<p key={profile.id}>{profile.name}</p>)
-            }))}
+            <SmallButton onClick={props.changePage} buttonIcon={iconHome} tooltip=""/>
+            <SmallButton onClick={clear} buttonIcon={iconDelete} tooltip="limpar matches"/>
+            <ListContainer>
+                {matches.map((profile => {
+                    return (<ListItem key={profile.id} name={profile.name} age={profile.age} photo={profile.photo}/>)
+                }))}
+            </ListContainer>
         </div>
     );
 }

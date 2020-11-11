@@ -1,19 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import IconButton from '@material-ui/core/IconButton';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-
-const RoundButton = styled.button`
-    border-radius: 50%;
-    height: 90px;
-    width: 90px;
-`
-
-const RoundSmallButton = styled.button`
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-`
+import { IconButton, Tooltip } from '@material-ui/core';
 
 export const Button = (props) => {
   return (
@@ -26,8 +12,10 @@ export const Button = (props) => {
 
 export const SmallButton = (props) => {
   return (
-    <IconButton 
-      onClick={props.onClick}
-    >{props.buttonIcon}</IconButton>
+    <Tooltip title={props.tooltip}>
+      <IconButton 
+        onClick={props.onClick}
+      >{props.buttonIcon}</IconButton>
+    </Tooltip>
   );
 }
