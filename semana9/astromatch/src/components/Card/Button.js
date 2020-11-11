@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 
 const RoundButton = styled.button`
     border-radius: 50%;
@@ -15,16 +17,17 @@ const RoundSmallButton = styled.button`
 
 export const Button = (props) => {
   return (
-    <RoundButton 
+    <IconButton 
+      size="medium"
       onClick={() => props.onClick(props.id, props.isMatch)}
-    >{props.buttonText}</RoundButton>
+    >{props.buttonIcon}</IconButton>
   );
 }
 
 export const SmallButton = (props) => {
   return (
-    <RoundSmallButton 
+    <IconButton 
       onClick={props.onClick}
-    >{props.buttonText}</RoundSmallButton>
+    >{props.buttonIcon}</IconButton>
   );
 }
