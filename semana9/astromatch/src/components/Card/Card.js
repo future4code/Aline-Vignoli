@@ -7,6 +7,11 @@ import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import CloseRounded from '@material-ui/icons/CloseRounded';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 
+const ErrorMessageContainer = styled.div`
+  padding: 20px;
+  text-align: center;
+`
+
 const ButtonsContainer = styled.div`
   display: flex;
   width: 100%;
@@ -51,19 +56,25 @@ const Card = (props) => {
   const iconPass = <CloseRounded fontSize="large" color="secondary"/>
 
   return (
+    profile !== null ?
     <div>
       <Profile 
         photo={profile.photo}
         name={profile.name}
         age={profile.age}
         bio={profile.bio}
-      />
+      /> 
       <ButtonsContainer>
         <SmallButton onClick={props.changePage} buttonIcon={iconMatches} tooltip="ver matches"/>
         <Button onClick={choosePerson} isMatch={false} id={profile.id} buttonIcon={iconPass}/>
         <Button onClick={choosePerson} isMatch={true} id={profile.id} buttonIcon={iconFavorite}/>
       </ButtonsContainer>
-    </div>
+    </div> : 
+    <ErrorMessageContainer>
+      <h3>Ops! Você atingiu o limite de matches!</h3>
+      <p>Que tal limpar sua lista?</p>
+      <SmallButton onClick={props.changePage} buttonIcon={iconMatches} tooltip="ver matches"/>
+    </ErrorMessageContainer>
   );
 }
 
