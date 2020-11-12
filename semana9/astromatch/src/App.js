@@ -4,9 +4,6 @@ import Header from './components/Header'
 import Card from './components/Card/Card'
 import Matches from './components/Matches/Matches'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
-import { dark } from '@material-ui/core/styles/createPalette'
 
 const theme = createMuiTheme({
   palette: {

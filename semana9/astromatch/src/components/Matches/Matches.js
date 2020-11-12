@@ -5,6 +5,7 @@ import { SmallButton } from '../Card/Button'
 import HomeIcon from '@material-ui/icons/Home';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import ListItem from './ListItemCard'
+import CircularProgress from '../Feedback/CircularProgress';
 
 const MainContainer = styled.div`
     display: flex;
@@ -26,11 +27,13 @@ const ListContainer = styled.div`
 const Matches = (props) => {
 
     const [matches, setMatches] = useState([])
+    const [inProgress, setInProgress] = useState(false)
     const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/aline-vignoli"
 
     const getMatches = () => {
+        setInProgress(true)
         axios.get(`${baseUrl}/matches`).then(response=> {
-            console.log(response.data.matches)
+            setInProgress(false)
             setMatches(response.data.matches)
         }).catch(error => {
             console.log(error.message)
@@ -52,8 +55,7 @@ const Matches = (props) => {
 
     const iconHome = <HomeIcon fontSize="large" color="primary"/>
     const iconDelete = <DeleteSweepIcon fontSize="large" color="secondary"/>
-
-    return (
+    const mainContent = ( 
         <MainContainer>
             <ListContainer>
                 {matches.map((profile => {
@@ -73,6 +75,12 @@ const Matches = (props) => {
                 <SmallButton onClick={clear} buttonIcon={iconDelete} tooltip="limpar matches"/>
             </ButtonsContainer>
         </MainContainer>
+    )
+
+    return (
+        <div>
+            {inProgress ? <CircularProgress/> : mainContent}
+        </div>
     );
 }
 
