@@ -1,21 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Header from './components/Header'
 import Card from './components/Card/Card'
 import Matches from './components/Matches/Matches'
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#A173BF",
-      dark: "#301840"
-    },
-    secondary: {
-      main: "#F21B6A",
-    },
-  },
-});
+import Theme from './design_system/Theme'
 
 const MainContainer = styled.div`
   * {
@@ -39,7 +27,7 @@ const CardContainer = styled.div`
   align-items: center;
 `
 
-function App() {
+const App = () => {
 
   const [isProfilePage, setIsProfilePage] = useState(true)
 
@@ -47,15 +35,17 @@ function App() {
     setIsProfilePage(!isProfilePage)
   }
 
-  return (
-    <MuiThemeProvider theme={theme}>
-      <MainContainer>
+  const mainContent = ( 
+    <MainContainer>
       <CardContainer>
       <Header/>
       {isProfilePage ? <Card changePage={changePage}/> : <Matches changePage={changePage}/> } 
       </CardContainer>
     </MainContainer>
-    </MuiThemeProvider>    
+  )
+
+  return (
+    <Theme content={mainContent}/>
   );
 }
 

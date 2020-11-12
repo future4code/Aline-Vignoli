@@ -26,7 +26,7 @@ const Match = styled.h1`
   color:#CC94F2;
 `
 
-const Header = (props) => {
+const Header = () => {
   return (
     <MainContainer>
       <Logo src={astroLove} alt="logo"/>
