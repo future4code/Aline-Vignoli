@@ -10,15 +10,18 @@ const MainContainer = styled.div`
     box-sizing: border-box;
   }
   
+  font-family: 'Asap Condensed', Arial, Helvetica, sans-serif;
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #CDCDCD;
+  background-color: rgba(176,196,222, 0.1);
   align-items: center;
   justify-content: center;
 `
 
 const CardContainer = styled.div`
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px #000;
   display: flex;
   flex-direction: column;
   width: 400px;

@@ -20,7 +20,7 @@ const ButtonsContainer = styled.div`
   height: 20%;
   align-items: center;
   justify-content: space-evenly;
-  margin: 18px 0;
+  margin: 5px 0;
 `
 
 const Card = (props) => {

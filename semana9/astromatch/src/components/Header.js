@@ -1,18 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 import astroLove from '../assets/astro-love.jpg'
+import astroMatchFont from '../assets/astromatch-font.png'
+
 
 const MainContainer = styled.div`
+  font-family: 'Secular One', cursive;
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   text-align: center;
   padding: 20px;
 `
 
 const Logo = styled.img`
-  border-radius: 80px;
-  width: 80px;
+  border-radius: 90px;
+  width: 90px;
+`
+
+const Title = styled.img`
+  height: 72px;
 `
 
 const Astro = styled.h1`
@@ -30,8 +38,7 @@ const Header = () => {
   return (
     <MainContainer>
       <Logo src={astroLove} alt="logo"/>
-      <Astro>a s t r o</Astro>
-      <Match>m a t c h</Match>
+      <Title src={astroMatchFont}/>
     </MainContainer>
   );
 }

@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   width: 350px;
-  height: 380px;
+  height: 400px;
 `
 
 const Info = styled.div`
@@ -31,6 +31,7 @@ const TitleContainer = styled.div`
 `
 
 const BioContainer = styled.div`
+  font-size: 18px;
   padding: 5px 10px;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.2);

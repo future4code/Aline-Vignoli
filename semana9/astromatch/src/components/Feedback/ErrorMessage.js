@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const ErrorMessageContainer = styled.div`
   padding: 20px;
   text-align: center;
+  font-size: 20px;
 `
 
 const ErrorMessage = (props) => {
