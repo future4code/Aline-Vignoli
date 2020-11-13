@@ -55,20 +55,21 @@ const Matches = (props) => {
 
     const iconHome = <HomeIcon fontSize="large" color="primary"/>
     const iconDelete = <DeleteSweepIcon fontSize="large" color="secondary"/>
+    const renderedMatches = matches.map((profile => {
+        return (
+            <ListItem 
+                id={profile.id}
+                key={profile.id} 
+                name={profile.name} 
+                age={profile.age} 
+                photo={profile.photo}
+            />
+        )
+    }))
     const mainContent = ( 
         <MainContainer>
             <ListContainer>
-                {matches.map((profile => {
-                    return (
-                        <ListItem 
-                            id={profile.id}
-                            key={profile.id} 
-                            name={profile.name} 
-                            age={profile.age} 
-                            photo={profile.photo}
-                        />
-                    )
-                }))}
+                {renderedMatches.length!==0 ? renderedMatches : <div>Você ainda não deu match com ninguém :(</div>}
             </ListContainer>
             <ButtonsContainer>
                 <SmallButton onClick={props.changePage} buttonIcon={iconHome} tooltip=""/>
