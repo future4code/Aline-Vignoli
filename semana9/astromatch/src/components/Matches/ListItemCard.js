@@ -11,12 +11,15 @@ const ProfilePhoto = styled.img`
     width: 60px;
 `
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    maxWidth: 330,
   },
+  item: {
+    backgroundColor: "rgba(204, 148, 242, 0.5)",
+    boxShadow: '1px 2px 2px #CC94F2'
+  }
 }));
 
 const ListItemCard = (props) => {
@@ -25,7 +28,7 @@ const ListItemCard = (props) => {
 
   return (
     <List className={classes.root} dense="true">
-      <ListItem>
+      <ListItem className={classes.item}>
         <ListItemAvatar>
           <Avatar>
           <ProfilePhoto src={props.photo} />

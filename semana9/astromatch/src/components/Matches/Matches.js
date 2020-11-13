@@ -7,6 +7,7 @@ import DeleteSweepIcon from '@material-ui/icons/DeleteSweep'
 import ListItem from './ListItemCard'
 import CircularProgress from '../Feedback/CircularProgress'
 import ErrorMessage from '../Feedback/ErrorMessage'
+import ListContainer from '../Matches/ListContainer'
 
 const MainContainer = styled.div`
     display: flex;
@@ -16,13 +17,6 @@ const MainContainer = styled.div`
 
 const ButtonsContainer = styled.div`
     display: flex; 
-`
-
-const ListContainer = styled.div`
-    border-radius: 10px;
-    height: 400px;
-    width: 380px;
-    overflow: auto;
 `
 
 const Matches = (props) => {
@@ -69,14 +63,15 @@ const Matches = (props) => {
     }))
     const mainContent = ( 
         <MainContainer>
-            <ListContainer>
-                {renderedMatches.length!==0 ? 
+            <ListContainer 
+                content={renderedMatches.length!==0 ? 
                     renderedMatches : 
                     <ErrorMessage 
                         title="Você ainda não encontrou matches :(" 
                         subTitle="Que tal ver se encontra uma pessoa interessante? (:"
                     />
-                }
+                }>
+                
             </ListContainer>
             <ButtonsContainer>
                 <SmallButton onClick={props.changePage} buttonIcon={iconHome} tooltip=""/>
