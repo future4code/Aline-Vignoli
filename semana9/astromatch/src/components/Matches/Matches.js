@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { SmallButton } from '../Card/Button'
-import HomeIcon from '@material-ui/icons/Home';
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import HomeIcon from '@material-ui/icons/Home'
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep'
 import ListItem from './ListItemCard'
-import CircularProgress from '../Feedback/CircularProgress';
-import ErrorMessage from '../Feedback/ErrorMessage';
+import CircularProgress from '../Feedback/CircularProgress'
+import ErrorMessage from '../Feedback/ErrorMessage'
 
 const MainContainer = styled.div`
     display: flex;
@@ -94,4 +94,4 @@ const Matches = (props) => {
     );
 }
 
-export default Matches;
+export default Matches

@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core'
 
 export const Button = (props) => {
   return (

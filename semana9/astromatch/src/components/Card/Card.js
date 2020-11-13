@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import axios from 'axios'
 import Profile from './Profile'
 import { Button, SmallButton } from './Button'
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import CloseRounded from '@material-ui/icons/CloseRounded';
-import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded'
+import CloseRounded from '@material-ui/icons/CloseRounded'
+import GroupRoundedIcon from '@material-ui/icons/GroupRounded'
 import CustomSnackbar from '../Feedback/CustomSnackbar'
-import CircularProgress from '../Feedback/CircularProgress';
-import ErrorMessage from '../Feedback/ErrorMessage';
+import CircularProgress from '../Feedback/CircularProgress'
+import ErrorMessage from '../Feedback/ErrorMessage'
 
 const ErrorContainer = styled.div`
   text-align: center;
@@ -46,7 +46,7 @@ const Card = (props) => {
       choice: isMatch
     }
 
-    axios.post(`${baseUrl}/choose-person`, body ).then((response)=> {
+    axios.post(`${baseUrl}/choose-person`, body ).then(response => {
       setIsMatch(response.data.isMatch)
       getProfileToChoose()
     }).catch(error => {

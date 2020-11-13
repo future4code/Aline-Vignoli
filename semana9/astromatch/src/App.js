@@ -39,7 +39,7 @@ const App = () => {
     <MainContainer>
       <CardContainer>
       <Header/>
-      {isProfilePage ? <Card changePage={changePage}/> : <Matches changePage={changePage}/> } 
+      {isProfilePage ? <Card changePage={changePage}/> : <Matches changePage={changePage}/>} 
       </CardContainer>
     </MainContainer>
   )
@@ -49,4 +49,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App
