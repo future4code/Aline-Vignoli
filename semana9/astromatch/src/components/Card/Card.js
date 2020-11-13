@@ -8,9 +8,9 @@ import CloseRounded from '@material-ui/icons/CloseRounded';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import CustomSnackbar from '../Feedback/CustomSnackbar'
 import CircularProgress from '../Feedback/CircularProgress';
+import ErrorMessage from '../Feedback/ErrorMessage';
 
-const ErrorMessageContainer = styled.div`
-  padding: 20px;
+const ErrorContainer = styled.div`
   text-align: center;
 `
 
@@ -20,6 +20,7 @@ const ButtonsContainer = styled.div`
   height: 20%;
   align-items: center;
   justify-content: space-evenly;
+  margin: 18px 0;
 `
 
 const Card = (props) => {
@@ -65,10 +66,11 @@ const Card = (props) => {
     setIsMatch(false);
   };
 
-  const iconMatches = <GroupRoundedIcon fontSize="small" color="info"/>
+  const iconMatches = <GroupRoundedIcon fontSize="small" color="secondary"/>
   const iconFavorite = <FavoriteRoundedIcon fontSize="large" color="primary"/>
   const iconPass = <CloseRounded fontSize="large" color="secondary"/>
   const mainContent = ( 
+    profile !== null ?
     <div>
       <Profile 
         photo={profile.photo}
@@ -82,19 +84,17 @@ const Card = (props) => {
         <Button onClick={choosePerson} isMatch={true} id={profile.id} buttonIcon={iconFavorite}/>
       </ButtonsContainer>
       <CustomSnackbar isMatch={isMatch} handleClose={handleCloseSnackbar}/>
-    </div>
+    </div> :
+    <ErrorContainer>
+      <ErrorMessage title="Ops! Você atingiu o limite de matches!" subTitle="Que tal limpar sua lista?"/>
+      <SmallButton onClick={props.changePage} buttonIcon={iconMatches} tooltip="ver matches"/>
+    </ErrorContainer>
   )
 
   return (
-    profile !== null ?
     <div>
       {inProgress ? <CircularProgress/> : mainContent}
-    </div> : 
-    <ErrorMessageContainer>
-      <h3>Ops! Você atingiu o limite de matches!</h3>
-      <p>Que tal limpar sua lista?</p>
-      <SmallButton onClick={props.changePage} buttonIcon={iconMatches} tooltip="ver matches"/>
-    </ErrorMessageContainer>
+    </div>  
   );
 }
 

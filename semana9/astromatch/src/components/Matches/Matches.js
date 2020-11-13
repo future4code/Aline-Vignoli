@@ -6,6 +6,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import ListItem from './ListItemCard'
 import CircularProgress from '../Feedback/CircularProgress';
+import ErrorMessage from '../Feedback/ErrorMessage';
 
 const MainContainer = styled.div`
     display: flex;
@@ -41,8 +42,8 @@ const Matches = (props) => {
     }
 
     const clear = () => {
-        axios.put(`${baseUrl}/clear`).then(response => {
-            window.alert("Lista limpa")
+        axios.put(`${baseUrl}/clear`).then(() => {
+            window.alert("Sua lista de matches foi resetada!")
             getMatches()
         }).catch(error => {
             console.log(error.message)
@@ -69,11 +70,19 @@ const Matches = (props) => {
     const mainContent = ( 
         <MainContainer>
             <ListContainer>
-                {renderedMatches.length!==0 ? renderedMatches : <div>Você ainda não deu match com ninguém :(</div>}
+                {renderedMatches.length!==0 ? 
+                    renderedMatches : 
+                    <ErrorMessage 
+                        title="Você ainda não encontrou matches :(" 
+                        subTitle="Que tal ver se encontra uma pessoa interessante? (:"
+                    />
+                }
             </ListContainer>
             <ButtonsContainer>
                 <SmallButton onClick={props.changePage} buttonIcon={iconHome} tooltip=""/>
-                <SmallButton onClick={clear} buttonIcon={iconDelete} tooltip="limpar matches"/>
+                {renderedMatches.length!==0 ?
+                    <SmallButton onClick={clear} buttonIcon={iconDelete} tooltip="limpar matches"/> : null        
+                }
             </ButtonsContainer>
         </MainContainer>
     )
