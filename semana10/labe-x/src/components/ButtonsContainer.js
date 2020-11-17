@@ -14,8 +14,8 @@ const Button = styled.button`
 const ButtonsContainer = (props) => {
     return (
         <MainContainer>
-            <Button>{props.buttonText1}</Button>
-            <Button>{props.buttonText2}</Button>
+            <Button onClick={props.onClickButton1}>{props.buttonText1}</Button>
+            <Button onClick={props.onClickButton2}>{props.buttonText2}</Button>
         </MainContainer>
     )
 }

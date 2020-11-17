@@ -28,7 +28,7 @@ const BaseForm = (props) => {
         <Form>
             <Input placeholder={props.placeholder1}/>
             <Input placeholder={props.placeholder2}/>
-            <Button>{props.buttonText}</Button>
+            <Button onClick={props.onClick}>{props.buttonText}</Button>
         </Form>
     )
 }
