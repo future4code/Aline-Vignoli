@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import BaseForm from './BaseForm'
+import ButtonsContainer from './ButtonsContainer'
 
 const MainContainer = styled.section`
     display: flex;
@@ -12,24 +12,18 @@ const DescriptionSection = styled.section`
     height: 100vh;
 `
 
-const FormsContainer = styled.section`
-    background-color: #cdcdcd;
-    width: 50%;
-`
-
 const Home = () => {
+
+    
     return (
         <MainContainer>
             <DescriptionSection>
                 Descrição breve
             </DescriptionSection>
-            <FormsContainer>
-                <BaseForm 
-                    placeholder1="e-mail"
-                    placeholder2="senha"
-                    buttonText="Enviar"
-                />
-            </FormsContainer>
+            <ButtonsContainer
+                buttonText1="Fazer login"
+                buttonText2="Cadastrar"
+            />
         </MainContainer>
     )
 }

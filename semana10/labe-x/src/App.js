@@ -1,11 +1,8 @@
-import './App.css';
-import Home from './components/Home'
+import Router from './router/Router'
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <Home/>
-    </div>
+    <Router/>
   );
 }
 

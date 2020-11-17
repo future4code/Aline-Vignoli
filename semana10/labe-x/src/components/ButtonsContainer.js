@@ -1,10 +1,22 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const ButtonsContainer = () => {
+const MainContainer = styled.div`
+    margin: auto;
+`
+
+const Button = styled.button`
+    font-size: 18px;
+    padding: 20px;
+    margin: 20px;
+`
+
+const ButtonsContainer = (props) => {
     return (
-        <div>
-            Grupo de botões
-        </div>
+        <MainContainer>
+            <Button>{props.buttonText1}</Button>
+            <Button>{props.buttonText2}</Button>
+        </MainContainer>
     )
 }
 
