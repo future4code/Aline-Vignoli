@@ -27,9 +27,7 @@ const TripCard = (props) => {
             <p>Planeta: {props.planet}</p>
             <p>Data: {props.date}</p>
             <p>Duração: {props.duration}</p>
-            <Button onClick={props.onClick}>
-                Quero ir
-            </Button>
+            <Button onClick={props.onClick}>{props.isAdmin ? "Ver detalhes" : "Quero ir"}</Button>
         </Card>
     )
 }

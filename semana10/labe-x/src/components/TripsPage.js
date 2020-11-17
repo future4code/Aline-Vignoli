@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import ButtonsContainer from './ButtonsContainer'
 import  { useRequestData } from '../hooks/useRequestData'
 import styled from 'styled-components'
@@ -15,6 +15,8 @@ const Container = styled.div`
 //Renderizar condicionalmente administrador ou visitante
 const TripsPage = () => {
     const history = useHistory()
+    const pathParams = useParams()
+    const isAdmin = pathParams.user === "admin"
     const tripsData = useRequestData('https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips', undefined)
 
     const goToCreateTripPage = () => {
@@ -27,12 +29,19 @@ const TripsPage = () => {
 
     return (
         <div>
-            <ButtonsContainer
+            {isAdmin ? <ButtonsContainer
                 buttonText1="Criar viagens"
                 buttonText2="Sair"
                 onClickButton1={goToCreateTripPage}
                 onClickButton2={signOut}
-            />
+            />: 
+            <ButtonsContainer
+                buttonText1="Teste"
+                buttonText2="Teste2"
+                onClickButton1={goToCreateTripPage}
+                onClickButton2={signOut}
+            />}
+            
             <Container>
                 {tripsData && tripsData.trips.map((trip) => {
                     return (
@@ -41,6 +50,7 @@ const TripsPage = () => {
                             planet={trip.planet}
                             date={trip.date}
                             duration={`${trip.durationInDays} dias`}
+                            isAdmin={isAdmin}
                         />
                     )})}
             </Container>

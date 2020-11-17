@@ -25,8 +25,8 @@ const Button = styled.button`
 const Home = () => {
     const history = useHistory()
 
-    const goToTripsPage = () => {
-        history.push("/trips/list")
+    const goToTripsPage = (user) => {
+        history.push(`/trips/list/${user}`)
     }
 
     const goToLoginPage = () => {
@@ -41,7 +41,7 @@ const Home = () => {
         <MainContainer>
             <DescriptionSection>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tellus est, congue vitae risus eu, iaculis auctor tortor. Quisque scelerisque, elit nec rhoncus fringilla, magna odio faucibus lorem, ac porttitor nibh augue ac metus. Vestibulum a enim dapibus, mollis justo tempus, pretium odio. Nullam faucibus elit eros, in tempor dui efficitur at. Morbi aliquam eros felis. Proin ac aliquet libero. Maecenas at risus ac lectus condimentum consequat ac a arcu.
-                <Button onClick={goToTripsPage}>Ver viagens</Button>
+                <Button onClick={()=>goToTripsPage("visitor")}>Ver viagens</Button>
             </DescriptionSection>
             <ButtonsContainer
                 onClickButton1={goToLoginPage}

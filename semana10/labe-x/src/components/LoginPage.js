@@ -18,8 +18,8 @@ const GoBackButton = styled.button`
 const LoginPage = () => {
     const history = useHistory()
 
-    const goToTripsPage = () => {
-        history.push("/trips/list")
+    const goToTripsPage = (user) => {
+        history.push(`trips/list/${user}`)
     }
 
     const goBack = () => {
@@ -32,7 +32,7 @@ const LoginPage = () => {
                 placeholder1="e-mail"
                 placeholder2="senha"
                 buttonText="Entrar"
-                onClick={goToTripsPage}
+                onClick={()=>goToTripsPage("admin")}
             />
             <GoBackButton onClick={goBack}>Voltar</GoBackButton>
         </FormsContainer>
