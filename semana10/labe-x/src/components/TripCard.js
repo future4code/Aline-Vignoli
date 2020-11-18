@@ -32,6 +32,7 @@ const Button = styled.button`
 
 const TripCard = (props) => {
     const history = useHistory()
+    const token = localStorage.getItem('token')
 
     const seeTripDetails = () => {
         history.push("/trips/details")
@@ -44,7 +45,7 @@ const TripCard = (props) => {
             <p>Planeta: {props.planet}</p>
             <p>Data: {props.date}</p>
             <p>Duração: {props.duration}</p>
-            <Button onClick={seeTripDetails}>{props.isAdmin ? "Ver detalhes" : "Quero ir"}</Button>
+            <Button onClick={seeTripDetails}>{token ? "Ver detalhes" : "Quero ir"}</Button>
         </Card>
     )
 }

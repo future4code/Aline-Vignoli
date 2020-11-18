@@ -48,8 +48,8 @@ const Img = styled.img`
 const Home = () => {
     const history = useHistory()
 
-    const goToTripsPage = (user) => {
-        history.push(`/trips/list/${user}`)
+    const goToTripsPage = () => {
+        history.push(`/trips/list`)
     }
 
     const goToLoginPage = () => {
@@ -72,7 +72,7 @@ const Home = () => {
                 <p>Não tem conta? Cadastre-se!</p>
                 <ButtonsContainer
                     onClickButton1={goToSignUpPage}
-                    onClickButton2={()=>goToTripsPage("visitor")}
+                    onClickButton2={goToTripsPage}
                     buttonText1="Cadastrar"
                     buttonText2="Ver viagens"
                 />

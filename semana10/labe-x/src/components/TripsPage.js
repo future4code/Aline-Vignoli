@@ -15,12 +15,11 @@ const Container = styled.div`
 //Renderizar condicionalmente administrador ou visitante
 const TripsPage = () => {
     const history = useHistory()
-    const pathParams = useParams()
-    const isAdmin = pathParams.user === "admin"
     const tripsData = useRequestData('https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips', undefined)
+    const token = localStorage.getItem('token')
 
     const goToCreateTripPage = () => {
-        history.push('/trips/create')
+        history.replace('/trips/create')
     }
 
     const goToSignUpPage = () => {
@@ -28,16 +27,17 @@ const TripsPage = () => {
     }
 
     const goToLoginPage = () => {
-        history.push('/login')
+        history.replace('/login')
     }
 
     const logOut = () => {
-        history.replace('/login')
+        localStorage.removeItem('token')
+        history.replace('/')
     }
 
     return (
         <div>
-            {isAdmin ? <ButtonsContainer
+            {token ? <ButtonsContainer
                 buttonText1="Criar viagens"
                 buttonText2="Sair"
                 onClickButton1={goToCreateTripPage}
@@ -58,7 +58,6 @@ const TripsPage = () => {
                             planet={trip.planet}
                             date={trip.date}
                             duration={`${trip.durationInDays} dias`}
-                            isAdmin={isAdmin}
                         />
                     )})}
             </Container>
