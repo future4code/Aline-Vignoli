@@ -19,7 +19,7 @@ const TripsPage = () => {
     const token = localStorage.getItem('token')
 
     const goToCreateTripPage = () => {
-        history.replace('/trips/create')
+        history.push('/trips/create')
     }
 
     const goToSignUpPage = () => {
@@ -27,7 +27,7 @@ const TripsPage = () => {
     }
 
     const goToLoginPage = () => {
-        history.replace('/login')
+        history.push('/login')
     }
 
     const logOut = () => {

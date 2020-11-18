@@ -38,6 +38,10 @@ const TripCard = (props) => {
         history.push("/trips/details")
     }
 
+    const applyToTripForm = () => {
+        history.push("/trips/apply-to-trip")
+    }
+
     return (
         <Card>
             <img src="https://picsum.photos/200/200" alt="imagem" />
@@ -45,7 +49,7 @@ const TripCard = (props) => {
             <p>Planeta: {props.planet}</p>
             <p>Data: {props.date}</p>
             <p>Duração: {props.duration}</p>
-            <Button onClick={seeTripDetails}>{token ? "Ver detalhes" : "Quero ir"}</Button>
+            <Button onClick={token ? seeTripDetails : applyToTripForm}>{token ? "Ver detalhes" : "Quero ir"}</Button>
         </Card>
     )
 }

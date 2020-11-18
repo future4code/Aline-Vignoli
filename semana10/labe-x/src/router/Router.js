@@ -4,6 +4,7 @@ import LoginPage from '../components/LoginPage'
 import SignUpPage from '../components/SignUpPage'
 import TripsPage from '../components/TripsPage'
 import TripDetails from '../components/TripDetails'
+import ApplyToTripForm from '../components/ApplyToTripForm'
 import CreateTripForm from '../components/CreateTripForm'
 
 const Router = () => {
@@ -24,6 +25,9 @@ const Router = () => {
         </Route>
         <Route exact path="/trips/details">
           <TripDetails />
+        </Route>
+        <Route exact path="/trips/apply-to-trip">
+          <ApplyToTripForm />
         </Route>
         <Route exact path="/trips/create">
           <CreateTripForm />
