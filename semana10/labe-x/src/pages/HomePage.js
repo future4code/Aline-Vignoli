@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import ButtonsContainer from './ButtonsContainer'
+import ButtonsContainer from '../components/ButtonsContainer'
 import { useHistory } from 'react-router-dom'
 import spaceBanner from '../img/space-banner.jpg'
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import ButtonsContainer from './ButtonsContainer'
+import { useHistory } from 'react-router-dom'
+import ButtonsContainer from '../components/ButtonsContainer'
 import  { useRequestData } from '../hooks/useRequestData'
 import styled from 'styled-components'
-import TripCard from './TripCard'
+import TripCard from '../components/TripCard'
 
 const TripsCardContainer = styled.div`
     display: grid;

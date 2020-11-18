@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import BaseForm from './BaseForm'
+import BaseForm from '../components/BaseForm'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 

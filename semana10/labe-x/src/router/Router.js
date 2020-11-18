@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import HomePage from '../components/HomePage'
-import LoginPage from '../components/LoginPage'
-import TripsPage from '../components/TripsPage'
-import TripDetails from '../components/TripDetails'
-import ApplyToTripForm from '../components/ApplyToTripForm'
-import CreateTripForm from '../components/CreateTripForm'
+import HomePage from '../pages/HomePage'
+import LoginPage from '../pages/LoginPage'
+import TripsPage from '../pages/TripsPage'
+import TripDetailsPage from '../pages/TripDetailsPage'
+import ApplyToTripPage from '../pages/ApplyToTripPage'
+import CreateTripPage from '../pages/CreateTripPage'
 
 const Router = () => {
   return (
@@ -20,13 +20,13 @@ const Router = () => {
           <TripsPage />
         </Route>
         <Route exact path="/trips/details/:id">
-          <TripDetails />
+          <TripDetailsPage />
         </Route>
         <Route exact path="/trips/apply-to-trip">
-          <ApplyToTripForm />
+          <ApplyToTripPage />
         </Route>
         <Route exact path="/trips/create">
-          <CreateTripForm />
+          <CreateTripPage />
         </Route>
       </Switch>
     </BrowserRouter>

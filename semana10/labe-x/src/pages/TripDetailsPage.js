@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useHistory, useParams } from 'react-router-dom'
 
-const TripDetails = () => {
+const TripDetailsPage = () => {
     const [trip, setTrip] = useState(undefined)
     const history = useHistory()
     const pathParams = useParams()
@@ -47,4 +47,4 @@ const TripDetails = () => {
     )
 }
 
-export default TripDetails
+export default TripDetailsPage
