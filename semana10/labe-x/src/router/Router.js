@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from '../components/HomePage'
 import LoginPage from '../components/LoginPage'
-import SignUpPage from '../components/SignUpPage'
 import TripsPage from '../components/TripsPage'
 import TripDetails from '../components/TripDetails'
 import ApplyToTripForm from '../components/ApplyToTripForm'
@@ -16,9 +15,6 @@ const Router = () => {
         </Route>
         <Route exact path="/login">
           <LoginPage/>
-        </Route>
-        <Route exact path="/signup">
-          <SignUpPage/>
         </Route>
         <Route exact path="/trips/list">
           <TripsPage />
