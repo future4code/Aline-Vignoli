@@ -18,6 +18,16 @@ const Tittle = styled.h3`
 const Button = styled.button`
     font-size: 18px;
     padding: 20px;
+    margin: 10px;
+    background-color: #FFF;
+    border: 1px rgba(48, 77, 120, 0.78) solid;
+    border-radius: 5px;
+    color: rgba(48, 77, 120, 0.78);
+    &:hover {
+        color: rgba(116, 143, 183, 0.78);
+        border: 1px rgba(116, 143, 183, 0.78) solid;
+        cursor: pointer;
+    }
 `
 
 const TripCard = (props) => {

@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom'
 const FormsContainer = styled.section`
     display: flex;
     flex-direction: column;
-    background-color: #cdcdcd;
 `
 
 const GoBackButton = styled.button`
