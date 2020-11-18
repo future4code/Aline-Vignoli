@@ -27,20 +27,6 @@ const UserSection = styled.section`
     height: 100vh;
 `
 
-const Button = styled.button`
-    background-color: rgba(48, 77, 120, 0.78);
-    border: 1px rgba(48, 77, 120, 0.78) solid;
-    border-radius: 5px;
-    color: #FFF;
-    font-size: 18px;
-    padding: 20px;
-    margin: 40px;
-    &:hover {
-        background-color: rgba(11, 26, 49, 0.78);
-        cursor: pointer;
-    }
-`
-
 const Img = styled.img`
     width: 100%;
 `

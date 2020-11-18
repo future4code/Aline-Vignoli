@@ -7,8 +7,6 @@ const Card = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2em;
-    padding: 0;    
 `
 
 const Tittle = styled.h3`

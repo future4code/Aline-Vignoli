@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useHistory, useParams } from 'react-router-dom'
+import TripDetails from '../components/TripDetails'
 
 const TripDetailsPage = () => {
     const [trip, setTrip] = useState(undefined)
@@ -33,16 +34,17 @@ const TripDetailsPage = () => {
     return (
         trip !== undefined ? 
         <div>
-            <h2>{trip.name}</h2>
-            <p>{trip.planet}</p>
-            <p>{trip.date}</p>
-            <p>{trip.description}</p>
-            <p>{`${trip.durationInDays} dias`}</p>
-            <h4>Candidatos:</h4>
-            {trip && trip.candidates.map((candidate => {
-                return <p key={candidate.id}>{candidate.name}</p>
-            }))}
-        </div> :
+            <TripDetails 
+              tripId={trip.id}
+              name={trip.name}
+              description={trip.description}
+              planet={trip.planet}
+              date={trip.date}
+              duration={`${trip.durationInDays} dias`}
+              candidates={trip.candidates}
+            />
+        </div> 
+        :
         null
     )
 }
