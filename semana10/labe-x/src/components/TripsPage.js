@@ -23,8 +23,16 @@ const TripsPage = () => {
         history.push('/trips/create')
     }
 
-    const signOut = () => {
-        window.alert("Deslogou!")
+    const goToSignUpPage = () => {
+        history.push("/signup")
+    }
+
+    const goToLoginPage = () => {
+        history.push('/login')
+    }
+
+    const logOut = () => {
+        history.replace('/login')
     }
 
     return (
@@ -33,13 +41,13 @@ const TripsPage = () => {
                 buttonText1="Criar viagens"
                 buttonText2="Sair"
                 onClickButton1={goToCreateTripPage}
-                onClickButton2={signOut}
+                onClickButton2={logOut}
             />: 
             <ButtonsContainer
-                buttonText1="Teste"
-                buttonText2="Teste2"
-                onClickButton1={goToCreateTripPage}
-                onClickButton2={signOut}
+                buttonText1="Entrar"
+                buttonText2="Cadastre-se"
+                onClickButton1={goToLoginPage}
+                onClickButton2={goToSignUpPage}
             />}
             
             <Container>

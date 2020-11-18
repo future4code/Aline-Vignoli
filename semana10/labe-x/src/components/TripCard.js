@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Card = styled.div`
@@ -20,6 +21,12 @@ const Button = styled.button`
 `
 
 const TripCard = (props) => {
+    const history = useHistory()
+
+    const seeTripDetails = () => {
+        history.push("/trips/details")
+    }
+
     return (
         <Card>
             <img src="https://picsum.photos/200/200" alt="imagem" />
@@ -27,7 +34,7 @@ const TripCard = (props) => {
             <p>Planeta: {props.planet}</p>
             <p>Data: {props.date}</p>
             <p>Duração: {props.duration}</p>
-            <Button onClick={props.onClick}>{props.isAdmin ? "Ver detalhes" : "Quero ir"}</Button>
+            <Button onClick={seeTripDetails}>{props.isAdmin ? "Ver detalhes" : "Quero ir"}</Button>
         </Card>
     )
 }
