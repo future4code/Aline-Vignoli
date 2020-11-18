@@ -61,11 +61,12 @@ const TripsPage = () => {
                 /> : 
                 <Button onClick={goToLoginPage}>Entrar como administrador</Button>}
             </Header>
-            
             <TripsCardContainer>
                 {tripsData && tripsData.trips.map((trip) => {
                     return (
                         <TripCard 
+                            key={trip.id}
+                            id={trip.id}
                             name={trip.name}
                             planet={trip.planet}
                             date={trip.date}

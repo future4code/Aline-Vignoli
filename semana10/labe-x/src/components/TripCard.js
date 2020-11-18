@@ -35,7 +35,7 @@ const TripCard = (props) => {
     const token = localStorage.getItem('token')
 
     const seeTripDetails = () => {
-        history.push("/trips/details")
+        history.push(`/trips/details/${props.id}`)
     }
 
     const applyToTripForm = () => {

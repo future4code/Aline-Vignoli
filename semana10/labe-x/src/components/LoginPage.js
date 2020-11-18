@@ -34,11 +34,11 @@ const LoginPage = () => {
 
         axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/login", body)
             .then(response => {
-                console.log(response)
                 localStorage.setItem('token', response.data.token)
                 goToTripsPage()
             }).catch(error => {
-                console.log(error)
+                console.log(error.message)
+                window.alert("E-mail ou senha inválidos!")
             })
     }
 
