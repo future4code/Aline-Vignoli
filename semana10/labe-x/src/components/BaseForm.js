@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import useInput from '../hooks/useInput'
 
 const Form = styled.div`
     width: 40%;
@@ -30,18 +31,9 @@ const Button = styled.button`
     }
 `
 
-//Texto dos botões condicionalmente (login ou signup)
 const BaseForm = (props) => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-
-    const handleEmail = (event) => {
-        setEmail(event.target.value)
-    }
-
-    const handlePassword = (event) => {
-        setPassword(event.target.value)
-    }
+    const [email, handleEmail] = useInput()
+    const [password, handlePassword] = useInput()
 
     return (
         <Form>

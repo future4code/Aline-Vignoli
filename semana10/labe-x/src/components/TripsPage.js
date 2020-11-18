@@ -5,14 +5,33 @@ import  { useRequestData } from '../hooks/useRequestData'
 import styled from 'styled-components'
 import TripCard from './TripCard'
 
-const Container = styled.div`
+const TripsCardContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1em;
     align-items: center;
 `
 
-//Renderizar condicionalmente administrador ou visitante
+const Header = styled.header`
+    display: flex;
+    padding: 10px;
+    justify-content: flex-end;
+`
+
+const Button = styled.button`
+    font-size: 18px;
+    padding: 20px;
+    margin: 10px;
+    background-color: rgba(48, 77, 120, 0.78);
+    border: 1px rgba(48, 77, 120, 0.78) solid;
+    border-radius: 5px;
+    color: #FFF;
+    &:hover {
+        background-color: rgba(11, 26, 49, 0.78);
+        cursor: pointer;
+    }
+`
+
 const TripsPage = () => {
     const history = useHistory()
     const tripsData = useRequestData('https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips', undefined)
@@ -20,10 +39,6 @@ const TripsPage = () => {
 
     const goToCreateTripPage = () => {
         history.push('/trips/create')
-    }
-
-    const goToSignUpPage = () => {
-        history.push("/signup")
     }
 
     const goToLoginPage = () => {
@@ -37,20 +52,17 @@ const TripsPage = () => {
 
     return (
         <div>
-            {token ? <ButtonsContainer
-                buttonText1="Criar viagens"
-                buttonText2="Sair"
-                onClickButton1={goToCreateTripPage}
-                onClickButton2={logOut}
-            />: 
-            <ButtonsContainer
-                buttonText1="Entrar"
-                buttonText2="Cadastre-se"
-                onClickButton1={goToLoginPage}
-                onClickButton2={goToSignUpPage}
-            />}
+            <Header>
+                {token ? <ButtonsContainer
+                    buttonText1="Criar viagens"
+                    buttonText2="Sair"
+                    onClickButton1={goToCreateTripPage}
+                    onClickButton2={logOut}
+                /> : 
+                <Button onClick={goToLoginPage}>Entrar como administrador</Button>}
+            </Header>
             
-            <Container>
+            <TripsCardContainer>
                 {tripsData && tripsData.trips.map((trip) => {
                     return (
                         <TripCard 
@@ -60,7 +72,7 @@ const TripsPage = () => {
                             duration={`${trip.durationInDays} dias`}
                         />
                     )})}
-            </Container>
+            </TripsCardContainer>
         </div>
     )
 }

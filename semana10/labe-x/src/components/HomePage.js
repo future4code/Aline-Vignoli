@@ -56,10 +56,6 @@ const Home = () => {
         history.push("/login")
     }
 
-    const goToSignUpPage = () => {
-        history.push("/signup")
-    }
-
     return (
         <MainContainer>
             <DescriptionSection>
@@ -68,12 +64,10 @@ const Home = () => {
             
             </DescriptionSection>
             <UserSection>
-                <Button onClick={goToLoginPage}>Entrar como administrador</Button>
-                <p>Não tem conta? Cadastre-se!</p>
                 <ButtonsContainer
-                    onClickButton1={goToSignUpPage}
+                    onClickButton1={goToLoginPage}
                     onClickButton2={goToTripsPage}
-                    buttonText1="Cadastrar"
+                    buttonText1="Entrar como administrador"
                     buttonText2="Ver viagens"
                 />
             </UserSection>
