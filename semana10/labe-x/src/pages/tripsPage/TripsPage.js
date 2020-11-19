@@ -1,36 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import ButtonsContainer from '../components/ButtonsContainer'
-import  { useRequestData } from '../hooks/useRequestData'
-import styled from 'styled-components'
-import TripCard from '../components/TripCard'
-
-const TripsCardContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 1em;
-    align-items: center;
-`
-
-const Header = styled.header`
-    display: flex;
-    padding: 10px;
-    justify-content: flex-end;
-`
-
-const Button = styled.button`
-    font-size: 18px;
-    padding: 20px;
-    margin: 10px;
-    background-color: rgba(48, 77, 120, 0.78);
-    border: 1px rgba(48, 77, 120, 0.78) solid;
-    border-radius: 5px;
-    color: #FFF;
-    &:hover {
-        background-color: rgba(11, 26, 49, 0.78);
-        cursor: pointer;
-    }
-`
+import ButtonsContainer from '../../components/ButtonsContainer'
+import  { useRequestData } from '../../hooks/useRequestData'
+import TripCard from '../../components/TripCard'
+import { TripsCardContainer, Header, Button } from './styles'
 
 const TripsPage = () => {
     const history = useHistory()

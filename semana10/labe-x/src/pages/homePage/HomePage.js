@@ -1,35 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
-import ButtonsContainer from '../components/ButtonsContainer'
+import ButtonsContainer from '../../components/ButtonsContainer'
 import { useHistory } from 'react-router-dom'
-import spaceBanner from '../img/space-banner.jpg'
-
-const MainContainer = styled.section`
-    display: flex;
-`
-
-const DescriptionSection = styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 2%;
-    background-color: rgba(222, 232, 248, 0.78);
-    width: 50%;
-    height: 100vh;
-`
-
-const UserSection = styled.section`
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-`
-
-const Img = styled.img`
-    width: 100%;
-`
+import spaceBanner from '../../img/space-banner.jpg'
+import { MainContainer, DescriptionSection, UserSection, Img } from './styles'
 
 const Home = () => {
     const history = useHistory()

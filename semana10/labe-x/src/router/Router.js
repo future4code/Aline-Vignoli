@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import HomePage from '../pages/HomePage'
+import HomePage from '../pages/homePage/HomePage'
 import LoginPage from '../pages/LoginPage'
-import TripsPage from '../pages/TripsPage'
+import TripsPage from '../pages/tripsPage/TripsPage'
 import TripDetailsPage from '../pages/TripDetailsPage'
 import ApplyToTripPage from '../pages/applyToTripPage/ApplyToTripPage'
 import CreateTripPage from '../pages/createTripPage/CreateTripPage'
