@@ -16,15 +16,11 @@ const LoginPage = () => {
         history.push(`trips/list`)
     }
 
-    const goBack = () => {
-        history.goBack()
-    }
-
-    const login = (email, password) => {
-        const body = {
-            email: email,
-            password: password
-        }
+    const login = (body) => {
+        // const body = {
+        //     email: email,
+        //     password: password
+        // }
 
         axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/login", body)
             .then(response => {
@@ -36,13 +32,15 @@ const LoginPage = () => {
             })
     }
 
+    
+
     return (
         <FormsContainer>
             <BaseForm 
                 placeholder1="e-mail"
                 placeholder2="senha"
                 buttonText="Entrar"
-                onClick={login}
+                login={login}
             />
         </FormsContainer>
     )

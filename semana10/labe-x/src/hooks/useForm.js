@@ -4,7 +4,7 @@ const useForm = (inicialState) => {
     const [form, setForm] = useState(inicialState);
 
     const handleForm = (event) => {
-        const [ value, name ] = event.target
+        const { value, name } = event.target
         setForm({...form, [name]: value})
     };
 

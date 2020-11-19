@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import useInput from '../hooks/useInput'
+import useForm from '../hooks/useForm'
 
-const Form = styled.div`
+const Form = styled.form`
     width: 40%;
     height: 100vh;
     display: flex;
@@ -32,14 +32,37 @@ const Button = styled.button`
 `
 
 const BaseForm = (props) => {
-    const [email, handleEmail] = useInput('')
-    const [password, handlePassword] = useInput('')
+    const [form, handleForm] = useForm({email: '', password: ''})
+
+    const onSubmitForm = (event) => {
+        event.preventDefault()
+        const body = {
+            email: form.email,
+            password: form.password  
+        }
+
+        props.login(body)
+    }
 
     return (
-        <Form>
-            <Input value={email} onChange={handleEmail} placeholder={props.placeholder1}/>
-            <Input value={password} onChange={handlePassword} placeholder={props.placeholder2}/>
-            <Button onClick={() =>props.onClick(email, password)}>{props.buttonText}</Button>
+        <Form onSubmit={onSubmitForm}>
+            <Input  
+                required
+                name='email' 
+                type='email' 
+                value={form.email} 
+                onChange={handleForm} 
+                placeholder={props.placeholder1}
+            />
+            <Input 
+                required
+                name='password'    
+                type='password' 
+                value={form.password} 
+                onChange={handleForm} 
+                placeholder={props.placeholder2}
+            />
+            <Button>{props.buttonText}</Button>
         </Form>
     )
 }
