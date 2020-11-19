@@ -17,11 +17,6 @@ const LoginPage = () => {
     }
 
     const login = (body) => {
-        // const body = {
-        //     email: email,
-        //     password: password
-        // }
-
         axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/login", body)
             .then(response => {
                 localStorage.setItem('token', response.data.token)
@@ -31,8 +26,6 @@ const LoginPage = () => {
                 window.alert("E-mail ou senha inválidos!")
             })
     }
-
-    
 
     return (
         <FormsContainer>
