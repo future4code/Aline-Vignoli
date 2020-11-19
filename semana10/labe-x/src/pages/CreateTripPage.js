@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import useForm from '../hooks/useForm'
+import { dateFormat } from '../util/dateFormat'
 
 const Form = styled.form`
     width: 40%;
@@ -40,26 +41,15 @@ const Button = styled.button`
 `
 
 const CreateTripForm = () => {
-    
-    const dateFormat = (date) => {
-        const day = date.getDate()
-        const month = date.getMonth()
-        const year = date.getFullYear()
-        const dateString = (`${year}-${month+1}-${day}`)
-        return dateString
-    }
-
     const stringDate = dateFormat(new Date())
-
+    const planetsArray = ["Mercúrio", "Vênus", "Terra", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"]
     const [form, handleForm] = useForm({
         name: "",
-        planet: "Mercúrio",
+        planet: planetsArray[0],
         description: "",
         date: stringDate,
         durationInDays: ""
     })
-    
-    const planetsArray = ["Mercúrio", "Vênus", "Terra", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"]
     const history = useHistory()
 
     const createTrip = (body, headers) => {
