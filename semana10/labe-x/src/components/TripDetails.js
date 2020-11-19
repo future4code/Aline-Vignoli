@@ -62,11 +62,13 @@ const TripDetails = (props) => {
               }
             }
         )
-        .then((response) => {
-        window.alert(decision)
+        .then(() => {
+            const message = decision ? 'Candidato aprovado' : 'Candidato desaprovado'
+            window.alert(message)
+            props.getTripDetails()
         })
         .catch((error) => {
-        console.log(error);
+            console.log(error);
         });
     }
 

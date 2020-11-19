@@ -37,7 +37,7 @@ const TripCard = (props) => {
     }
 
     const applyToTripForm = () => {
-        history.push("/trips/apply-to-trip")
+        history.push(`/trips/apply-to-trip/${props.id}`)
     }
 
     return (

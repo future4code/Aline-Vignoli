@@ -22,7 +22,7 @@ const Router = () => {
         <Route exact path="/trips/details/:id">
           <TripDetailsPage />
         </Route>
-        <Route exact path="/trips/apply-to-trip">
+        <Route exact path="/trips/apply-to-trip/:id">
           <ApplyToTripPage />
         </Route>
         <Route exact path="/trips/create">

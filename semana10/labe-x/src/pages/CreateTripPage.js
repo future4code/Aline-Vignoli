@@ -76,11 +76,42 @@ const CreateTripForm = () => {
 
     return (
         <Form onSubmit={onSubmitForm}>
-            <Input required name='name' value={form.name} onChange={handleForm} placeholder="Nome da viagem"/>
-            <Input required name='description' value={form.description} onChange={handleForm} placeholder="Descrição"/>
-            <Input required name='planet' value={form.planet} onChange={handleForm} placeholder="Planeta"/>
-            <Input required name='date' value={form.date} onChange={handleForm} placeholder="Data" type="date"/>
-            <Input required name='durationInDays' value={form.durationInDays} onChange={handleForm} placeholder="Duração (em dias)"/>
+            <Input 
+                required 
+                name='name' 
+                value={form.name} 
+                onChange={handleForm} 
+                placeholder="Nome da viagem"
+            />
+            <Input 
+                required 
+                name='description' 
+                value={form.description} 
+                onChange={handleForm} 
+                placeholder="Descrição"
+            />
+            <Input 
+                required 
+                name='planet' 
+                value={form.planet} 
+                onChange={handleForm} 
+                placeholder="Planeta"
+            />
+            <Input 
+                required 
+                name='date' 
+                value={form.date} 
+                onChange={handleForm} 
+                placeholder="Data" 
+                type="date"
+            />
+            <Input 
+                required 
+                name='durationInDays' 
+                value={form.durationInDays} 
+                onChange={handleForm} 
+                placeholder="Duração (em dias)"
+            />
             <Button>Criar viagem</Button>
         </Form>
     )

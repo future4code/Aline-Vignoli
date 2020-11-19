@@ -10,10 +10,10 @@ const TripDetailsPage = () => {
 
     useEffect(()=> {
         const token = localStorage.getItem('token')
-        token ? getTripDetail() : history.push('/login')
+        token ? getTripDetails() : history.push('/login')
     }, [history])
 
-    const getTripDetail = () => {
+    const getTripDetails = () => {
         axios
           .get(
             `https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trip/${pathParams.id}`,
@@ -42,6 +42,7 @@ const TripDetailsPage = () => {
               date={trip.date}
               duration={`${trip.durationInDays} dias`}
               candidates={trip.candidates}
+              getTripDetails={getTripDetails}
             />
         </div> 
         :

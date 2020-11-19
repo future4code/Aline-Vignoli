@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import useInput from '../hooks/useInput'
+import useForm from '../hooks/useForm'
 import axios from 'axios'
 import { useRequestData } from '../hooks/useRequestData'
+import { useParams } from 'react-router-dom'
 
-const Form = styled.div`
+const Form = styled.form`
     width: 40%;
     height: 100vh;
     display: flex;
@@ -40,51 +41,58 @@ const Button = styled.button`
 `
 
 const ApplyToTripForm = () => {
-    const [name, handleName] = useInput('')
-    const [age, handleAge] = useInput('')
-    const [applicationText, handleApplicationText] = useInput('')
-    const [profession, handleProfession] = useInput('')
-    const [country, handleCountry] = useInput('Afeghanistan')
+    const pathParams = useParams()
+    const [form, handleForm] = useForm({
+        name: "",
+        age: "",
+        applicationText: "",
+        profession: "",
+        country: "Afeghanistan"
+    })
+
     const countryArray = useRequestData('https://restcountries.eu/rest/v2/all', [])
 
-    const applyToTrip = () => {
-        const body = {
-            name: name,
-            age: age,
-            applicationText: applicationText,
-            profession: profession,
-            country: country
-        }
-
-        axios
-          .post(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips`, body,
-            {
-              headers: {
-                auth: localStorage.getItem("token")
-              }
-            }
-        )
-        .then((response) => {
-            window.alert("Viagem criada com sucesso!")
+    const applyToTrip = (body, headers) => {
+        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips/${pathParams.id}/apply`, body, headers)
+        .then(() => {
+            window.alert("Sua candidatura foi enviada, entraremos em contato!")
         })
         .catch((error) => {
             console.log(error);
         });
     }
 
+    const onSubmitForm = (event) => {
+        event.preventDefault()
+        const body = {
+            name: form.name,
+            age: form.age,
+            applicationText: form.applicationText,
+            profession: form.profession,
+            country: form.country
+        }
+
+        const requestHeaders = {
+            headers: {
+              auth: localStorage.getItem("token")
+            }
+        }
+
+        applyToTrip(body, requestHeaders)
+    }
+
     return (
-        <Form>
-            <Input value={name} onChange={handleName} placeholder="Nome"/>
-            <Input value={age} onChange={handleAge} placeholder="Idade"/>
-            <Input value={applicationText} onChange={handleApplicationText} placeholder="Mensagem"/>
-            <Input value={profession} onChange={handleProfession} placeholder="Profissão"/>
-            <Select value ={country} onChange={handleCountry}>
+        <Form onSubmit={onSubmitForm}>
+            <Input name="name" value={form.name} onChange={handleForm} placeholder="Nome"/>
+            <Input name="age" value={form.age} onChange={handleForm} placeholder="Idade"/>
+            <Input name="applicationText" value={form.applicationText} onChange={handleForm} placeholder="Mensagem"/>
+            <Input name="profession" value={form.profession} onChange={handleForm} placeholder="Profissão"/>
+            <Select name="country" value ={form.country} onChange={handleForm}>
                 {countryArray.map((element, id) => {
                     return <option key={id} value={element.name}>{element.name}</option>
                 })}
             </Select>
-            <Button onClick={applyToTrip}>Candidatar-se</Button>
+            <Button>Candidatar-se</Button>
         </Form>
     )
 }
