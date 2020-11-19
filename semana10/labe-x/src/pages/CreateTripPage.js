@@ -20,6 +20,12 @@ const Input = styled.input`
     border-radius: 5px;
 `
 
+const Select = styled.select`
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 5px;
+`
+
 const Button = styled.button`
     font-size: 18px;
     padding: 20px;
@@ -36,12 +42,13 @@ const Button = styled.button`
 const CreateTripForm = () => {
     const [form, handleForm] = useForm({
         name: "",
-        planet: "",
+        planet: "Mercúrio",
         description: "",
         date: "",
         durationInDays: ""
     })
 
+    const planetsArray = ["Mercúrio", "Vênus", "Terra", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"]
     const history = useHistory()
 
     const createTrip = (body, headers) => {
@@ -78,6 +85,7 @@ const CreateTripForm = () => {
         <Form onSubmit={onSubmitForm}>
             <Input 
                 required 
+                pattern='[a-zA-ZsÀ-ú ]{5,}'
                 name='name' 
                 value={form.name} 
                 onChange={handleForm} 
@@ -85,18 +93,17 @@ const CreateTripForm = () => {
             />
             <Input 
                 required 
+                pattern='^.{30,}'
                 name='description' 
                 value={form.description} 
                 onChange={handleForm} 
                 placeholder="Descrição"
             />
-            <Input 
-                required 
-                name='planet' 
-                value={form.planet} 
-                onChange={handleForm} 
-                placeholder="Planeta"
-            />
+            <Select name="planet" value ={form.planet} onChange={handleForm}>
+                {planetsArray.map((planet, id) => {
+                    return <option key={id} value={planet}>{planet}</option>
+                })}
+            </Select>
             <Input 
                 required 
                 name='date' 
@@ -111,6 +118,8 @@ const CreateTripForm = () => {
                 value={form.durationInDays} 
                 onChange={handleForm} 
                 placeholder="Duração (em dias)"
+                type="number"
+                min="50"
             />
             <Button>Criar viagem</Button>
         </Form>

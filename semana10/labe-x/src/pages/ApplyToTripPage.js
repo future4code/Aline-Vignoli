@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import useForm from '../hooks/useForm'
 import axios from 'axios'
 import { useRequestData } from '../hooks/useRequestData'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 const Form = styled.form`
     width: 40%;
@@ -51,11 +51,13 @@ const ApplyToTripForm = () => {
     })
 
     const countryArray = useRequestData('https://restcountries.eu/rest/v2/all', [])
+    const history = useHistory()
 
     const applyToTrip = (body, headers) => {
         axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips/${pathParams.id}/apply`, body, headers)
         .then(() => {
             window.alert("Sua candidatura foi enviada, entraremos em contato!")
+            history.push('/trips/list')
         })
         .catch((error) => {
             console.log(error);
@@ -83,10 +85,41 @@ const ApplyToTripForm = () => {
 
     return (
         <Form onSubmit={onSubmitForm}>
-            <Input name="name" value={form.name} onChange={handleForm} placeholder="Nome"/>
-            <Input name="age" value={form.age} onChange={handleForm} placeholder="Idade"/>
-            <Input name="applicationText" value={form.applicationText} onChange={handleForm} placeholder="Mensagem"/>
-            <Input name="profession" value={form.profession} onChange={handleForm} placeholder="Profissão"/>
+            <Input 
+                required
+                pattern='[a-zA-ZsÀ-ú ]{3,}'
+                name="name" 
+                value={form.name} 
+                onChange={handleForm} 
+                placeholder="Nome"
+                type="text"
+            />
+            <Input 
+                required
+                name="age" 
+                value={form.age} 
+                onChange={handleForm} 
+                placeholder="Idade"
+                type="number"
+                min="18"
+            />
+            <Input 
+                required
+                pattern='^.{30,}'
+                name="applicationText" 
+                value={form.applicationText} 
+                onChange={handleForm} 
+                placeholder="Mensagem"
+                type="text"
+            />
+            <Input 
+                required
+                name="profession"
+                pattern='^.{10,}' 
+                value={form.profession} 
+                onChange={handleForm} 
+                placeholder="Profissão"
+            />
             <Select name="country" value ={form.country} onChange={handleForm}>
                 {countryArray.map((element, id) => {
                     return <option key={id} value={element.name}>{element.name}</option>
