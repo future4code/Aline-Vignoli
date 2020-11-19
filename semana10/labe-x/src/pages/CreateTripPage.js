@@ -40,14 +40,28 @@ const Button = styled.button`
 `
 
 const CreateTripForm = () => {
+    
+    const dateFormat = (date) => {
+        const day = date.getDate()
+        const month = date.getMonth()
+        const year = date.getFullYear()
+        const dateString = (`${year}-${month+1}-${day}`)
+        return dateString
+    }
+
+    const currentDate = new Date()
+    const stringDate = dateFormat(currentDate)
+
     const [form, handleForm] = useForm({
         name: "",
         planet: "Mercúrio",
         description: "",
-        date: "",
+        date: stringDate,
         durationInDays: ""
     })
 
+    console.log(form.date)
+    
     const planetsArray = ["Mercúrio", "Vênus", "Terra", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"]
     const history = useHistory()
 
@@ -111,6 +125,7 @@ const CreateTripForm = () => {
                 onChange={handleForm} 
                 placeholder="Data" 
                 type="date"
+                min={stringDate}
             />
             <Input 
                 required 
