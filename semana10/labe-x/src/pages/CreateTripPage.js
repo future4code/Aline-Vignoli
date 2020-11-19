@@ -49,8 +49,7 @@ const CreateTripForm = () => {
         return dateString
     }
 
-    const currentDate = new Date()
-    const stringDate = dateFormat(currentDate)
+    const stringDate = dateFormat(new Date())
 
     const [form, handleForm] = useForm({
         name: "",
@@ -59,8 +58,6 @@ const CreateTripForm = () => {
         date: stringDate,
         durationInDays: ""
     })
-
-    console.log(form.date)
     
     const planetsArray = ["Mercúrio", "Vênus", "Terra", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"]
     const history = useHistory()
