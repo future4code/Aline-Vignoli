@@ -3,8 +3,8 @@ import HomePage from '../pages/HomePage'
 import LoginPage from '../pages/LoginPage'
 import TripsPage from '../pages/TripsPage'
 import TripDetailsPage from '../pages/TripDetailsPage'
-import ApplyToTripPage from '../pages/ApplyToTripPage'
-import CreateTripPage from '../pages/CreateTripPage'
+import ApplyToTripPage from '../pages/applyToTripPage/ApplyToTripPage'
+import CreateTripPage from '../pages/createTripPage/CreateTripPage'
 
 const Router = () => {
   return (

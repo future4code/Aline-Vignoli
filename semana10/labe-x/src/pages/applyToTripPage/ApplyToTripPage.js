@@ -1,44 +1,9 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import useForm from '../hooks/useForm'
+import React from 'react'
+import useForm from '../../hooks/useForm'
 import axios from 'axios'
-import { useRequestData } from '../hooks/useRequestData'
+import { useRequestData } from '../../hooks/useRequestData'
 import { useHistory, useParams } from 'react-router-dom'
-
-const Form = styled.form`
-    width: 40%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: auto;
-    justify-content: center;
-` 
-
-const Input = styled.input`
-    font-size: 18px;
-    padding: 20px;
-    border-radius: 5px;
-`
-
-const Select = styled.select`
-    font-size: 18px;
-    padding: 20px;
-    border-radius: 5px;
-`
-
-const Button = styled.button`
-    font-size: 18px;
-    padding: 20px;
-    background-color: rgba(48, 77, 120, 0.78);
-    border: 1px rgba(48, 77, 120, 0.78) solid;
-    border-radius: 5px;
-    color: #FFF;
-    &:hover {
-        background-color: rgba(11, 26, 49, 0.78);
-        cursor: pointer;
-    }
-`
+import { Form, Input, Select, Button } from '../../styles/formElementsStyles'
 
 const ApplyToTripForm = () => {
     const pathParams = useParams()
