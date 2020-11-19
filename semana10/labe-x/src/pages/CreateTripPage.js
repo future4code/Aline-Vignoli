@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useInput from '../hooks/useInput'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 const Form = styled.div`
     width: 40%;
@@ -38,6 +39,7 @@ const CreateTripForm = () => {
     const [description, handleDescription] = useInput('')
     const [date, handleDate] = useInput('')
     const [duration, handleDuration] = useInput('')
+    const history = useHistory()
 
     const createTrip = () => {
         const body = {
@@ -59,6 +61,7 @@ const CreateTripForm = () => {
         )
         .then((response) => {
             window.alert("Viagem criada com sucesso!")
+            history.push('/trips/list')
         })
         .catch((error) => {
             console.log(error);
