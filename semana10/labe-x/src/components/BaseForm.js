@@ -32,8 +32,8 @@ const Button = styled.button`
 `
 
 const BaseForm = (props) => {
-    const [email, handleEmail] = useInput()
-    const [password, handlePassword] = useInput()
+    const [email, handleEmail] = useInput('')
+    const [password, handlePassword] = useInput('')
 
     return (
         <Form>

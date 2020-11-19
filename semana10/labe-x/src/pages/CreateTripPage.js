@@ -33,11 +33,11 @@ const Button = styled.button`
 `
 
 const CreateTripForm = () => {
-    const [name, handleName] = useInput()
-    const [planet, handlePlanet] = useInput()
-    const [description, handleDescription] = useInput()
-    const [date, handleDate] = useInput()
-    const [duration, handleDuration] = useInput()
+    const [name, handleName] = useInput('')
+    const [planet, handlePlanet] = useInput('')
+    const [description, handleDescription] = useInput('')
+    const [date, handleDate] = useInput('')
+    const [duration, handleDuration] = useInput('')
 
     const createTrip = () => {
         const body = {
