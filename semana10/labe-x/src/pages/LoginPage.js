@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import BaseForm from '../components/BaseForm'
+import LoginForm from '../components/LoginForm'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
@@ -29,7 +29,7 @@ const LoginPage = () => {
 
     return (
         <FormsContainer>
-            <BaseForm 
+            <LoginForm 
                 placeholder1="e-mail"
                 placeholder2="senha"
                 buttonText="Entrar"

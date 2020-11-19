@@ -31,7 +31,7 @@ const Button = styled.button`
     }
 `
 
-const BaseForm = (props) => {
+const LoginForm = (props) => {
     const [form, handleForm] = useForm({email: '', password: ''})
 
     const onSubmitForm = (event) => {
@@ -67,4 +67,4 @@ const BaseForm = (props) => {
     )
 }
 
-export default BaseForm
+export default LoginForm
