@@ -9,12 +9,6 @@ const FormsContainer = styled.section`
     flex-direction: column;
 `
 
-const GoBackButton = styled.button`
-    position: absolute;
-    bottom: 20px;
-    right: 60px;
-`
-
 const LoginPage = () => {
     const history = useHistory()
 
@@ -50,7 +44,6 @@ const LoginPage = () => {
                 buttonText="Entrar"
                 onClick={login}
             />
-            <GoBackButton onClick={goBack}>Voltar</GoBackButton>
         </FormsContainer>
     )
 }
