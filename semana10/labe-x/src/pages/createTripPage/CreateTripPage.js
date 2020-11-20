@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { dateToString, dateFormat } from '../../util/dateFormat'
 import { Form, Input, Select, Button } from '../../styles/formElementsStyles'
+import { baseUrl } from '../../hooks/useRequestData'
 
 const CreateTripForm = () => {
     const stringDate = dateToString(new Date())
@@ -18,10 +19,10 @@ const CreateTripForm = () => {
     const history = useHistory()
 
     const createTrip = (body, headers) => {
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips`, body, headers)
+        axios.post(`${baseUrl}/trips`, body, headers)
         .then(() => {
             window.alert("Viagem criada com sucesso!")
-            history.push('/trips/list')
+            history.push('/trips')
         })
         .catch((error) => {
             console.log(error);
@@ -30,8 +31,6 @@ const CreateTripForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        // const formatedDate = dateFormat(form.date)
-        // console.log(formatedDate)
 
         const body = {
             name: form.name,

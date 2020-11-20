@@ -1,7 +1,7 @@
 import React from 'react'
 import useForm from '../../hooks/useForm'
 import axios from 'axios'
-import { useRequestData } from '../../hooks/useRequestData'
+import { baseUrl, useRequestData } from '../../hooks/useRequestData'
 import { useHistory, useParams } from 'react-router-dom'
 import { Form, Input, Select, Button } from '../../styles/formElementsStyles'
 
@@ -19,7 +19,7 @@ const ApplyToTripForm = () => {
     const history = useHistory()
 
     const applyToTrip = (body, headers) => {
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips/${pathParams.id}/apply`, body, headers)
+        axios.post(`${baseUrl}/trips/${pathParams.id}/apply`, body, headers)
         .then(() => {
             window.alert("Sua candidatura foi enviada, entraremos em contato!")
             history.push('/trips/list')

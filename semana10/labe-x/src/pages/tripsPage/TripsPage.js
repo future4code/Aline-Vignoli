@@ -1,13 +1,13 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import ButtonsGroup from '../../components/ButtonsGroup'
-import  { useRequestData } from '../../hooks/useRequestData'
+import  { baseUrl, useRequestData } from '../../hooks/useRequestData'
 import TripCard from '../../components/tripCard/TripCard'
 import { TripsCardContainer, Header, Title, Button } from './styles'
 
 const TripsPage = () => {
     const history = useHistory()
-    const tripsData = useRequestData('https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trips', undefined)
+    const tripsData = useRequestData(`${baseUrl}/trips`, undefined)
     const token = localStorage.getItem('token')
 
     const goToCreateTripPage = () => {

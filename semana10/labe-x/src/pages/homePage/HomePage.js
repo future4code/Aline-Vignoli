@@ -8,7 +8,7 @@ const Home = () => {
     const history = useHistory()
 
     const goToTripsPage = () => {
-        history.push(`/trips/list`)
+        history.push(`/trips`)
     }
 
     const goToLoginPage = () => {

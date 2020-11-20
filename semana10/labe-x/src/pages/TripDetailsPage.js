@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useHistory, useParams } from 'react-router-dom'
-import TripDetails from '../components/TripDetails'
+import TripDetails from '../components/tripDetails/TripDetails'
+import { baseUrl } from '../hooks/useRequestData'
 
 const TripDetailsPage = () => {
     const [trip, setTrip] = useState(undefined)
@@ -16,7 +17,7 @@ const TripDetailsPage = () => {
     const getTripDetails = () => {
       axios
         .get(
-          `https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trip/${pathParams.id}`,
+          `${baseUrl}/trip/${pathParams.id}`,
           {
             headers: {
               auth: localStorage.getItem("token")

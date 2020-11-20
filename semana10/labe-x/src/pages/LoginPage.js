@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import LoginForm from '../components/LoginForm'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
+import { baseUrl } from '../hooks/useRequestData'
 
 const FormsContainer = styled.section`
     display: flex;
@@ -16,12 +17,12 @@ const LoginPage = () => {
     const [progress, setProgress] = useState(false)
 
     const goToTripsPage = () => {
-        history.push(`trips/list`)
+        history.push(`trips`)
     }
 
     const login = (body) => {
         setProgress(true)
-        axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/login", body)
+        axios.post(`${baseUrl}/login`, body)
             .then(response => {
                 setProgress(false)
                 localStorage.setItem('token', response.data.token)
@@ -36,8 +37,8 @@ const LoginPage = () => {
         <FormsContainer>
             {progress ? <progress/> :
             <LoginForm 
-                placeholder1="e-mail"
-                placeholder2="senha"
+                placeholder1="E-mail"
+                placeholder2="Senha"
                 buttonText="Entrar"
                 login={login}
             />}
