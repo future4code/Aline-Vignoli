@@ -9,26 +9,26 @@ const TripDetailsPage = () => {
     const pathParams = useParams()
 
     useEffect(()=> {
-        const token = localStorage.getItem('token')
-        token ? getTripDetails() : history.push('/login')
-    }, [history])
+      const token = localStorage.getItem('token')
+      token ? getTripDetails() : history.push('/login')
+    },[history])
 
     const getTripDetails = () => {
-        axios
-          .get(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trip/${pathParams.id}`,
-            {
-              headers: {
-                auth: localStorage.getItem("token")
-              }
+      axios
+        .get(
+          `https://us-central1-labenu-apis.cloudfunctions.net/labeX/aline-dumont/trip/${pathParams.id}`,
+          {
+            headers: {
+              auth: localStorage.getItem("token")
             }
-          )
-          .then((response) => {
-            setTrip(response.data.trip);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+          }
+        )
+        .then((response) => {
+          setTrip(response.data.trip);
+        })
+        .catch((error) => {
+          console.log(error);
+      });
     };
 
     return (

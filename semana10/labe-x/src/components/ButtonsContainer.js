@@ -6,7 +6,8 @@ const MainContainer = styled.div`
 `
 
 const PrimaryButton = styled.button`
-    font-size: 18px;
+    font-family: 'Khand', sans-serif;
+    font-size: 20px;
     padding: 20px;
     margin: 10px;
     background-color: rgba(48, 77, 120, 0.78);
@@ -20,7 +21,8 @@ const PrimaryButton = styled.button`
 `
 
 const SecondaryButton = styled.button`
-    font-size: 18px;
+    font-family: 'Khand', sans-serif;
+    font-size: 20px;
     padding: 20px;
     margin: 10px;
     background-color: #FFF;

@@ -3,9 +3,21 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Card = styled.div`
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-size: 22px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    border: 1px rgba(48, 77, 120, 0.78) solid;
+    border-radius: 5px;
+    padding: 10px;
+`
+const TripInfo = styled.div`
+    display: grid;
+    padding: 10px;
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
     align-items: center;
 `
 
@@ -13,8 +25,19 @@ const Tittle = styled.h3`
     text-align: center;
 `
 
+const StrongText = styled.h4`
+    display: inline;
+    margin: 0;
+`
+
+const Text = styled.p`
+    display: block;
+    margin: 0;
+`
+
 const Button = styled.button`
-    font-size: 18px;
+    font-family: 'Khand', sans-serif;
+    font-size: 20px;
     padding: 20px;
     margin: 10px;
     background-color: #FFF;
@@ -42,14 +65,14 @@ const TripCard = (props) => {
 
     return (
         <Card>
-            <img src="https://picsum.photos/200/200" alt="imagem" />
             <Tittle>{props.name}</Tittle>
-            <p>Planeta: {props.planet}</p>
-            <p>Data: {props.date}</p>
-            <p>Duração: {props.duration}</p>
+            <TripInfo>
+                <StrongText>Planeta:</StrongText><Text>{props.planet}</Text> 
+                <StrongText>Data:</StrongText><Text>{props.date}</Text>
+                <StrongText>Duração:</StrongText><Text>{props.duration}</Text>
+            </TripInfo>
             <Button onClick={token ? seeTripDetails : applyToTripForm}>{token ? "Ver detalhes" : "Quero ir"}</Button>
         </Card>
     )
 }
 export default TripCard
-

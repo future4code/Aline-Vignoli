@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 export const MainContainer = styled.section`
     display: flex;
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-size: 22px;
 `
 
 export const DescriptionSection = styled.section`
@@ -25,4 +27,5 @@ export const UserSection = styled.section`
 
 export const Img = styled.img`
     width: 100%;
+    border-radius: 5px;
 `

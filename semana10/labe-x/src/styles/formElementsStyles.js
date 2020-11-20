@@ -11,19 +11,26 @@ export const Form = styled.form`
 ` 
 
 export const Input = styled.input`
-    font-size: 18px;
+    font-family: 'Khand', sans-serif;
+    font-size: 20px;
     padding: 20px;
+    border: 1px rgba(48, 77, 120, 0.78) solid;
     border-radius: 5px;
+    color: rgba(11, 26, 49, 0.78);
 `
 
 export const Select = styled.select`
-    font-size: 18px;
+    font-family: 'Khand', sans-serif;
+    font-size: 20px;
     padding: 20px;
+    border: 1px rgba(48, 77, 120, 0.78) solid;
     border-radius: 5px;
+    color: rgba(11, 26, 49, 0.78);
 `
 
 export const Button = styled.button`
-    font-size: 18px;
+    font-family: 'Khand', sans-serif;
+    font-size: 20px;
     padding: 20px;
     background-color: rgba(48, 77, 120, 0.78);
     border: 1px rgba(48, 77, 120, 0.78) solid;

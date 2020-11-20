@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import ButtonsContainer from '../../components/ButtonsContainer'
 import  { useRequestData } from '../../hooks/useRequestData'
 import TripCard from '../../components/TripCard'
-import { TripsCardContainer, Header, Button } from './styles'
+import { TripsCardContainer, Header, Title, Button } from './styles'
 
 const TripsPage = () => {
     const history = useHistory()
@@ -26,6 +26,7 @@ const TripsPage = () => {
     return (
         <div>
             <Header>
+                <Title>LabeX - Viagens Espaciais</Title>
                 {token ? <ButtonsContainer
                     buttonText1="Criar viagens"
                     buttonText2="Sair"
