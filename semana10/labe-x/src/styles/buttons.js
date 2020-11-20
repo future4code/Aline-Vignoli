@@ -1,11 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
 
-const MainContainer = styled.div`
-    display: flex;
-`
-
-const PrimaryButton = styled.button`
+export const PrimaryButton = styled.button`
     font-family: 'Khand', sans-serif;
     font-size: 20px;
     padding: 20px;
@@ -20,7 +15,7 @@ const PrimaryButton = styled.button`
     }
 `
 
-const SecondaryButton = styled.button`
+export const SecondaryButton = styled.button`
     font-family: 'Khand', sans-serif;
     font-size: 20px;
     padding: 20px;
@@ -35,14 +30,3 @@ const SecondaryButton = styled.button`
         cursor: pointer;
     }
 `
-
-const ButtonsContainer = (props) => {
-    return (
-        <MainContainer>
-            <PrimaryButton onClick={props.onClickButton1}>{props.buttonText1}</PrimaryButton>
-            <SecondaryButton onClick={props.onClickButton2}>{props.buttonText2}</SecondaryButton>
-        </MainContainer>
-    )
-}
-
-export default ButtonsContainer

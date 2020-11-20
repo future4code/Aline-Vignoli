@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import ButtonsContainer from '../../components/ButtonsContainer'
+import ButtonsGroup from '../../components/ButtonsGroup'
 import  { useRequestData } from '../../hooks/useRequestData'
-import TripCard from '../../components/TripCard'
+import TripCard from '../../components/tripCard/TripCard'
 import { TripsCardContainer, Header, Title, Button } from './styles'
 
 const TripsPage = () => {
@@ -27,7 +27,7 @@ const TripsPage = () => {
         <div>
             <Header>
                 <Title>LabeX - Viagens Espaciais</Title>
-                {token ? <ButtonsContainer
+                {token ? <ButtonsGroup
                     buttonText1="Criar viagens"
                     buttonText2="Sair"
                     onClickButton1={goToCreateTripPage}

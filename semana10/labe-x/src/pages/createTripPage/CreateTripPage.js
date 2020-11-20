@@ -2,11 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
-import { dateFormat } from '../../util/dateFormat'
+import { dateToString, dateFormat } from '../../util/dateFormat'
 import { Form, Input, Select, Button } from '../../styles/formElementsStyles'
 
 const CreateTripForm = () => {
-    const stringDate = dateFormat(new Date())
+    const stringDate = dateToString(new Date())
     const planetsArray = ["Mercúrio", "Vênus", "Terra", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"]
     const [form, handleForm] = useForm({
         name: "",
@@ -30,10 +30,13 @@ const CreateTripForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
+        // const formatedDate = dateFormat(form.date)
+        // console.log(formatedDate)
+
         const body = {
             name: form.name,
             planet: form.planet,
-            date: form.date,
+            date: dateFormat(form.date),
             description: form.description,
             durationInDays: form.durationInDays
         }
