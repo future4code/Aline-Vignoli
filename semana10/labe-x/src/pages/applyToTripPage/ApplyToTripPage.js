@@ -22,7 +22,7 @@ const ApplyToTripForm = () => {
         axios.post(`${baseUrl}/trips/${pathParams.id}/apply`, body, headers)
         .then(() => {
             window.alert("Sua candidatura foi enviada, entraremos em contato!")
-            history.push('/trips/list')
+            history.push('/trips')
         })
         .catch((error) => {
             console.log(error);
