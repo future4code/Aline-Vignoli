@@ -6,12 +6,19 @@ export const dateToString = (date) => {
     return dateString
 }
 
+const addZero = (number) => {
+    if (number <= 9) {
+        return `0${number}`;
+    }else {
+        return number; 
+    }     
+}
+
 export const dateFormat = (stringDate) => {
-    const date = Date.parse(stringDate)
-    const newDate = new Date(date)
-    const day = newDate.getDate()
-    const month = newDate.getMonth()
-    const year = newDate.getFullYear()
-    const formatedDate = (`${day}/${month+1}/${year}`)
+    const date = new Date(`${stringDate}T10:30:00-03:00`)
+    const day = addZero(date.getDate())
+    const month = addZero(date.getMonth() + 1)
+    const year = date.getFullYear()
+    const formatedDate = (`${day}/${month}/${year}`)
     return formatedDate
 }
