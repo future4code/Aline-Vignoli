@@ -49,14 +49,12 @@ const TripDetails = (props) => {
                                 <CandidateText><i>{`"${candidate.applicationText}"`}</i></CandidateText>
                                 <ButtonsContainer>
                                     <Button onClick={()=> decideCandidate(candidate.id, true)}>aprovar</Button>
-                                    <Button onClick={()=> decideCandidate(candidate.id, false)}>desaprovar</Button>
-                                    
+                                    <Button onClick={()=> decideCandidate(candidate.id, false)}>desaprovar</Button> 
                                 </ButtonsContainer>
                                 <div><hr/></div>
                             </CandidateContainer>   
                         )
                     }))}
-                    
                 </CandidatesSection>
             </Content>
         </MainContainer>
