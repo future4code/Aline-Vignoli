@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { MainContainer, Content, Title, TripInfo, CandidatesSection, CadidateContainer, CandidateName, StrongText, Text, Button } from './styles'
+import { MainContainer, Content, Title, TripInfo, CandidatesSection, CandidateContainer, ButtonsContainer, CandidateText, StrongText, Text, Button } from './styles'
 import { baseUrl } from '../../hooks/useRequestData'
 
 const TripDetails = (props) => {
@@ -43,13 +43,20 @@ const TripDetails = (props) => {
                 <StrongText>Gerenciar candidaturas:</StrongText>
                     {props.candidates.map((candidate => {
                         return (
-                            <CadidateContainer>
-                                <CandidateName key={candidate.id}>{candidate.name}</CandidateName>
-                                <Button onClick={()=> decideCandidate(candidate.id, true)}>aprovar</Button>
-                                <Button onClick={()=> decideCandidate(candidate.id, false)}>desaprovar</Button>
-                            </CadidateContainer>   
+                            <CandidateContainer key={candidate.id}>
+                                <StrongText>{`${candidate.name} - ${candidate.profession}`}</StrongText>
+                                <CandidateText>{`${candidate.age} anos, ${candidate.country}`}</CandidateText>
+                                <CandidateText><i>{`"${candidate.applicationText}"`}</i></CandidateText>
+                                <ButtonsContainer>
+                                    <Button onClick={()=> decideCandidate(candidate.id, true)}>aprovar</Button>
+                                    <Button onClick={()=> decideCandidate(candidate.id, false)}>desaprovar</Button>
+                                    
+                                </ButtonsContainer>
+                                <div><hr/></div>
+                            </CandidateContainer>   
                         )
                     }))}
+                    
                 </CandidatesSection>
             </Content>
         </MainContainer>

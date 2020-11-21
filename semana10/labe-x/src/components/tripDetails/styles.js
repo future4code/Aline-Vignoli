@@ -33,17 +33,23 @@ export const CandidatesSection = styled.div`
     padding: 20px;
 `
 
-export const CadidateContainer = styled.div`
+export const CandidateContainer = styled.div`
     display: flex;
-    
+    flex-direction: column;
 `
 
-export const CandidateName = styled.p`
-    margin: 10px 0px;
+export const ButtonsContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`
+
+export const CandidateText = styled.p`
+    margin: 0;
 `
 
 export const StrongText = styled.h4`
     display: inline;
+    margin: 0;
 `
 
 export const Text = styled.p`
