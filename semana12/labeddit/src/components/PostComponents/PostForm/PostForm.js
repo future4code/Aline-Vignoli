@@ -2,6 +2,8 @@ import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from '../../../hooks/useForm';
+import axios from 'axios';
+import { BASE_URL } from '../../../constants/url';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,8 +23,35 @@ const PostForm = (props) => {
         onChange(name, value)
     }
 
+    const onSubmitForm = (event) => {
+        event.preventDefault()
+
+        const body = {
+            text: form.text,
+            title: form.title
+        }
+
+        const requestHeaders = {
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
+        }
+
+        createPost(body, requestHeaders)
+    }
+
+    const createPost = (body, requestHeaders) => {
+        axios.post(`${BASE_URL}/posts`, body, requestHeaders)
+        .then(response => {
+            window.alert("postagem feita")
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+    }
+
     return (
-        <form className={classes.root} noValidate={false} autoComplete="off">
+        <form className={classes.root} noValidate={false} autoComplete="off" onSubmit={onSubmitForm}>
             <TextField
                 required
                 label="Título do post"
