@@ -5,7 +5,7 @@ import { useForm } from '../../hooks/useForm';
 import axios from 'axios';
 import { BASE_URL } from '../../constants/url';
 import { useHistory } from 'react-router-dom';
-import { goToFeed } from '../../routes/coordinator';
+import { goToFeed, goToSignUp } from '../../routes/coordinator';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,6 +72,9 @@ const LoginForm = () => {
             />
             <Button type="submit" variant="contained" color="primary">
                 Entrar
+            </Button>
+            <Button onClick={()=> goToSignUp(history)} variant="contained" color="primary">
+                Cadastrar
             </Button>
         </form>
     )
