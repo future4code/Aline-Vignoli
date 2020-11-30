@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { goToLogin } from '../../routes/coordinator';
+import PostForm from '../../components/PostComponents/PostForm/PostForm';
 
 const FeedPage = () => {
     const token = localStorage.getItem("token")
@@ -15,7 +16,9 @@ const FeedPage = () => {
     }
 
     return (
-        <div>Feed Page</div>
+        <div>
+            <PostForm/>
+        </div>
     )
 }
 
