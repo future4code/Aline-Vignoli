@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const PostForm = () => {
+const PostForm = (props) => {
     const classes = useStyles();
     const { form, onChange } = useForm({title: "", text:""})
 
@@ -44,6 +44,9 @@ const PostForm = () => {
             />
             <Button type="submit" variant="contained" color="primary">
                 Publicar
+            </Button>
+            <Button onClick={props.handleIsPosting} variant="contained">
+                Cancelar
             </Button>
         </form>
     )
