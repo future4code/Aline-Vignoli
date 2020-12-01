@@ -2,8 +2,7 @@ import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from '../../hooks/useForm';
-import axios from 'axios';
-import { BASE_URL } from '../../constants/url';
+import { signUp } from '../../services/user';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 const SignUpForm = () => {
     const classes = useStyles();
     const { form, onChange } = useForm({username:"", email: "", password: ""})
+    const history = useHistory()
 
     const handleInput = (event) => {
         const { name, value } = event.target
@@ -25,17 +25,7 @@ const SignUpForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        signUp(form)
-    }
-
-    const signUp = (body) => {
-        axios.post(`${BASE_URL}/signup`, body)
-            .then(response => {
-                console.log(response.data.token)
-            })
-            .catch(error => {
-                console.log(error.message)
-            })
+        signUp(form, history)
     }
 
     return (

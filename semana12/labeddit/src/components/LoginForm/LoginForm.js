@@ -2,10 +2,9 @@ import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from '../../hooks/useForm';
-import axios from 'axios';
-import { BASE_URL } from '../../constants/url';
 import { useHistory } from 'react-router-dom';
-import { goToFeed, goToSignUp } from '../../routes/coordinator';
+import { goToSignUp } from '../../routes/coordinator';
+import { login } from '../../services/user';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,18 +27,7 @@ const LoginForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        login(form)
-    }
-
-    const login = (body) => {
-        axios.post(`${BASE_URL}/login`, body)
-            .then(response => {
-                localStorage.setItem("token", response.data.token)
-                goToFeed(history)
-            })
-            .catch(error => {
-                console.log(error.message)
-            })
+        login(form, history)
     }
 
     return (
