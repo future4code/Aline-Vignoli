@@ -1,21 +1,10 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from '../../../hooks/useForm';
-import axios from 'axios';
-import { BASE_URL, HEADERS } from '../../../constants/requestConfig';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-}));
+import { FlexForm } from '../../../global/global-styles';
+import { createPost } from '../../../services/post';
 
 const PostForm = (props) => {
-    const classes = useStyles();
     const { form, onChange } = useForm({title: "", text:""})
 
     const handleInput = (event) => {
@@ -25,21 +14,11 @@ const PostForm = (props) => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        createPost(form, HEADERS)
-    }
-
-    const createPost = (body, requestHeaders) => {
-        axios.post(`${BASE_URL}/posts`, body, requestHeaders)
-        .then(() => {
-            window.alert("postagem feita")
-        })
-        .catch(error => {
-            console.log(error.message)
-        })
+        createPost(form)
     }
 
     return (
-        <form className={classes.root} noValidate={false} autoComplete="off" onSubmit={onSubmitForm}>
+        <FlexForm autoComplete="off" onSubmit={onSubmitForm}>
             <TextField
                 required
                 label="Título do post"
@@ -65,7 +44,7 @@ const PostForm = (props) => {
             <Button onClick={props.handleIsPosting} variant="contained" color="secondary">
                 Cancelar
             </Button>
-        </form>
+        </FlexForm>
     )
 }
 

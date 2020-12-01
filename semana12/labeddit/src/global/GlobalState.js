@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GlobalStateContext from './GlobalStateContext';
+import axios from "axios";
+import { BASE_URL, HEADERS } from '../constants/requestConfig';
 
 const GlobalState = (props) => {
 
-    const [selectedPost, setSelectedPost] = useState({})
+    const [feed, setFeed] = useState(undefined)
 
-    const states = { selectedPost }
-    const setters = { setSelectedPost }
+    const states = { feed }
+    const setters = { setFeed }
 
     const data = { states, setters }
-
-    console.log(selectedPost)
 
     return (
         <GlobalStateContext.Provider value={data}>

@@ -4,6 +4,7 @@ import upArrow from '../../../assets/upvote-arrow.png';
 import  downArrow from '../../../assets/downvote-arrow.png';
 import { goToPost } from '../../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
+import { vote } from '../../../services/post';
 
 const PostCard = (props) => {
 
@@ -17,11 +18,11 @@ const PostCard = (props) => {
                 <p>{props.post.text}</p>
             </div>
             <div>
-                <button onClick={()=> window.alert("up voted")}>
+                <button onClick={()=> vote(props.post.id, 1)}>
                     <UpVoteIcon src={upArrow} alt={"seta para cima"}/>
                 </button>
                 {props.post.votesCount}
-                <button onClick={()=> window.alert("down voted")}>
+                <button onClick={()=> vote(props.post.id, -1)}>
                     <DownVoteIcon src={downArrow} alt={"seta para baixo"}/>
                 </button>
             </div>
