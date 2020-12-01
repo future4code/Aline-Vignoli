@@ -5,6 +5,8 @@ import PostForm from '../../components/PostComponents/PostForm/PostForm';
 import { Button } from '@material-ui/core';
 import { useRequestData } from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/url';
+import PostCard from '../../components/PostComponents/PostCard/PostCard';
+import { FlexBox } from '../../global/global-styles';
 
 const FeedPage = () => {
     const token = localStorage.getItem("token")
@@ -17,7 +19,6 @@ const FeedPage = () => {
     const [isPosting, setIsPosting] = useState(false)
     const feedData = useRequestData(`${BASE_URL}/posts`, requestHeaders, undefined)
     
-
     useEffect(()=> {
         redirectUser()
     }, [])
@@ -31,21 +32,24 @@ const FeedPage = () => {
     }
 
     return (
-        <div>
+        <FlexBox>
             {isPosting ? 
             <PostForm 
                 handleIsPosting={handleIsPosting}
             /> : 
-            <Button onClick={handleIsPosting} variant="contained">postar</Button>}
+            <div>
+                <Button onClick={handleIsPosting} variant="contained">postar</Button>
+            </div>}
             {feedData && feedData.posts.map((post) => {
                 return (
-                    <div key={post.id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.text}</p>
-                    </div>
+                    <PostCard 
+                        key={post.id}
+                        title={post.title}
+                        text={post.text}
+                    />
                 )
             })}
-        </div>
+        </FlexBox>
     )
 }
 
