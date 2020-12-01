@@ -26,23 +26,18 @@ const PostForm = (props) => {
     const onSubmitForm = (event) => {
         event.preventDefault()
 
-        const body = {
-            text: form.text,
-            title: form.title
-        }
-
         const requestHeaders = {
             headers: {
               Authorization: localStorage.getItem("token")
             }
         }
 
-        createPost(body, requestHeaders)
+        createPost(form, requestHeaders)
     }
 
     const createPost = (body, requestHeaders) => {
         axios.post(`${BASE_URL}/posts`, body, requestHeaders)
-        .then(response => {
+        .then(() => {
             window.alert("postagem feita")
         })
         .catch(error => {

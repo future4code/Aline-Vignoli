@@ -28,12 +28,7 @@ const LoginForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        const body = {
-            email: form.email,
-            password: form.password
-        }
-
-        login(body)
+        login(form)
     }
 
     const login = (body) => {

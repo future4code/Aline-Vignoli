@@ -25,13 +25,7 @@ const SignUpForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        const body = {
-            email: form.email,
-            password: form.password,
-            username: form.username
-        }
-
-        signUp(body)
+        signUp(form)
     }
 
     const signUp = (body) => {
