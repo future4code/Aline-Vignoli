@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PostForm from '../../components/PostComponents/PostForm/PostForm';
 import { Button } from '@material-ui/core';
 import { useRequestData } from '../../hooks/useRequestData';
-import { BASE_URL } from '../../constants/url';
+import { BASE_URL, HEADERS } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
 import { FlexBox } from '../../global/global-styles';
 import { useRedirectUser } from '../../hooks/useRedirectUser';
@@ -10,14 +10,8 @@ import { useRedirectUser } from '../../hooks/useRedirectUser';
 const FeedPage = () => {
     useRedirectUser()
 
-    const token = localStorage.getItem("token")
-    const requestHeaders = {
-        headers: {
-          Authorization: token
-        }
-    }
     const [isPosting, setIsPosting] = useState(false)
-    const feedData = useRequestData(`${BASE_URL}/posts`, requestHeaders, undefined)
+    const feedData = useRequestData(`${BASE_URL}/posts`, HEADERS, undefined)
 
     const handleIsPosting = () => {
         setIsPosting(!isPosting)
@@ -30,7 +24,7 @@ const FeedPage = () => {
                 handleIsPosting={handleIsPosting}
             /> : 
             <div>
-                <Button onClick={handleIsPosting} variant="contained">postar</Button>
+                <Button onClick={handleIsPosting} variant="contained" color="secondary">postar</Button>
             </div>}
             {feedData && feedData.posts.map((post) => {
                 return (

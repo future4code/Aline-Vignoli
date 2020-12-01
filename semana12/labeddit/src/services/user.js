@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '../constants/url';
+import { BASE_URL } from '../constants/requestConfig';
 import { goToFeed } from '../routes/coordinator';
 
 export const signUp = (body, history) => {

@@ -3,7 +3,7 @@ import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from '../../../hooks/useForm';
 import axios from 'axios';
-import { BASE_URL } from '../../../constants/url';
+import { BASE_URL, HEADERS } from '../../../constants/requestConfig';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,14 +25,7 @@ const PostForm = (props) => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-
-        const requestHeaders = {
-            headers: {
-              Authorization: localStorage.getItem("token")
-            }
-        }
-
-        createPost(form, requestHeaders)
+        createPost(form, HEADERS)
     }
 
     const createPost = (body, requestHeaders) => {
