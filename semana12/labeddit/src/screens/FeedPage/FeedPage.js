@@ -29,9 +29,9 @@ const FeedPage = () => {
             {feedData && feedData.posts.map((post) => {
                 return (
                     <PostCard 
+                        clickable
                         key={post.id}
-                        title={post.title}
-                        text={post.text}
+                        post={post}
                     />
                 )
             })}

@@ -16,10 +16,10 @@ export const CardContainer = styled.div`
 `
 
 export const UpVoteIcon = styled.img`
-    width: 24px;
+    width: 20px;
     transform: rotateX(180deg);
 `
 
 export const DownVoteIcon = styled.img`
-    width: 24px;
+    width: 20px;
 `
