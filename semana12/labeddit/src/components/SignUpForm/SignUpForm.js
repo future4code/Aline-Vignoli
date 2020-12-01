@@ -1,20 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from '../../hooks/useForm';
 import { signUp } from '../../services/user';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
+import { FlexForm } from '../../global/global-styles';
+import { goBack } from '../../routes/coordinator';
 
 const SignUpForm = () => {
-    const classes = useStyles();
     const { form, onChange } = useForm({username:"", email: "", password: ""})
     const history = useHistory()
 
@@ -29,7 +21,7 @@ const SignUpForm = () => {
     }
 
     return (
-        <form className={classes.root} noValidate={false} autoComplete="off" onSubmit={onSubmitForm}>
+        <FlexForm autoComplete="off" onSubmit={onSubmitForm}>
             <TextField
                 required
                 id="outlined-required"
@@ -62,9 +54,12 @@ const SignUpForm = () => {
                 onChange={handleInput}
             />
             <Button type="submit" variant="contained" color="primary">
-                Entrar
+                Cadastrar
             </Button>
-        </form>
+            <Button onClick={()=> {goBack(history)}} color="primary">
+                Voltar
+            </Button>
+        </FlexForm>
     )
 }
 

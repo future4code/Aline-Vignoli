@@ -69,7 +69,7 @@ const PostForm = (props) => {
             <Button type="submit" variant="contained" color="primary">
                 Publicar
             </Button>
-            <Button onClick={props.handleIsPosting} variant="contained">
+            <Button onClick={props.handleIsPosting} variant="contained" color="secondary">
                 Cancelar
             </Button>
         </form>

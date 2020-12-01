@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-export const FlexBox = styled.div`
+export const FlexForm = styled.form`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 85vw;
+    max-width: 464px;
+    gap: 20px;
 `

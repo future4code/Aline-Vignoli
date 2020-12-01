@@ -1,9 +1,12 @@
 import React from 'react';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import { FlexBox } from '../../global/global-styles';
 
 const SignUpPage = () => {
     return (
-        <SignUpForm />
+        <FlexBox>
+            <SignUpForm />
+        </FlexBox>
     )
 }
 
