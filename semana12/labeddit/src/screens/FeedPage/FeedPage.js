@@ -7,12 +7,19 @@ import PostCard from '../../components/PostComponents/PostCard/PostCard';
 import PostCardMaterial from '../../components/PostComponents/PostCard/PostCardMaterial';
 import { FlexBox } from '../../global/global-styles';
 import { useRedirectUser } from '../../hooks/useRedirectUser';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const FeedPage = () => {
     useRedirectUser()
 
+    const headers = { 
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+    }
+
     const [isPosting, setIsPosting] = useState(false)
-    const { data, getData }  = useRequestData(`${BASE_URL}/posts`, HEADERS, undefined)
+    const { data, getData }  = useRequestData(`${BASE_URL}/posts`, headers, undefined)
 
     const handleIsPosting = () => {
         setIsPosting(!isPosting)

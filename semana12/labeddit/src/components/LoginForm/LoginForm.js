@@ -21,7 +21,7 @@ const LoginForm = () => {
     }
 
     return (
-        <FlexForm autoComplete="off" onSubmit={onSubmitForm}>
+        <FlexForm medium autoComplete="off" onSubmit={onSubmitForm}>
             <TextField
                 required
                 id="outlined-required"
