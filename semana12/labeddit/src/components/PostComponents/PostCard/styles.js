@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 export const CardContainer = styled.div`
     * {
@@ -25,6 +26,19 @@ export const DownVoteIcon = styled.img`
     width: 20px;
 `
 
-export const StyledCard = styled(Card)`
-    width: 400px;
+export const CommentsContainer = styled(CardContent)`
+    width: 100%;
+    display: flex;
+    gap: 20px;
+`
+
+export const StyledPostCard = styled(Card)`
+    width: 50vw;
+    min-width: 340px;
+`
+
+export const StyledCommentCard = styled(Card)`
+    width: 80%;
+    min-width: 260px;
+    margin: 20px 20px 20px auto;
 `

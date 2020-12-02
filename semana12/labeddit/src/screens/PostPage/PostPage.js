@@ -8,12 +8,7 @@ import { FlexBox } from '../../global/global-styles';
 
 const PostPage = () => {
     const pathParams = useParams()
-    const [isCommenting, setIsCommenting] = useState(false)
     const { data, getData } = useRequestData(`${BASE_URL}/posts/${pathParams.postId}`, HEADERS, undefined)
-
-    const handleIsCommenting = () => {
-        setIsCommenting(!isCommenting)
-    }
 
     return (
         <FlexBox>
@@ -22,8 +17,6 @@ const PostPage = () => {
                     upDate={getData}
                     key={data.post.id}
                     post={data.post}
-                    isCommenting={isCommenting}
-                    handleIsCommenting={handleIsCommenting}
                 />
             }
         </FlexBox>

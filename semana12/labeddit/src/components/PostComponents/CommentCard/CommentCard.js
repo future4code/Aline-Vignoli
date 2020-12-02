@@ -11,6 +11,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { useHistory } from 'react-router-dom';
 import { voteComment } from '../../../services/post';
+import { StyledCommentCard } from '../PostCard/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +57,7 @@ const CommentCard = (props) => {
   const { firstNameFirstLetter, lastNameFirstLetter } = userNameFirstLetter(props.comment.username)
 
   return (
-    <Card className={classes.root}>
+    <StyledCommentCard>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -84,7 +85,7 @@ const CommentCard = (props) => {
           <ArrowDownwardIcon color="secondary"/>
         </IconButton>
       </CardActions>
-    </Card>
+    </StyledCommentCard>
   );
 }
 

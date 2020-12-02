@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -22,8 +22,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CommentCard from '../CommentCard/CommentCard';
 import CommentForm from '../CommentForm/CommentForm';
 import CommentIcon from '@material-ui/icons/Comment';
-import { StyledCard } from './styles';
+import { StyledPostCard, CommentsContainer } from './styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { TramRounded } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,11 +48,18 @@ const useStyles = makeStyles((theme) => ({
 const PostCardMaterial = (props) => {
   const history = useHistory()
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [isCommenting, setIsCommenting] = useState(false)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
-  };
+  }
+
+  const handleIsCommenting = () => {
+    setIsCommenting(!isCommenting)
+    !props.isFeedPage && expanded ? setExpanded(expanded): setExpanded(!expanded)
+    props.isFeedPage && setExpanded(!expanded)
+  }
 
   const handleVote = (postId, direction) => { 
     vote(postId, direction, props.upDate)
@@ -76,7 +84,7 @@ const PostCardMaterial = (props) => {
   const { firstNameFirstLetter, lastNameFirstLetter } = userNameFirstLetter(props.post.username)
 
   const actionButton = props.isFeedPage ? ( 
-    <Tooltip title="ver detalhes">
+    <Tooltip title="ver post">
       <IconButton 
         color="secondary"
         onClick={()=> {goToPost(history, props.post.id)}}
@@ -98,7 +106,7 @@ const PostCardMaterial = (props) => {
   )
 
   return (
-    <StyledCard>
+    <StyledPostCard>
       <CardHeader
         avatar={
           <Avatar aria-label="user-letters" className={classes.avatar}>
@@ -140,31 +148,33 @@ const PostCardMaterial = (props) => {
         <Tooltip title="comentar">
             <IconButton 
               color="secondary"
-              onClick={props.handleIsCommenting}
+              onClick={handleIsCommenting}
               aria-label="comentar"
             >
               <CommentIcon />
             </IconButton>
           </Tooltip>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
+        {!props.isFeedPage &&
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        }
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            {props.isCommenting && 
+            {isCommenting && 
               <CommentForm 
                 upDate={props.upDate} 
                 postId={props.post.id}
-                handleIsCommenting={props.handleIsCommenting}
+                handleIsCommenting={handleIsCommenting}
               />
             }
             {props.post.comments && props.post.comments.map(comment => {
@@ -180,7 +190,7 @@ const PostCardMaterial = (props) => {
           </Typography>
         </CardContent>
       </Collapse>
-    </StyledCard>
+    </StyledPostCard>
   );
 }
 
