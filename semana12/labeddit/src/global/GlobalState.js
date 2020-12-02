@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import GlobalStateContext from './GlobalStateContext';
-import axios from "axios";
-import { BASE_URL, HEADERS } from '../constants/requestConfig';
 
 const GlobalState = (props) => {
-
     const [feed, setFeed] = useState(undefined)
 
     const states = { feed }

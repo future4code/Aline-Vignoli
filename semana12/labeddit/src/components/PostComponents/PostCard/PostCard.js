@@ -5,15 +5,11 @@ import  downArrow from '../../../assets/downvote-arrow.png';
 import { goToPost } from '../../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
 import { vote } from '../../../services/post';
-import { useRequestData } from '../../../hooks/useRequestData';
-import { BASE_URL, HEADERS } from '../../../constants/requestConfig';
 
 const PostCard = (props) => {
     const history = useHistory()
 
-    const handleVote = (postId, direction) => {
-        // props.post.votesCount === 0 ? 
-        // vote(postId, -1, props.upDate) : 
+    const handleVote = (postId, direction) => { 
         vote(postId, direction, props.upDate)
     }
 
