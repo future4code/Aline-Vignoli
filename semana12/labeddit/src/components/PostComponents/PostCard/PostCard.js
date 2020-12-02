@@ -29,6 +29,10 @@ const PostCard = (props) => {
                     <DownVoteIcon src={downArrow} alt={"seta para baixo"}/>
                 </button>
             </div>
+            <div>
+                {props.post.commentsCount}
+                <p>Comentários</p>
+            </div>
         </CardContainer>
     )
 }
