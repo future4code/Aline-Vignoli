@@ -12,12 +12,37 @@ export const createPost = (body,upDate) => {
     })
 }
 
+export const createComment = (body, postId, upDate) => {
+    axios.post(`${BASE_URL}/posts/${postId}/comment`, body, HEADERS)
+    .then(() => {
+        window.alert("comentário feito")
+        upDate()
+    })
+    .catch(error => {
+        console.log(error.message)
+    })
+}
+
 export const vote = (postId, voteDirection, upDate) => {
     const body = {
         direction: voteDirection
     }
 
     axios.put(`${BASE_URL}/posts/${postId}/vote`, body, HEADERS)
+    .then(() => {
+        upDate()
+    })
+    .catch(error => {
+        console.log(error.message)
+    })
+}
+
+export const voteComment = (postId, commentId, voteDirection, upDate) => {
+    const body = {
+        direction: voteDirection
+    }
+
+    axios.put(`${BASE_URL}/posts/${postId}/comment/${commentId}/vote`, body, HEADERS)
     .then(() => {
         upDate()
     })

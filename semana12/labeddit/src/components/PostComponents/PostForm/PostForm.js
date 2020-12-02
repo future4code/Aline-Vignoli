@@ -19,7 +19,7 @@ const PostForm = (props) => {
     }
 
     return (
-        <FlexForm autoComplete="off" onSubmit={onSubmitForm}>
+        <FlexForm medium autoComplete="off" onSubmit={onSubmitForm}>
             <TextField
                 required
                 label="Título do post"

@@ -24,6 +24,9 @@ import { vote } from '../../../services/post';
 import { Button } from '@material-ui/core';
 import MoreIcon from '@material-ui/icons/More';
 import Tooltip from '@material-ui/core/Tooltip';
+import CommentCard from '../CommentCard/CommentCard';
+import CommentForm from '../CommentForm/CommentForm';
+import CommentIcon from '@material-ui/icons/Comment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -126,6 +129,15 @@ const PostCardMaterial = (props) => {
         <Typography variant="body2" color="textSecondary" component="p">
             {`${props.post.commentsCount} comentários`}
         </Typography>
+        <Tooltip title="comentar">
+            <IconButton 
+              color="secondary"
+              onClick={props.handleIsCommenting}
+              aria-label="comentar"
+            >
+              <CommentIcon />
+            </IconButton>
+          </Tooltip>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -139,9 +151,24 @@ const PostCardMaterial = (props) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Lista de comentários:</Typography>
           <Typography paragraph>
-            Comentários apareceriam aqui
+            {props.isCommenting && 
+              <CommentForm 
+                upDate={props.upDate} 
+                postId={props.post.id}
+                handleIsCommenting={props.handleIsCommenting}
+              />
+            }
+            {props.post.comments && props.post.comments.map(comment => {
+              return (
+                <CommentCard 
+                  upDate={props.upDate}
+                  key={comment.id}
+                  postId={props.post.id}
+                  comment={comment}
+                />
+              )
+            })}
           </Typography>
         </CardContent>
       </Collapse>
