@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Card from '@material-ui/core/Card';
 
 export const CardContainer = styled.div`
     * {
@@ -22,4 +23,8 @@ export const UpVoteIcon = styled.img`
 
 export const DownVoteIcon = styled.img`
     width: 20px;
+`
+
+export const StyledCard = styled(Card)`
+    width: 400px;
 `

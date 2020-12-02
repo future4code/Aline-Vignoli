@@ -32,7 +32,7 @@ const FeedPage = () => {
                 return (
                     <PostCardMaterial 
                         upDate={getData}
-                        clickable
+                        isFeedPage
                         key={post.id}
                         post={post}
                     />

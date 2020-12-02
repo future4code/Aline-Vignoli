@@ -4,6 +4,7 @@ import { useRequestData } from '../../hooks/useRequestData';
 import { BASE_URL, HEADERS } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
 import PostCardMaterial from '../../components/PostComponents/PostCard/PostCardMaterial';
+import { FlexBox } from '../../global/global-styles';
 
 const PostPage = () => {
     const pathParams = useParams()
@@ -15,7 +16,7 @@ const PostPage = () => {
     }
 
     return (
-        <div>
+        <FlexBox>
             {data && 
                 <PostCardMaterial
                     upDate={getData}
@@ -25,7 +26,7 @@ const PostPage = () => {
                     handleIsCommenting={handleIsCommenting}
                 />
             }
-        </div>
+        </FlexBox>
     )
 }
 

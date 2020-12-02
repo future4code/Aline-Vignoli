@@ -11,22 +11,19 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { UpVoteIcon, DownVoteIcon } from './styles';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import { goToPost } from '../../../routes/coordinator';
+import { goToPost, goBack } from '../../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
 import { vote } from '../../../services/post';
-import { Button } from '@material-ui/core';
 import MoreIcon from '@material-ui/icons/More';
 import Tooltip from '@material-ui/core/Tooltip';
 import CommentCard from '../CommentCard/CommentCard';
 import CommentForm from '../CommentForm/CommentForm';
 import CommentIcon from '@material-ui/icons/Comment';
+import { StyledCard } from './styles';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,27 +75,38 @@ const PostCardMaterial = (props) => {
   
   const { firstNameFirstLetter, lastNameFirstLetter } = userNameFirstLetter(props.post.username)
 
+  const actionButton = props.isFeedPage ? ( 
+    <Tooltip title="ver detalhes">
+      <IconButton 
+        color="secondary"
+        onClick={()=> {goToPost(history, props.post.id)}}
+        aria-label="see-more"
+      >
+        <MoreIcon />
+      </IconButton>
+    </Tooltip>
+  ) : (
+    <Tooltip title="voltar">
+      <IconButton 
+        color="secondary"
+        onClick={()=> {goBack(history)}}
+        aria-label="go-back"
+      >
+        <ArrowBackIcon />
+      </IconButton>
+    </Tooltip>
+  )
+
   return (
-    <Card className={classes.root}>
+    <StyledCard>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar aria-label="user-letters" className={classes.avatar}>
             {firstNameFirstLetter && firstNameFirstLetter.toUpperCase()}
             {lastNameFirstLetter && lastNameFirstLetter.toUpperCase()}
           </Avatar>
         }
-        action={
-          <Tooltip title="ver detalhes">
-            <IconButton 
-              color="secondary"
-              onClick={props.clickable ? ()=> {goToPost(history, props.post.id)} : undefined}
-              aria-label="settings"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Tooltip>
-          
-        }
+        action={actionButton}
         title={props.post.username}
         subheader="September 14, 2016"
       />
@@ -113,7 +121,7 @@ const PostCardMaterial = (props) => {
       <CardActions disableSpacing>
         <IconButton 
           onClick={()=> handleVote(props.post.id, 1)}
-          aria-label="voto positivo"
+          aria-label="up=vote"
         >
           <ArrowUpwardIcon color="primary"/>
         </IconButton>
@@ -122,7 +130,7 @@ const PostCardMaterial = (props) => {
         </Typography>
         <IconButton 
           onClick={()=> handleVote(props.post.id, -1)}
-          aria-label="voto negativo"
+          aria-label="down-vote"
         >
           <ArrowDownwardIcon color="secondary"/>
         </IconButton>
@@ -172,7 +180,7 @@ const PostCardMaterial = (props) => {
           </Typography>
         </CardContent>
       </Collapse>
-    </Card>
+    </StyledCard>
   );
 }
 
