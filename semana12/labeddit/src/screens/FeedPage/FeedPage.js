@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PostForm from '../../components/PostComponents/PostForm/PostForm';
 import { Button } from '@material-ui/core';
 import { useRequestData } from '../../hooks/useRequestData';
-import { BASE_URL, HEADERS } from '../../constants/requestConfig';
+import { BASE_URL } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
 import { FlexBox } from '../../global/global-styles';
 import { useRedirectUser } from '../../hooks/useRedirectUser';
