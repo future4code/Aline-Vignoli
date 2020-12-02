@@ -17,21 +17,6 @@ export const CardContainer = styled.div`
     border-radius: 10px;
 `
 
-export const UpVoteIcon = styled.img`
-    width: 20px;
-    transform: rotateX(180deg);
-`
-
-export const DownVoteIcon = styled.img`
-    width: 20px;
-`
-
-export const CommentsContainer = styled(CardContent)`
-    width: 100%;
-    display: flex;
-    gap: 20px;
-`
-
 export const StyledPostCard = styled(Card)`
     width: 50vw;
     min-width: 340px;

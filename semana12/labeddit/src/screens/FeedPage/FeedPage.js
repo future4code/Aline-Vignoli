@@ -4,7 +4,6 @@ import { Button } from '@material-ui/core';
 import { useRequestData } from '../../hooks/useRequestData';
 import { BASE_URL, HEADERS } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
-import PostCardMaterial from '../../components/PostComponents/PostCard/PostCardMaterial';
 import { FlexBox } from '../../global/global-styles';
 import { useRedirectUser } from '../../hooks/useRedirectUser';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -35,9 +34,10 @@ const FeedPage = () => {
             <div>
                 <Button onClick={handleIsPosting} variant="contained" color="secondary">postar</Button>
             </div>}
+            {!data && <CircularProgress color="primary"/>}
             {data && data.posts.map((post) => {
                 return (
-                    <PostCardMaterial 
+                    <PostCard 
                         upDate={getData}
                         isFeedPage
                         key={post.id}

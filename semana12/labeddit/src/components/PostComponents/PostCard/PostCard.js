@@ -1,40 +1,194 @@
-import React from 'react';
-import { CardContainer, UpVoteIcon, DownVoteIcon } from './styles';
-import upArrow from '../../../assets/upvote-arrow.png';
-import  downArrow from '../../../assets/downvote-arrow.png';
-import { goToPost } from '../../../routes/coordinator';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { red } from '@material-ui/core/colors';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { goToPost, goBack } from '../../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
 import { vote } from '../../../services/post';
+import MoreIcon from '@material-ui/icons/More';
+import Tooltip from '@material-ui/core/Tooltip';
+import CommentCard from '../CommentCard/CommentCard';
+import CommentForm from '../CommentForm/CommentForm';
+import CommentIcon from '@material-ui/icons/Comment';
+import { StyledPostCard } from './styles';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 345,
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+}));
 
 const PostCard = (props) => {
-    const history = useHistory()
+  const history = useHistory()
+  const classes = useStyles();
+  const [expanded, setExpanded] = useState(false);
+  const [isCommenting, setIsCommenting] = useState(false)
 
-    const handleVote = (postId, direction) => { 
-        vote(postId, direction, props.upDate)
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  }
+
+  const handleIsCommenting = () => {
+    setIsCommenting(!isCommenting)
+    !props.isFeedPage && expanded ? setExpanded(expanded): setExpanded(!expanded)
+    props.isFeedPage && setExpanded(!expanded)
+  }
+
+  const handleVote = (postId, direction) => { 
+    vote(postId, direction, props.upDate)
+  }
+
+  const userNameFirstLetter = (name) => {
+    if ( name.includes(" ")) {
+        const splitedUserName = props.post.username.split(" ")
+        const firstName = splitedUserName[0]
+        const lastName = splitedUserName[1]
+        const firstNameFirstLetter = firstName[0]
+        const lastNameFirstLetter = lastName[0]
+        return { firstNameFirstLetter, lastNameFirstLetter }
+    }else {
+        const splitedUserName = props.post.username.split("")
+        const firstNameFirstLetter = splitedUserName[0]
+        return { firstNameFirstLetter }
     }
+    
+  }
+  
+  const { firstNameFirstLetter, lastNameFirstLetter } = userNameFirstLetter(props.post.username)
 
-    return (
-        <CardContainer>
-            <div onClick={props.clickable ? ()=> {goToPost(history, props.post.id)} : undefined}>
-                <h4>{props.post.username}</h4>
-                <h3>{props.post.title}</h3>
-                <p>{props.post.text}</p>
-            </div>
-            <div>
-                <button onClick={()=> handleVote(props.post.id, 1)}>
-                    <UpVoteIcon src={upArrow} alt={"seta para cima"}/>
-                </button>
-                {props.post.votesCount}
-                <button onClick={()=> handleVote(props.post.id, -1)}>
-                    <DownVoteIcon src={downArrow} alt={"seta para baixo"}/>
-                </button>
-            </div>
-            <div>
-                {props.post.commentsCount}
-                <p>Comentários</p>
-            </div>
-        </CardContainer>
-    )
+  const actionButton = props.isFeedPage ? ( 
+    <Tooltip title="ver post">
+      <IconButton 
+        color="secondary"
+        onClick={()=> {goToPost(history, props.post.id)}}
+        aria-label="see-more"
+      >
+        <MoreIcon />
+      </IconButton>
+    </Tooltip>
+  ) : (
+    <Tooltip title="voltar">
+      <IconButton 
+        color="secondary"
+        onClick={()=> {goBack(history)}}
+        aria-label="go-back"
+      >
+        <ArrowBackIcon />
+      </IconButton>
+    </Tooltip>
+  )
+
+  return (
+    <StyledPostCard>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="user-letters" className={classes.avatar}>
+            {firstNameFirstLetter && firstNameFirstLetter.toUpperCase()}
+            {lastNameFirstLetter && lastNameFirstLetter.toUpperCase()}
+          </Avatar>
+        }
+        action={actionButton}
+        title={props.post.username}
+        subheader="September 14, 2016"
+      />
+      <CardContent>
+        <Typography variant="h5" color="textSecondary" component="h5">
+          {props.post.title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {props.post.text}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton 
+          onClick={()=> handleVote(props.post.id, 1)}
+          aria-label="up=vote"
+        >
+          <ArrowUpwardIcon color="primary"/>
+        </IconButton>
+        <Typography variant="body2" color="textSecondary" component="p">
+            {props.post.votesCount}
+        </Typography>
+        <IconButton 
+          onClick={()=> handleVote(props.post.id, -1)}
+          aria-label="down-vote"
+        >
+          <ArrowDownwardIcon color="secondary"/>
+        </IconButton>
+        <Typography variant="body2" color="textSecondary" component="p">
+            {`${props.post.commentsCount} comentários`}
+        </Typography>
+        <Tooltip title="comentar">
+            <IconButton 
+              color="secondary"
+              onClick={handleIsCommenting}
+              aria-label="comentar"
+            >
+              <CommentIcon />
+            </IconButton>
+          </Tooltip>
+        {!props.isFeedPage &&
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        }
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>
+            {isCommenting && 
+              <CommentForm 
+                upDate={props.upDate} 
+                postId={props.post.id}
+                handleIsCommenting={handleIsCommenting}
+              />
+            }
+            {props.post.comments && props.post.comments.map(comment => {
+              return (
+                <CommentCard 
+                  upDate={props.upDate}
+                  key={comment.id}
+                  postId={props.post.id}
+                  comment={comment}
+                />
+              )
+            })}
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </StyledPostCard>
+  );
 }
 
 export default PostCard;
