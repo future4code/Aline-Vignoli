@@ -6,14 +6,14 @@ import PostCard from '../../components/PostComponents/PostCard/PostCard';
 
 const PostPage = () => {
     const pathParams = useParams()
-    const postData = useRequestData(`${BASE_URL}/posts/${pathParams.postId}`, HEADERS, undefined)
+    const { data } = useRequestData(`${BASE_URL}/posts/${pathParams.postId}`, HEADERS, undefined)
 
     return (
         <div>
-            {postData && 
+            {data && 
                 <PostCard 
-                    key={postData.post.id}
-                    post={postData.post}
+                    key={data.post.id}
+                    post={data.post}
                 />
             }
         </div>

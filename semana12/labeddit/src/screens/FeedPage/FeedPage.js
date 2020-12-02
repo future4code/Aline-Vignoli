@@ -12,7 +12,7 @@ const FeedPage = () => {
     useRedirectUser()
 
     const [isPosting, setIsPosting] = useState(false)
-    const feedData = useRequestData(`${BASE_URL}/posts`, HEADERS, undefined)
+    const { data, getData }  = useRequestData(`${BASE_URL}/posts`, HEADERS, undefined)
 
     const handleIsPosting = () => {
         setIsPosting(!isPosting)
@@ -27,9 +27,10 @@ const FeedPage = () => {
             <div>
                 <Button onClick={handleIsPosting} variant="contained" color="secondary">postar</Button>
             </div>}
-            {feedData && feedData.posts.map((post) => {
+            {data && data.posts.map((post) => {
                 return (
                     <PostCard 
+                        upDate={getData}
                         clickable
                         key={post.id}
                         post={post}

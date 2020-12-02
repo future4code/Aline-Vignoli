@@ -5,10 +5,17 @@ import  downArrow from '../../../assets/downvote-arrow.png';
 import { goToPost } from '../../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
 import { vote } from '../../../services/post';
+import { useRequestData } from '../../../hooks/useRequestData';
+import { BASE_URL, HEADERS } from '../../../constants/requestConfig';
 
 const PostCard = (props) => {
-
     const history = useHistory()
+
+    const handleVote = (postId, direction) => {
+        // props.post.votesCount === 0 ? 
+        // vote(postId, -1, props.upDate) : 
+        vote(postId, direction, props.upDate)
+    }
 
     return (
         <CardContainer>
@@ -18,11 +25,11 @@ const PostCard = (props) => {
                 <p>{props.post.text}</p>
             </div>
             <div>
-                <button onClick={()=> vote(props.post.id, 1)}>
+                <button onClick={()=> handleVote(props.post.id, 1)}>
                     <UpVoteIcon src={upArrow} alt={"seta para cima"}/>
                 </button>
                 {props.post.votesCount}
-                <button onClick={()=> vote(props.post.id, -1)}>
+                <button onClick={()=> handleVote(props.post.id, -1)}>
                     <DownVoteIcon src={downArrow} alt={"seta para baixo"}/>
                 </button>
             </div>

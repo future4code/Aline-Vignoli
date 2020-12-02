@@ -4,7 +4,7 @@ import axios from "axios";
 export const useRequestData = (url, requestHeaders, inicialState) => {
     const [data, setData] = useState(inicialState);
 
-    useEffect(() => {
+    const getData = () => {
         axios
         .get(url, requestHeaders)
         .then((response) => {
@@ -13,8 +13,12 @@ export const useRequestData = (url, requestHeaders, inicialState) => {
         .catch((error) => {
             console.log(error);
         });
-    }, [url, requestHeaders]);
+    }
+    
+    useEffect(() => {
+       getData() 
+    }, []);
 
     console.log(data)
-    return data;
+    return { data, getData };
 }

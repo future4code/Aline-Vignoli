@@ -3,9 +3,12 @@ import { TextField, Button } from '@material-ui/core';
 import { useForm } from '../../../hooks/useForm';
 import { FlexForm } from '../../../global/global-styles';
 import { createPost } from '../../../services/post';
+import { useRequestData } from '../../../hooks/useRequestData';
+import { BASE_URL, HEADERS } from '../../../constants/requestConfig';
 
 const PostForm = (props) => {
     const { form, onChange } = useForm({title: "", text:""})
+    const { getData }  = useRequestData(`${BASE_URL}/posts`, HEADERS, undefined)
 
     const handleInput = (event) => {
         const { name, value } = event.target
@@ -14,7 +17,7 @@ const PostForm = (props) => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        createPost(form)
+        createPost(form, getData)
     }
 
     return (
