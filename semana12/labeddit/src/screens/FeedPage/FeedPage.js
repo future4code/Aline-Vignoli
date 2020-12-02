@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import { useRequestData } from '../../hooks/useRequestData';
 import { BASE_URL, HEADERS } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
+import PostCardMaterial from '../../components/PostComponents/PostCard/PostCardMaterial';
 import { FlexBox } from '../../global/global-styles';
 import { useRedirectUser } from '../../hooks/useRedirectUser';
 
@@ -29,7 +30,7 @@ const FeedPage = () => {
             </div>}
             {data && data.posts.map((post) => {
                 return (
-                    <PostCard 
+                    <PostCardMaterial 
                         upDate={getData}
                         clickable
                         key={post.id}
