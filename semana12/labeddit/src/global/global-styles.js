@@ -9,13 +9,13 @@ export const FlexBox = styled.div`
 `
 
 export const FlexForm = styled.form`
-    padding: 20px;
+    /* padding: 20px;
     z-index: 2;
     background: #fff;
     position: fixed;
     margin: 5% auto;
     left: 0;
-    right: 0;
+    right: 0; */
     display: flex;
     flex-direction: column;
     width: 85vw;

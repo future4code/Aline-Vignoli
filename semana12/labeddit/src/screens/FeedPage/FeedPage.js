@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PostForm from '../../components/PostComponents/PostForm/PostForm';
 import { Button } from '@material-ui/core';
 import { useRequestData } from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/requestConfig';
@@ -8,6 +7,7 @@ import { FlexBox } from '../../global/global-styles';
 import { useRedirectUser } from '../../hooks/useRedirectUser';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MainAppBar from '../../components/MainAppBar/MainAppBar';
+import FormDialog from '../../components/FormDialog/FormDialog';
 
 const FeedPage = () => {
     useRedirectUser()
@@ -18,6 +18,7 @@ const FeedPage = () => {
         }
     }
 
+    const [open, setOpen] = React.useState(false);
     const [isPosting, setIsPosting] = useState(false)
     const { data, getData }  = useRequestData(`${BASE_URL}/posts`, headers, undefined)
 
@@ -25,19 +26,37 @@ const FeedPage = () => {
         setIsPosting(!isPosting)
     }
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <FlexBox>
             <MainAppBar 
                 isFeedPage
                 isPosting={isPosting}
-                postAction={handleIsPosting}
+                postAction={handleClickOpen}
             />
-            {isPosting && 
-                <PostForm 
+            {/* {isPosting && 
+                <FormDialog 
+                    open={open}
                     upDate={getData}
                     handleIsPosting={handleIsPosting}
+                    handleClickOpen={handleClickOpen}
+                    handleClose={handleClose}
                 />
-            }
+            } */}
+            <FormDialog 
+                    open={open}
+                    upDate={getData}
+                    handleIsPosting={handleIsPosting}
+                    handleClickOpen={handleClickOpen}
+                    handleClose={handleClose}
+                />
             {!data && <CircularProgress color="primary"/>}
             {data && data.posts.map((post) => {
                 return (

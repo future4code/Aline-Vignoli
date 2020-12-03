@@ -21,5 +21,6 @@ export const login = (body, history) => {
         })
         .catch(error => {
             console.log(error.message)
+            window.alert("E-mail ou senha não correspondem!")
         })
 }
