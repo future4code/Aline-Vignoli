@@ -12,3 +12,8 @@ export const getFirstLetters = (text) => {
         return { firstWordFirstLetter }
     }
 }
+
+export const timestampToDateString = (timestamp) => {
+    const date = new Date(timestamp)
+    return date.toLocaleDateString("pt-BR")
+}

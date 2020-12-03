@@ -22,7 +22,7 @@ import CommentForm from '../CommentForm/CommentForm';
 import CommentIcon from '@material-ui/icons/Comment';
 import { StyledPostCard } from './styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { getFirstLetters } from '../../../util/functions';
+import { getFirstLetters, timestampToDateString } from '../../../util/functions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +49,7 @@ const PostCard = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [isCommenting, setIsCommenting] = useState(false)
   const { firstWordFirstLetter, secondWordFirstLetter } = getFirstLetters(props.post.username)
+  const postTime = timestampToDateString(props.post.createdAt)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -97,7 +98,7 @@ const PostCard = (props) => {
         }
         action={actionButton}
         title={props.post.username}
-        subheader="September 14, 2016"
+        subheader={postTime}
       />
       <CardContent>
         <Typography variant="h5" color="textSecondary" component="h5">
