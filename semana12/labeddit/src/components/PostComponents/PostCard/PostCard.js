@@ -22,6 +22,7 @@ import CommentForm from '../CommentForm/CommentForm';
 import CommentIcon from '@material-ui/icons/Comment';
 import { StyledPostCard } from './styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { getFirstLetters } from '../../../util/functions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +48,7 @@ const PostCard = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const [isCommenting, setIsCommenting] = useState(false)
+  const { firstWordFirstLetter, secondWordFirstLetter } = getFirstLetters(props.post.username)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -61,24 +63,6 @@ const PostCard = (props) => {
   const handleVote = (postId, direction) => { 
     vote(postId, direction, props.upDate)
   }
-
-  const userNameFirstLetter = (name) => {
-    if ( name.includes(" ")) {
-        const splitedUserName = props.post.username.split(" ")
-        const firstName = splitedUserName[0]
-        const lastName = splitedUserName[1]
-        const firstNameFirstLetter = firstName[0]
-        const lastNameFirstLetter = lastName[0]
-        return { firstNameFirstLetter, lastNameFirstLetter }
-    }else {
-        const splitedUserName = props.post.username.split("")
-        const firstNameFirstLetter = splitedUserName[0]
-        return { firstNameFirstLetter }
-    }
-    
-  }
-  
-  const { firstNameFirstLetter, lastNameFirstLetter } = userNameFirstLetter(props.post.username)
 
   const actionButton = props.isFeedPage ? ( 
     <Tooltip title="ver post">
@@ -107,8 +91,8 @@ const PostCard = (props) => {
       <CardHeader
         avatar={
           <Avatar aria-label="user-letters" className={classes.avatar}>
-            {firstNameFirstLetter && firstNameFirstLetter.toUpperCase()}
-            {lastNameFirstLetter && lastNameFirstLetter.toUpperCase()}
+            {firstWordFirstLetter && firstWordFirstLetter.toUpperCase()}
+            {secondWordFirstLetter && secondWordFirstLetter.toUpperCase()}
           </Avatar>
         }
         action={actionButton}

@@ -4,8 +4,8 @@ export const getFirstLetters = (text) => {
         const firstWord = splitedText[0]
         const secondWord = splitedText[1]
         const firstWordFirstLetter = firstWord[0]
-        const lastWordFirstLetter = secondWord[0]
-        return { firstWordFirstLetter, lastWordFirstLetter }
+        const secondWordFirstLetter = secondWord[0]
+        return { firstWordFirstLetter, secondWordFirstLetter }
     }else {
         const splitedText = text.split("")
         const firstWordFirstLetter = splitedText[0]
