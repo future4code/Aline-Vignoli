@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
 import { useRequestData } from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
@@ -18,13 +17,8 @@ const FeedPage = () => {
         }
     }
 
-    const [open, setOpen] = React.useState(false);
-    const [isPosting, setIsPosting] = useState(false)
+    const [open, setOpen] = useState(false);
     const { data, getData }  = useRequestData(`${BASE_URL}/posts`, headers, undefined)
-
-    const handleIsPosting = () => {
-        setIsPosting(!isPosting)
-    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,22 +32,11 @@ const FeedPage = () => {
         <FlexBox>
             <MainAppBar 
                 isFeedPage
-                isPosting={isPosting}
                 postAction={handleClickOpen}
             />
-            {/* {isPosting && 
-                <FormDialog 
-                    open={open}
-                    upDate={getData}
-                    handleIsPosting={handleIsPosting}
-                    handleClickOpen={handleClickOpen}
-                    handleClose={handleClose}
-                />
-            } */}
             <FormDialog 
                     open={open}
                     upDate={getData}
-                    handleIsPosting={handleIsPosting}
                     handleClickOpen={handleClickOpen}
                     handleClose={handleClose}
                 />

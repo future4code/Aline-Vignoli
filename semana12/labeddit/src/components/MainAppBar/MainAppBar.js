@@ -22,11 +22,10 @@ const MainAppBar = (props) => {
           <Toolbar>
             <ButtonsContainer>
               <h3>LabEddit</h3>
-              { !props.isPosting && 
-                <Button color="inherit" 
-                  onClick={props.isFeedPage ? props.postAction : ()=> goBack(history)}>
-                  {props.isFeedPage ? "Publicar" : "Voltar"}
-              </Button>}
+              <Button color="inherit" 
+                onClick={props.isFeedPage ? props.postAction : ()=> goBack(history)}>
+                {props.isFeedPage ? "Publicar" : "Voltar"}
+              </Button>
               <Button color="inherit" onClick={handleLoginOrLogoutClick}>
                 Sair
               </Button>

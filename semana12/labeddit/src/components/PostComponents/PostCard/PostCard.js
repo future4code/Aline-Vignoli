@@ -12,7 +12,7 @@ import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import { goToPost, goBack } from '../../../routes/coordinator';
+import { goToPost } from '../../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
 import { vote } from '../../../services/post';
 import MoreIcon from '@material-ui/icons/More';
