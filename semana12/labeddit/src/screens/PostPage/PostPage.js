@@ -5,6 +5,7 @@ import { BASE_URL } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
 import { FlexBox } from '../../global/global-styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import MainAppBar from '../../components/MainAppBar/MainAppBar';
 
 const PostPage = () => {
     const pathParams = useParams()
@@ -17,6 +18,7 @@ const PostPage = () => {
 
     return (
         <FlexBox>
+            <MainAppBar/>
             {!data && <CircularProgress color="primary"/>}
             {data && 
                 <PostCard

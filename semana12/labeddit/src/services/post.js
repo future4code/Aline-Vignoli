@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, HEADERS } from '../constants/requestConfig';
+import { BASE_URL } from '../constants/requestConfig';
 
 export const createPost = (body,upDate) => {
     const headers = { 

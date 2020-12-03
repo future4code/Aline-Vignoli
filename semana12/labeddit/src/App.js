@@ -1,14 +1,20 @@
+import React from 'react';
 import Router from './routes/Router';
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './constants/theme';
-import GlobalState from './global/GlobalState';
+import styled from 'styled-components';
 
 const App = () => {
+
+  const Container = styled.div`
+  padding-top: 64px;
+  `
+
   return (
     <ThemeProvider theme={theme}>
-      <GlobalState>
+      <Container>
         <Router/>
-      </GlobalState>
+      </Container>
     </ThemeProvider> 
   );
 }

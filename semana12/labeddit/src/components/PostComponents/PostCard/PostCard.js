@@ -21,7 +21,6 @@ import CommentCard from '../CommentCard/CommentCard';
 import CommentForm from '../CommentForm/CommentForm';
 import CommentIcon from '@material-ui/icons/Comment';
 import { StyledPostCard } from './styles';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { getFirstLetters, timestampToDateString, checkUserVote } from '../../../util/functions';
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +65,8 @@ const PostCard = (props) => {
     vote(props.post.id, direction, props.upDate)
   }
 
-  const actionButton = props.isFeedPage ? ( 
+  const actionButton = 
+    props.isFeedPage && ( 
     <Tooltip title="ver post">
       <IconButton 
         color="secondary"
@@ -74,16 +74,6 @@ const PostCard = (props) => {
         aria-label="see-more"
       >
         <MoreIcon />
-      </IconButton>
-    </Tooltip>
-  ) : (
-    <Tooltip title="voltar">
-      <IconButton 
-        color="secondary"
-        onClick={()=> {goBack(history)}}
-        aria-label="go-back"
-      >
-        <ArrowBackIcon />
       </IconButton>
     </Tooltip>
   )

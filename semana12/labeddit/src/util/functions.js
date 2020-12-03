@@ -41,7 +41,6 @@ export const checkUserVote = (isUpVote, userVoteDirection) => {
     }
 
     isUpVote ? finalDirection = upVote : finalDirection = downVote
-
-    console.log(finalDirection)
+    
     return finalDirection
 }

@@ -7,6 +7,7 @@ import PostCard from '../../components/PostComponents/PostCard/PostCard';
 import { FlexBox } from '../../global/global-styles';
 import { useRedirectUser } from '../../hooks/useRedirectUser';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import MainAppBar from '../../components/MainAppBar/MainAppBar';
 
 const FeedPage = () => {
     useRedirectUser()
@@ -26,14 +27,17 @@ const FeedPage = () => {
 
     return (
         <FlexBox>
-            {isPosting ? 
-            <PostForm 
-                upDate={getData}
-                handleIsPosting={handleIsPosting}
-            /> : 
-            <div>
-                <Button onClick={handleIsPosting} variant="contained" color="secondary">postar</Button>
-            </div>}
+            <MainAppBar 
+                isFeedPage
+                isPosting={isPosting}
+                postAction={handleIsPosting}
+            />
+            {isPosting && 
+                <PostForm 
+                    upDate={getData}
+                    handleIsPosting={handleIsPosting}
+                />
+            }
             {!data && <CircularProgress color="primary"/>}
             {data && data.posts.map((post) => {
                 return (
