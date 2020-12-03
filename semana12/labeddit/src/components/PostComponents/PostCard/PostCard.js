@@ -22,7 +22,7 @@ import CommentForm from '../CommentForm/CommentForm';
 import CommentIcon from '@material-ui/icons/Comment';
 import { StyledPostCard } from './styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { getFirstLetters, timestampToDateString } from '../../../util/functions';
+import { getFirstLetters, timestampToDateString, checkUserVote } from '../../../util/functions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,8 +61,9 @@ const PostCard = (props) => {
     props.isFeedPage && setExpanded(!expanded)
   }
 
-  const handleVote = (postId, direction) => { 
-    vote(postId, direction, props.upDate)
+  const handleVote = (isUpVote) => {
+    const direction = checkUserVote(isUpVote, props.post.userVoteDirection)
+    vote(props.post.id, direction, props.upDate)
   }
 
   const actionButton = props.isFeedPage ? ( 
@@ -110,7 +111,7 @@ const PostCard = (props) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton 
-          onClick={()=> handleVote(props.post.id, 1)}
+          onClick={()=> handleVote(true)}
           aria-label="up=vote"
         >
           <ArrowUpwardIcon color="primary"/>
@@ -119,7 +120,7 @@ const PostCard = (props) => {
             {props.post.votesCount}
         </Typography>
         <IconButton 
-          onClick={()=> handleVote(props.post.id, -1)}
+          onClick={()=> handleVote(false)}
           aria-label="down-vote"
         >
           <ArrowDownwardIcon color="secondary"/>

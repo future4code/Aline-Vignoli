@@ -10,7 +10,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { voteComment } from '../../../services/post';
 import { StyledCommentCard } from '../PostCard/styles';
-import { getFirstLetters } from '../../../util/functions';
+import { getFirstLetters, checkUserVote } from '../../../util/functions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +35,9 @@ const CommentCard = (props) => {
   const classes = useStyles();
   const { firstWordFirstLetter, secondWordFirstLetter } = getFirstLetters(props.comment.username)
 
-  const handleVote = (postId, commentId, direction) => { 
-    voteComment(postId, commentId, direction, props.upDate)
+  const handleVote = (isUpVote) => {
+    const direction = checkUserVote(isUpVote, props.comment.userVoteDirection)
+    voteComment(props.postId, props.comment.id, direction, props.upDate)
   }
 
   return (
@@ -53,7 +54,7 @@ const CommentCard = (props) => {
       />
       <CardActions disableSpacing>
         <IconButton 
-          onClick={()=> handleVote(props.postId, props.comment.id, 1)}
+          onClick={()=> handleVote(true)}
           aria-label="voto positivo"
         >
           <ArrowUpwardIcon color="primary"/>
@@ -62,7 +63,7 @@ const CommentCard = (props) => {
             {props.comment.votesCount}
         </Typography>
         <IconButton 
-          onClick={()=> handleVote(props.postId, props.comment.id, -1)}
+          onClick={()=> handleVote(false)}
           aria-label="voto negativo"
         >
           <ArrowDownwardIcon color="secondary"/>
