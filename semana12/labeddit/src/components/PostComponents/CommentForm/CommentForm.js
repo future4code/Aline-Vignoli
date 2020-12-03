@@ -1,8 +1,9 @@
 import React from 'react';
-import { TextField, Button } from '@material-ui/core';
 import { useForm } from '../../../hooks/useForm';
-import { FlexForm } from '../../../global/global-styles';
+import { FlexForm, TextFieldCommentForm } from '../../../global/global-styles';
 import { createComment } from '../../../services/post';
+import SendIcon from '@material-ui/icons/Send';
+import IconButton from '@material-ui/core/IconButton';
 
 const CommentForm = (props) => {
     const { form, onChange } = useForm({text:""})
@@ -19,8 +20,8 @@ const CommentForm = (props) => {
     }
 
     return (
-        <FlexForm autoComplete="off" onSubmit={onSubmitForm}>
-            <TextField
+        <FlexForm row autoComplete="off" onSubmit={onSubmitForm}>
+            <TextFieldCommentForm
                 required
                 multiline
                 label="Escreva seu comentário"
@@ -30,9 +31,12 @@ const CommentForm = (props) => {
                 value={form.text}
                 onChange={handleInput}
             />
-            <Button type="submit" variant="contained" color="primary">
-                Comentar
-            </Button>
+            <IconButton 
+                type="submit" variant="contained"
+                aria-label="enviar"
+                >
+                <SendIcon color="primary"/>
+            </IconButton>
         </FlexForm>
     )
 }
