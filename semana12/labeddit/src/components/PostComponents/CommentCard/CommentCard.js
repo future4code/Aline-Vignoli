@@ -8,8 +8,17 @@ import { voteComment } from '../../../services/post';
 import { StyledCommentCard } from '../PostCard/styles';
 import { getFirstLetters, checkUserVote } from '../../../util/functions';
 import CustomCardHeader from '../PostCard/CustomCardHeader';
+import { makeStyles } from '@material-ui/core/styles';
+import { secondaryLight } from '../../../constants/colors';
+
+const useStyles = makeStyles(() => ({
+  card: {
+    backgroundColor: secondaryLight
+  }
+}));
 
 const CommentCard = (props) => {
+  const classes = useStyles();
   const { firstWordFirstLetter, secondWordFirstLetter } = getFirstLetters(props.comment.username)
 
   const handleVote = (isUpVote) => {
@@ -18,7 +27,7 @@ const CommentCard = (props) => {
   }
 
   return (
-    <StyledCommentCard>
+    <StyledCommentCard className={classes.card}>
       <CustomCardHeader 
         firstLetter={firstWordFirstLetter}
         secondLetter={secondWordFirstLetter}

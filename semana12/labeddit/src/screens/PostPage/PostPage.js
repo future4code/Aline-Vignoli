@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useRequestData } from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/requestConfig';
 import PostCard from '../../components/PostComponents/PostCard/PostCard';
-import { FlexBox } from '../../global/global-styles';
+import { FlexBox, MainContainer } from '../../global/global-styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MainAppBar from '../../components/MainAppBar/MainAppBar';
 

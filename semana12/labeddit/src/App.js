@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const App = () => {
 
   const Container = styled.div`
-    padding-top: 2%;
+    /* padding-top: 2%; */
   `
 
   return (
