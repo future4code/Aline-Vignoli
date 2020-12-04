@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
@@ -20,6 +18,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CommentCard from '../CommentCard/CommentCard';
 import CommentForm from '../CommentForm/CommentForm';
 import CommentIcon from '@material-ui/icons/Comment';
+import CustomCardHeader from './CustomCardHeader';
+import CustomCardContent from './CustomCardContent';
 import { StyledPostCard } from './styles';
 import { getFirstLetters, timestampToDateString, checkUserVote } from '../../../util/functions';
 
@@ -36,10 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+  }
 }));
 
 const PostCard = (props) => {
@@ -80,25 +77,17 @@ const PostCard = (props) => {
 
   return (
     <StyledPostCard>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="user-letters" className={classes.avatar}>
-            {firstWordFirstLetter && firstWordFirstLetter.toUpperCase()}
-            {secondWordFirstLetter && secondWordFirstLetter.toUpperCase()}
-          </Avatar>
-        }
+      <CustomCardHeader 
+        firstLetter={firstWordFirstLetter}
+        secondLetter={secondWordFirstLetter}
         action={actionButton}
         title={props.post.username}
         subheader={`${date} às ${formatedTime}hs`}
       />
-      <CardContent>
-        <Typography variant="h5" color="textSecondary" component="h5">
-          {props.post.title}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.post.text}
-        </Typography>
-      </CardContent>
+      <CustomCardContent 
+        title={props.post.title}
+        text={props.post.text}
+      />
       <CardActions disableSpacing>
         <IconButton 
           onClick={()=> handleVote(true)}
@@ -106,7 +95,7 @@ const PostCard = (props) => {
         >
           <ArrowUpwardIcon color="primary"/>
         </IconButton>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textSecondary">
             {props.post.votesCount}
         </Typography>
         <IconButton 
@@ -115,18 +104,18 @@ const PostCard = (props) => {
         >
           <ArrowDownwardIcon color="secondary"/>
         </IconButton>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textSecondary">
             {`${props.post.commentsCount} comentários`}
         </Typography>
-        <Tooltip title="comentar">
-            <IconButton 
-              color="secondary"
-              onClick={handleIsCommenting}
-              aria-label="comentar"
-            >
-              <CommentIcon />
-            </IconButton>
-          </Tooltip>
+        <Tooltip title={isCommenting ? "cancelar" : "comentar"}>
+          <IconButton 
+            color="secondary"
+            onClick={handleIsCommenting}
+            aria-label="comentar"
+          >
+            <CommentIcon />
+          </IconButton>
+        </Tooltip>
         {!props.isFeedPage &&
           <IconButton
             className={clsx(classes.expand, {
@@ -142,25 +131,23 @@ const PostCard = (props) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>
-            {isCommenting && 
-              <CommentForm 
-                upDate={props.upDate} 
+          {isCommenting && 
+            <CommentForm 
+              upDate={props.upDate} 
+              postId={props.post.id}
+              handleIsCommenting={handleIsCommenting}
+            />
+          }
+          {props.post.comments && props.post.comments.map(comment => {
+            return (
+              <CommentCard 
+                upDate={props.upDate}
+                key={comment.id}
                 postId={props.post.id}
-                handleIsCommenting={handleIsCommenting}
+                comment={comment}
               />
-            }
-            {props.post.comments && props.post.comments.map(comment => {
-              return (
-                <CommentCard 
-                  upDate={props.upDate}
-                  key={comment.id}
-                  postId={props.post.id}
-                  comment={comment}
-                />
-              )
-            })}
-          </Typography>
+            )
+          })}
         </CardContent>
       </Collapse>
     </StyledPostCard>

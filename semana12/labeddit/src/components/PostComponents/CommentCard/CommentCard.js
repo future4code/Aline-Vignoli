@@ -1,38 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { voteComment } from '../../../services/post';
 import { StyledCommentCard } from '../PostCard/styles';
 import { getFirstLetters, checkUserVote } from '../../../util/functions';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-}));
+import CustomCardHeader from '../PostCard/CustomCardHeader';
 
 const CommentCard = (props) => {
-  const classes = useStyles();
   const { firstWordFirstLetter, secondWordFirstLetter } = getFirstLetters(props.comment.username)
 
   const handleVote = (isUpVote) => {
@@ -42,13 +19,9 @@ const CommentCard = (props) => {
 
   return (
     <StyledCommentCard>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {firstWordFirstLetter && firstWordFirstLetter.toUpperCase()}
-            {secondWordFirstLetter && secondWordFirstLetter.toUpperCase()}
-          </Avatar>
-        }
+      <CustomCardHeader 
+        firstLetter={firstWordFirstLetter}
+        secondLetter={secondWordFirstLetter}
         title={props.comment.username}
         subheader={props.comment.text}
       />
