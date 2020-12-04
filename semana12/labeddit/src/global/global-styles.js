@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
 
 export const FlexBox = styled.div`
+    margin-top: ${props => props.isPostPage ? "60px" : "0"};
     display: flex;
     flex-direction: column;
     align-items: center;
