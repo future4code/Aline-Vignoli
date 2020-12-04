@@ -17,7 +17,7 @@ const PostPage = () => {
     const { data, getData } = useRequestData(`${BASE_URL}/posts/${pathParams.postId}`, headers, undefined)
 
     return (
-        <FlexBox isPostPage>
+        <FlexBox postPage>
             <MainAppBar/>
             {!data && <CircularProgress color="primary"/>}
             {data && 

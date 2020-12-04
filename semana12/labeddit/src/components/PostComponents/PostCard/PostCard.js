@@ -48,7 +48,7 @@ const PostCard = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [isCommenting, setIsCommenting] = useState(false)
   const { firstWordFirstLetter, secondWordFirstLetter } = getFirstLetters(props.post.username)
-  const postTime = timestampToDateString(props.post.createdAt)
+  const { date, formatedTime } = timestampToDateString(props.post.createdAt)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -89,7 +89,7 @@ const PostCard = (props) => {
         }
         action={actionButton}
         title={props.post.username}
-        subheader={postTime}
+        subheader={`${date} às ${formatedTime}hs`}
       />
       <CardContent>
         <Typography variant="h5" color="textSecondary" component="h5">
