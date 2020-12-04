@@ -19,6 +19,5 @@ export const useRequestData = (url, requestHeaders, inicialState) => {
        getData() 
     }, []);
 
-    console.log(data)
     return { data, getData };
 }

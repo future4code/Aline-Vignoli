@@ -25,42 +25,42 @@ const FormDialog = (props) => {
 
     return (
         <FlexBox>
-        <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">No que você está pensando?</DialogTitle>
-            <FlexForm onSubmit={onSubmitForm}>
-                <DialogContent>
-                <FlexBox>
-                    <TextFieldStyled
-                        required
-                        label="Título do post"
-                        type="text"
-                        variant="outlined"
-                        name="title"
-                        value={form.title}
-                        onChange={handleInput}
-                    />
-                    <TextFieldStyled
-                        required
-                        multiline
-                        label="Escreva aqui"
-                        type="text"
-                        variant="outlined"
-                        name="text"
-                        value={form.text}
-                        onChange={handleInput}
-                    />
-                </FlexBox>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={props.handleClose} color="primary">
-                        Cancelar
-                    </Button>
-                    <Button type="submit" variant="contained" color="primary">
-                        Publicar
-                    </Button>
-                </DialogActions>
-            </FlexForm>
-        </Dialog>
+            <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">No que você está pensando?</DialogTitle>
+                <FlexForm onSubmit={onSubmitForm}>
+                    <DialogContent>
+                        <FlexBox>
+                            <TextFieldStyled
+                                required
+                                label="Título do post"
+                                type="text"
+                                variant="outlined"
+                                name="title"
+                                value={form.title}
+                                onChange={handleInput}
+                            />
+                            <TextFieldStyled
+                                required
+                                multiline
+                                label="Escreva aqui"
+                                type="text"
+                                variant="outlined"
+                                name="text"
+                                value={form.text}
+                                onChange={handleInput}
+                            />
+                        </FlexBox>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={props.handleClose} color="primary">
+                            Cancelar
+                        </Button>
+                        <Button type="submit" variant="contained" color="primary">
+                            Publicar
+                        </Button>
+                    </DialogActions>
+                </FlexForm>
+            </Dialog>
         </FlexBox>
     );
 }

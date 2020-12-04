@@ -35,11 +35,11 @@ const FeedPage = () => {
                 postAction={handleClickOpen}
             />
             <FormDialog 
-                    open={open}
-                    upDate={getData}
-                    handleClickOpen={handleClickOpen}
-                    handleClose={handleClose}
-                />
+                open={open}
+                upDate={getData}
+                handleClickOpen={handleClickOpen}
+                handleClose={handleClose}
+            />
             {!data && <CircularProgress color="primary"/>}
             {data && data.posts.map((post) => {
                 return (
