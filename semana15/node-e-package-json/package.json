@@ -7,6 +7,7 @@
     "start": "node ./src/index.js",
     "user-info": "node ./src/userInfo.js",
     "calculator": "node ./src/calculator.js",
+    "add-task": "node ./src/taskList.js",
     "test": "echo \"Error: no test specified\" "
   },
   "keywords": [
