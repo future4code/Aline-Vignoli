@@ -9,6 +9,7 @@
     "exercise-2": "tsc && node ./build/exercicio2.js",
     "exercise-3": "tsc && node ./build/exercicio3.js",
     "exercise-5": "tsc && node ./build/exercicio5.js",
+    "exercise-6": "tsc && node ./build/exercicio6.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
