@@ -75,32 +75,63 @@ app.put("/countries/edit/:id", (req: Request, res:Response) => {
         const {name, capital} = req.body;
         const index : number = countries.findIndex(
             country => country.id === Number(req.params.id)
-        )
+        );
 
         if (index === -1){
-            errorCode = 404
-            throw new Error("Id inválido")
-        }
+            errorCode = 404;
+            throw new Error("Id inválido");
+        };
 
         if (!name){
-            errorCode = 400
-            throw new Error("Nome não foi informado")
-        }
+            errorCode = 400;
+            throw new Error("Nome não foi informado");
+        };
     
         if (!capital){
-            errorCode = 400
-            throw new Error("Capital não foi informada")
-        }
+            errorCode = 400;
+            throw new Error("Capital não foi informada");
+        };
 
         countries[index].name = name;
         countries[index].capital = capital;
         res.status(200).send(req.body);
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(errorCode).send(error.message);
-    }    
-})
+    };  
+});
 
+// ENDPOINT deleteCountry
+app.delete("/countries/:id", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try {
+        if(!req.headers.authorization){
+            errorCode = 401;
+            throw new Error("Não autorizado");
+        };
+
+        if(req.headers.authorization.length < 10){
+            errorCode = 400;
+            throw new Error("A autorização deve ter no mínimo 10 caracteres")
+        };
+
+        const countryIndex: number = countries.findIndex(
+            (country) => country.id === Number(req.params.id)
+        );
+   
+        if(countryIndex === -1){
+            errorCode = 404;
+            throw new Error("Id inválido");
+        };
+   
+        countries.splice(countryIndex, 1);
+        res.status(200).send("País removido com sucesso");
+    } catch (error) {
+        console.log(error);
+        res.status(errorCode).send(error.message);
+    };
+});
 
 app.listen(3003, () => {
     console.log("Server is running in http://localhost:3003")
