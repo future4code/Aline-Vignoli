@@ -1,0 +1,21 @@
+{
+  "name": "aula-41-intro-ts",
+  "version": "1.0.0",
+  "description": "Exercícios sobre introdução ao Typescript",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "exercise-1": "tsc && node ./build/exercicio1.js",
+    "exercise-2": "tsc && node ./build/exercicio2.js",
+    "exercise-3": "tsc && node ./build/exercicio3.js",
+    "exercise-5": "tsc && node ./build/exercicio5.js",
+    "exercise-6": "tsc && node ./build/exercicio6.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript",
+    "node"
+  ],
+  "author": "Aline Vignoli",
+  "license": "ISC"
+}
