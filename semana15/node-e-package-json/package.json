@@ -1,0 +1,20 @@
+{
+  "name": "node-e-package-json",
+  "version": "1.0.0",
+  "description": "Primeira aula de Backend. Exercícios de introdução ao node e package.json",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "user-info": "node ./src/userInfo.js",
+    "calculator": "node ./src/calculator.js",
+    "add-task": "node ./src/taskList.js",
+    "test": "echo \"Error: no test specified\" "
+  },
+  "keywords": [
+    "node",
+    "package.json",
+    "backend"
+  ],
+  "author": "Aline Vignoli",
+  "license": "ISC"
+}

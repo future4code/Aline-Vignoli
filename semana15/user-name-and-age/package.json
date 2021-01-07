@@ -1,0 +1,18 @@
+{
+  "name": "users-info",
+  "version": "1.0.0",
+  "description": "Programa para mostrar na tela nome e idade de usuario",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "age-7-years-from-now": "node ./src/age7YearsFromNow.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "terminal",
+    "process.argv",
+    "node"
+  ],
+  "author": "Aline Vignoli",
+  "license": "ISC"
+}
