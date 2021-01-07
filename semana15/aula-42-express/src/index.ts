@@ -133,6 +133,68 @@ app.delete("/countries/:id", (req: Request, res: Response) => {
     };
 });
 
+// ENDPOINT createCountry
+app.post("/countries/create", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try {
+        const {name, capital, continent} = req.body;
+
+        if(!req.headers.authorization){
+            errorCode = 401;
+            throw new Error("Não autorizado");
+        };
+
+        if(req.headers.authorization.length < 10){
+            errorCode = 400;
+            throw new Error("A autorização deve ter no mínimo 10 caracteres")
+        };
+
+        if (!name){
+            errorCode = 400;
+            throw new Error("Nome não foi informado");
+        };
+
+        const countryName = countries.find(country => (
+            country.name === name
+        ));
+   
+        if (countryName){
+            errorCode = 400;
+            throw new Error("País já cadastrado")
+        };
+    
+        if (!capital){
+            errorCode = 400;
+            throw new Error("Capital não foi informada");
+        };
+
+        if (!continent){
+            errorCode = 400;
+            throw new Error("Continente não foi informada");
+        };
+
+        const newCountry: country = {
+            id: Date.now(),
+            name: name,
+            capital: capital,
+            continent: continent
+        }
+
+        countries.push(newCountry)
+
+        res.status(200).send(
+            {
+                message: "Success!",
+                country: newCountry
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(errorCode).send(error.message);
+    };
+});
+
 app.listen(3003, () => {
     console.log("Server is running in http://localhost:3003")
 });
