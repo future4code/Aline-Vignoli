@@ -12,6 +12,3 @@ a. Nesse caso usei um query params para fazer a busca pelo nome
 EXERCÍCIO 4
 a. Foi inserido outro usuário com apenas o id diferente
 b. Não, acho que o método PUT seria mais apropriado para alteração de algum dado
-
-EXERCÍCIO 5
-a.
