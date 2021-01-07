@@ -8,11 +8,6 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-
-// EXERCÍCIO 1:
-// a. Devemos utilizar o método GET
-// b. E entidade que está sendo manipulada é user, pois a requisição está se referindo à usuários
-
 // getAllUsers
 app.get("/user", (req: Request, res: Response) => {
     let errorCode: number = 400;
@@ -27,16 +22,39 @@ app.get("/user", (req: Request, res: Response) => {
     };
 });
 
-// EXERCÍCIO 2:
-// a. Passei o parâmetro de type através de PathParams, já que vai receber apenas um parametro específico que é o type.
-// b. Para garantir que só types válidos seja utilizados eu criei um enum UserType. Também foi feita uma validação que confirma se o parametro type é igual à UserType.ADMIN ou UserType.NORMAL. Se for diferente, é jogado um erro.
+//findUserByName
+app.get("/user/search", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try {
+
+        const userName: string = req.query.name as string;
+
+        if (!userName) {
+            errorCode = 422;
+            throw new Error("Busca inválida. O nome do usuário não foi informado.")
+        }
+
+        const user = users.find(((u: user) => u.name === userName))
+
+        if (!user) {
+            errorCode = 404;
+            throw new Error("Usuário não encontrado");
+        }
+
+        res.status(200).send({message: "Success", user: user})
+    } catch (error) {
+        res.status(errorCode).send({message: error.message})
+    }
+});
+
 // filterUsersByType
 app.get("/user/:type", (req: Request, res: Response) => {
     let errorCode: number = 400;
     
     try {
 
-        const type: string = req.params.type as string;
+        const type: string = (req.params.type as string).toUpperCase();
         const validTypes: boolean = type === UserType.ADMIN || type === UserType.NORMAL
 
         if (!validTypes) {
@@ -53,6 +71,115 @@ app.get("/user/:type", (req: Request, res: Response) => {
     }
 });
 
+// createUser
+app.post("/user", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try {
+        
+        const {name, email, type, age} = req.body;
+        const validTypes: boolean = type === UserType.ADMIN || type === UserType.NORMAL
+        const reqBody: user = {
+            id: Date.now(),
+            name: name,
+            email: email,
+            type: type,
+            age: age
+        }
+        
+        if ( !name || !email || !type || !age ) {
+            errorCode = 422;
+            throw new Error("Algum campo está faltando. Preencha corretamente.");
+        }
+
+        if (!validTypes) {
+            console.log(type)
+            errorCode = 422;
+            throw new Error("Tipo do usuário inválido")
+        }
+
+        users.push(reqBody);
+
+        res.status(200).send({message: "Usuário inserido com sucesso!", user: reqBody})
+
+    } catch (error) {
+        res.status(errorCode).send({message: error.message})
+    }
+});
+
+// editUserName
+app.put("/user/:id", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try {
+    
+        const reqBody: {id:number, name: string} = {
+            id: Number(req.params.id),
+            name: `${req.body.name} -ALTERADO`
+        }
+
+        if(isNaN(Number(reqBody.id))) {
+            errorCode = 422
+            throw new Error("Id inválido")
+        }
+        
+        if ( !req.body.name ) {
+            errorCode = 422;
+            throw new Error("Nome inválido. Preencha corretamente.");
+        }
+
+        const userIndex = users.findIndex(((u: user) => u.id === Number(reqBody.id)))
+        
+        if (userIndex === -1) {
+            errorCode = 404;
+            throw new Error("Usuário não encontrado!")
+        }
+
+        users[userIndex].name = reqBody.name;
+
+        res.status(200).send({message: "Nome alterado com sucesso!", user: reqBody})
+
+    } catch (error) {
+        res.status(errorCode).send({message: error.message})
+    }
+});
+
+// patchUserName
+app.patch("/user/:id", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try {
+    
+        const reqBody: {id:number, name: string} = {
+            id: Number(req.params.id),
+            name: `${req.body.name} -REALTERADO`
+        }
+
+        if(isNaN(Number(reqBody.id))) {
+            errorCode = 422
+            throw new Error("Id inválido")
+        }
+        
+        if ( !req.body.name ) {
+            errorCode = 422;
+            throw new Error("Nome inválido. Preencha corretamente.");
+        }
+
+        const userIndex = users.findIndex(((u: user) => u.id === Number(reqBody.id)))
+        
+        if (userIndex === -1) {
+            errorCode = 404;
+            throw new Error("Usuário não encontrado!")
+        }
+
+        users[userIndex].name = reqBody.name;
+
+        res.status(200).send({message: "Nome alterado com sucesso!", user: reqBody})
+
+    } catch (error) {
+        res.status(errorCode).send({message: error.message})
+    }
+});
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
