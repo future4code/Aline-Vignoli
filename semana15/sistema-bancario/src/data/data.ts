@@ -1,29 +1,63 @@
-export const users: User[] = [
+// export const users: User[] = [
+//     {
+//         name: "Aline Vignoli",
+//         cpf: "323.232.323-31",
+//         dateOfBirth: "20-01-1998"
+//     },
+    // {
+    //     name: "Germana Segte",
+    //     cpf: "323.232.323-32",
+    //     dateOfBirth: "11-11-1996"
+    // },
+//     {
+//         name: "Márcio Vignoli",
+//         cpf: "323.232.323-32",
+//         dateOfBirth: "06-01-1990"
+//     }
+// ]
+
+export const accounts: Account[] = [
     {
-        name: "Aline Vignoli",
-        cpf: "323.232.323-31",
-        dateOfBirth: "20-01-1998",
-        transactions: []
+        client: {
+            name: "Márcio Vignoli",
+            cpf: "323.232.323-32",
+            dateOfBirth: "06-01-1990"
+        },
+        balance: 900,
+        extract: []
     },
     {
-        name: "Germana Segte",
-        cpf: "323.232.323-32",
-        dateOfBirth: "11-11-1996",
-        transactions: []
+        client: {
+            name: "Aline Vignoli",
+            cpf: "323.232.323-31",
+            dateOfBirth: "20-01-1998"
+        },
+        balance: 1000,
+        extract: []
     },
     {
-        name: "Márcio Vignoli",
-        cpf: "323.232.323-32",
-        dateOfBirth: "06-01-1990",
-        transactions: []
-    }
+        client: {
+            name: "Germana Segte",
+            cpf: "323.232.323-32",
+            dateOfBirth: "11-11-1996"
+        },
+        balance: 3000,
+        extract: []
+    },{
+        client: {
+            name: "Carmen",
+            cpf: "323.232.323-38",
+            dateOfBirth: "06-01-1990"
+        },
+        balance: 580,
+        extract: []
+    },
 ]
 
 export type User = {
     name: string,
     cpf: string,
-    dateOfBirth: string,
-    transactions: Transaction[]
+    dateOfBirth: string
 }
 
 export type Account = {

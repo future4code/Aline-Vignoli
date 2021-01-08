@@ -1,7 +1,8 @@
 import express, { Express, request, Request, Response } from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import { users, User, Account, Transaction } from './data/data';
+import { User, Account, Transaction, accounts } from './data/data';
+import { stringToDate, checkIfIsOver18 } from './util/functions';
 
 // EXPRESS AND CORS ACTVATION
 const app: Express = express();
@@ -11,13 +12,12 @@ app.use(cors());
 
 
 // ENDPOINTS
-
 // getAllUsers
 app.get("/user", (req: Request, res: Response) => {
     let errorCode: number = 400;
 
     try {
-        const result = users;
+        const result = accounts.map((account) => account.client);
         
         res.status(200).send({ message: "Success", quantity: result.length, users: result })
     } catch (error) {
@@ -25,8 +25,8 @@ app.get("/user", (req: Request, res: Response) => {
     }
 });
 
-// createUser
-app.post("/user", (req: Request, res: Response) => {
+// createAccount
+app.post("/account", (req: Request, res: Response) => {
     let errorCode: number = 400;
 
     try {
@@ -37,16 +37,37 @@ app.post("/user", (req: Request, res: Response) => {
             throw new Error("Algum campo está faltando. Preencha corretamente.");
         }
 
-        const reqBody : User = {
-            name: name,
-            cpf: cpf,
-            dateOfBirth: dateOfBirth,
-            transactions: []
+        const currentDate = new Date();
+        const date = stringToDate(dateOfBirth)
+
+        if (!checkIfIsOver18(currentDate, date)) {
+            errorCode = 401;
+            throw new Error("Precisar ter mais de 18 anos para se cadastrar.");
         }
 
-        users.push(reqBody);
+        const users = accounts.map((account) => account.client);
+        const matchCPF = users.find(((u: User) => u.cpf === cpf ))
+
+        if (matchCPF) {
+            errorCode = 422;
+            throw new Error("CPF já existe.")
+        }
+
+        const user : User = {
+            name: name,
+            cpf: cpf,
+            dateOfBirth: dateOfBirth
+        }
+
+        const reqBody : Account = {
+            client: user,
+            balance: 0,
+            extract: []
+        }
+
+        accounts.push(reqBody);
         
-        res.status(200).send({ message: "Success", user: reqBody })
+        res.status(200).send({ message: "Success", account: reqBody })
     } catch (error) {
         res.status(errorCode).send(error.message);
     }
