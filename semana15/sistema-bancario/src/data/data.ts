@@ -1,21 +1,3 @@
-// export const users: User[] = [
-//     {
-//         name: "Aline Vignoli",
-//         cpf: "323.232.323-31",
-//         dateOfBirth: "20-01-1998"
-//     },
-    // {
-    //     name: "Germana Segte",
-    //     cpf: "323.232.323-32",
-    //     dateOfBirth: "11-11-1996"
-    // },
-//     {
-//         name: "Márcio Vignoli",
-//         cpf: "323.232.323-32",
-//         dateOfBirth: "06-01-1990"
-//     }
-// ]
-
 export const accounts: Account[] = [
     {
         client: {
