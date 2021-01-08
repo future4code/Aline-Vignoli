@@ -34,22 +34,22 @@ export const accounts: Account[] = [
         balance: 580,
         extract: []
     },
-]
+];
 
 export type User = {
     name: string,
     cpf: string,
     dateOfBirth: string
-}
+};
 
 export type Account = {
     client: User,
     balance: number,
     extract: Transaction[]
-}
+};
 
 export type Transaction = {
     value: number,
     date: string,
     description: string
-}
+};

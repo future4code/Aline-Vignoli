@@ -1,4 +1,4 @@
-import express, { Express, request, Request, Response } from 'express';
+import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
 import { User, Account, Transaction, accounts } from './data/data';
@@ -19,10 +19,10 @@ app.get("/user", (req: Request, res: Response) => {
     try {
         const result = accounts.map((account) => account.client);
         
-        res.status(200).send({ message: "Success", quantity: result.length, users: result })
+        res.status(200).send({ message: "Success", quantity: result.length, users: result });
     } catch (error) {
         res.status(errorCode).send(error.message);
-    }
+    };
 });
 
 // getBalance
@@ -46,7 +46,7 @@ app.get("/account", (req: Request, res: Response) => {
             throw new Error("Nenhuma conta foi encontrada com esses dados");
         }
 
-        res.status(200).send({ message: "Success", balance: result.balance })
+        res.status(200).send({ message: "Success", balance: result.balance });
     } catch (error) {
         res.status(errorCode).send(error.message);
     }
@@ -73,31 +73,31 @@ app.post("/account", (req: Request, res: Response) => {
         }
 
         const users = accounts.map((account) => account.client);
-        const matchCPF = users.find(((u: User) => u.cpf === cpf ))
+        const matchCPF = users.find(((u: User) => u.cpf === cpf ));
 
         if (matchCPF) {
             errorCode = 422;
             throw new Error("CPF já existe.")
-        }
+        };
 
         const user : User = {
             name: name,
             cpf: cpf,
             dateOfBirth: dateOfBirth
-        }
+        };
 
         const reqBody : Account = {
             client: user,
             balance: 0,
             extract: []
-        }
+        };
 
         accounts.push(reqBody);
         
-        res.status(200).send({ message: "Success", account: reqBody })
+        res.status(200).send({ message: "Success", account: reqBody });
     } catch (error) {
         res.status(errorCode).send(error.message);
-    }
+    };
 });
 
 // makeADeposit
@@ -124,7 +124,7 @@ app.put("/account/deposit", (req: Request, res: Response) => {
         let balance: number = accounts[index].balance;
         balance += Number(amount); 
 
-        res.status(200).send({ message: "Success", depositValue: amount, currentBalance: balance })
+        res.status(200).send({ message: "Success", depositValue: amount, currentBalance: balance });
     } catch (error) {
         res.status(errorCode).send(error.message);
     }
@@ -157,11 +157,12 @@ app.put("/account/payment", (req: Request, res: Response) => {
             if (!validateDate(stringToDate(date))) {
                 errorCode = 400;
                 throw new Error("Data inválida");
-            }
+            };
+
             paymentDate = date;
         } else {
             balance -= Number(value);
-        }
+        };
         
         const transaction: Transaction = {
             value: Number(value),
@@ -172,10 +173,10 @@ app.put("/account/payment", (req: Request, res: Response) => {
         const extract = accounts[index].extract;
         extract.push(transaction);
 
-        res.status(200).send({ message:"Success", currentBalance: balance, extract: extract })
+        res.status(200).send({ message:"Success", currentBalance: balance, extract: extract });
     } catch (error) {
         res.status(errorCode).send(error.message);
-    }
+    };
 });
 
 

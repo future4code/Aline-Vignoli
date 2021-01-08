@@ -39,6 +39,7 @@ export const validateDate = (date: Date) : boolean => {
 
     if ( date.getTime() < currentTime ) {
         return false;
-    }
+    };
+    
     return true;
-}
+};
