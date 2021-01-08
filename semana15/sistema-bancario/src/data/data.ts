@@ -50,6 +50,6 @@ export type Account = {
 
 export type Transaction = {
     value: number,
-    date: number,
+    date: string,
     description: string
 }

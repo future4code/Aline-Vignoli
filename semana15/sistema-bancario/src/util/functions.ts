@@ -32,3 +32,13 @@ export const checkIfIsOver18 = (currentDate: Date, dateOfBirth: Date) : boolean 
 
     return true;
 };
+
+export const validateDate = (date: Date) : boolean => {
+    const currentDate = new Date();
+    const currentTime = currentDate.getTime();
+
+    if ( date.getTime() < currentTime ) {
+        return false;
+    }
+    return true;
+}
