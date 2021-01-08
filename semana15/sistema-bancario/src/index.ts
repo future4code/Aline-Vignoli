@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express, request, Request, Response } from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
 import { users, User, Account, Transaction } from './data/data';
@@ -11,8 +11,22 @@ app.use(cors());
 
 
 // ENDPOINTS
+
+// getAllUsers
+app.get("/user", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try {
+        const result = users;
+        
+        res.status(200).send({ message: "Success", quantity: result.length, users: result })
+    } catch (error) {
+        res.status(errorCode).send(error.message);
+    }
+});
+
 // createUser
-app.post("/users", (req: Request, res: Response) => {
+app.post("/user", (req: Request, res: Response) => {
     let errorCode: number = 400;
 
     try {
@@ -32,7 +46,7 @@ app.post("/users", (req: Request, res: Response) => {
 
         users.push(reqBody);
         
-        res.status(200).send({message: "Success", user: reqBody})
+        res.status(200).send({ message: "Success", user: reqBody })
     } catch (error) {
         res.status(errorCode).send(error.message);
     }
