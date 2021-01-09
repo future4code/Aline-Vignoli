@@ -151,8 +151,9 @@ app.put("/account/payment", (req: Request, res: Response) => {
             errorCode = 404;
             throw new Error("Usuário não encontrado. Confira os dados e tente novamente.");
         };
+
+        const user: Account = accounts[index];
         
-        let balance: number = accounts[index].balance;
         if (date) {
             if (!validateDate(stringToDate(date))) {
                 errorCode = 400;
@@ -161,24 +162,82 @@ app.put("/account/payment", (req: Request, res: Response) => {
 
             paymentDate = date;
         } else {
-            balance -= Number(value);
+            if (user.balance < Number(value)) {
+                errorCode = 400;
+                throw new Error("Saldo insuficiente.");
+            };
+
+            user.balance -= Number(value);
         };
         
         const transaction: Transaction = {
             value: Number(value),
             date: paymentDate,
             description: description
-        }
+        };
 
         const extract = accounts[index].extract;
         extract.push(transaction);
 
-        res.status(200).send({ message:"Success", currentBalance: balance, extract: extract });
+        res.status(200).send({ message:"Success", currentBalance: user.balance, extract: extract });
     } catch (error) {
         res.status(errorCode).send(error.message);
     };
 });
 
+// makeATransfer
+app.put("/account/transfer", (req: Request, res: Response) => {
+    let errorCode: number = 400;
+
+    try { 
+        const { senderName, senderCpf, recieverName, recieverCpf, amount } = req.body;
+
+        if (!senderName || !senderCpf || !recieverName || !recieverCpf || !amount) {
+            errorCode = 422;
+            throw new Error("Algum campo está faltando. Preencha corretamente.");
+        };
+
+        const senderIndex = accounts.findIndex((account) => 
+            account.client.name === senderName && account.client.cpf === senderCpf
+        );
+
+        if (senderIndex === -1) {
+            errorCode = 404;
+            throw new Error("Remetente não encontrado. Confira os dados e tente novamente.");
+        };
+
+        const recieverIndex = accounts.findIndex((account) => 
+            account.client.name === recieverName && account.client.cpf === recieverCpf
+        );
+
+        if (recieverIndex === -1) {
+            errorCode = 404;
+            throw new Error("Destinatário não encontrado. Confira os dados e tente novamente.");
+        };
+
+        const sender: Account = accounts[senderIndex];
+        const reciever: Account = accounts[recieverIndex];
+
+        if (sender.balance < Number(amount)) {
+            errorCode = 400;
+            throw new Error("Saldo insuficiente.");
+        }
+
+        sender.balance -= Number(amount);
+        reciever.balance += Number(amount);
+
+        res.status(200).send(
+            { 
+                message: "Success", 
+                amount: amount, 
+                senderBalance: sender.balance,
+                recieverBalance: reciever.balance
+            }
+        );
+    } catch (error) {
+        res.status(errorCode).send(error.message);
+    };
+});
 
 // SERVER SETTINGS
 const server = app.listen(process.env.PORT || 3003, () => {

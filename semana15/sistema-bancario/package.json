@@ -1,7 +1,7 @@
 {
   "name": "sistema-bancario",
   "version": "1.0.0",
-  "description": "",
+  "description": "API para sistema bancário",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev ./src/index.ts",
@@ -13,7 +13,7 @@
     "typescript",
     "API"
   ],
-  "author": "",
+  "author": "Aline Vignoli",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.9",
