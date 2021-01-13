@@ -1,0 +1,14 @@
+EXERCÍCIO 1:
+a. Devemos utilizar o método GET
+b. E entidade que está sendo manipulada é user, pois a requisição está se referindo à usuários
+
+EXERCÍCIO 2:
+a. Passei o parâmetro de type através de PathParams, já que vai receber apenas um parametro específico que é o type.
+b. Para garantir que só types válidos seja utilizados eu criei um enum UserType. Também foi feita uma validação que confirma se o parametro type é igual à UserType.ADMIN ou UserType.NORMAL. Se for diferente, é jogado um erro.
+
+EXERCÍCIO 3
+a. Nesse caso usei um query params para fazer a busca pelo nome
+
+EXERCÍCIO 4
+a. Foi inserido outro usuário com apenas o id diferente
+b. Não, acho que o método PUT seria mais apropriado para alteração de algum dado
