@@ -1,24 +1,18 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import knex from 'knex';
+import knex, { ResolveTableType } from 'knex';
 import Knex from 'knex';
 import dotenv from 'dotenv';
 
 // Dotenv settings
 dotenv.config();
 
-// Connecting
-// const connection: Knex = knex({
-//     client: "mysql",
-//     connection: {
-//         host: process.env.DB_HOST,
-//         port: Number(process.env.DB_PORT),
-//         user: process.env.DB_USER,
-//         password: process.env.DB_PASSWORD,
-//         database: process.env.DB_NAME
-//     }
-// });
+// Inicializing express and cors
+const app: Express = express();
+
+app.use(express.json());
+app.use(cors());
 
 const connection: Knex = knex({
     client: "mysql",
@@ -33,37 +27,111 @@ const connection: Knex = knex({
 
 const getActorById = async (id: number): Promise<any> => {
     const result = await connection.raw(`
-      SELECT * FROM Actor WHERE id = '${id}'
+      SELECT * FROM Actor WHERE id = ${id};
     `)
   
-    return result[0]
+    console.log(result[0][0])
+    return result[0][0]
 }
 
-const getAllActors = async (): Promise<any> => {
+// getActorById(6);
+
+const getActorByName = async (name: string) : Promise<any> => {
     try {
-
-        const result: any = await connection.raw(`
-        SELECT * FROM Actor;
+        const result = await connection.raw(`
+            SELECT * FROM Actor WHERE name = "${name}";
         `);
-  
-        return result[0];
-        
-     } catch (error) {
+        console.log(result[0][0]);
+        return result[0][0];
+    } catch (error) {
         console.log(error.sqlMessage || error.message);
-     }
-}
+    };
+};
 
-const result = getAllActors();
-console.log(result);
+// getActorByName('Juliana Paes');
 
-// Inicializing express and cors
-const app: Express = express();
 
-app.use(express.json());
-app.use(cors());
+const countActorsByGender = async (gender: string): Promise<any> => {
+    try {
+        const result = await connection.raw(`
+            SELECT COUNT(*) as total FROM Actor WHERE gender = "${gender}";
+        `);
+        
+        const total = result[0][0].total;
+        console.log(total);
+        return total;
+    } catch (error) {
+        console.log(error.sqlMessage || error.message);
+    };
+};
+
+// countActorsByGender('female');
+
+
+const updateSalary = async (
+    id: number, 
+    salary: number
+) : Promise<void> => {
+    try {
+        await connection("Actor")
+        .update({ salary: salary })
+        .where("id", id);
+        console.log(`Salario alterado`);
+    } catch (error) {
+        throw new Error(error.sqlMessage || error.message);
+    };
+};
+
+// updateSalary(2, 9000000);
+
+
+const deleteActor = async (id: number) : Promise<void> => {
+    try {
+        await connection("Actor")
+        .where("id", id)
+        .del();
+        console.log(`Ator removido`);
+    } catch (error) {
+        throw new Error(error.sqlMessage || error.message);
+    };
+};
+
+// deleteActor(5);
+
+
+const averageByGender = async (gender: string): Promise<any> => {
+    try {
+        const result = await connection("Actor")
+        .avg("salary as average")
+        .where("gender", gender);
+        console.log(result[0].average);
+    } catch (error) {
+        console.log(error.sqlMessage || error.message);
+    };
+};
+
+// averageByGender("female");
+
+
+app.get("/actor/:id", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const id = Number(req.params.id);
+        const actor = await getActorById(id);
+
+        if ( !actor ) {
+            errorCode = 400;
+            throw new Error("Ator não encontrado")
+        }
+
+        res.status(200).send({ actor: actor });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    };
+});
 
 // Server settings
-const server = app.listen(process.env.DB_PORT || 3006, () => {
+const server = app.listen(process.env.PORT || 3003, () => {
     if ( server ) {
         const address = server.address() as AddressInfo;
         console.log(`Server is running in localhost://${address.port}`);
