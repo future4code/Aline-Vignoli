@@ -2,10 +2,11 @@
   "name": "aula-46",
   "version": "1.0.0",
   "description": "Utilizando knex para integrar banco de dados ao projeto",
-  "main": "./build/index.js",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "tsc && node ./src/index.ts",
-    "start": "tsc && node ./build/index.js",
+    "dev": "ts-node-dev ./src/index.ts",
+    "start": "clear && echo \"Starting application... \" && tsc && node ./build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
