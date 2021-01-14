@@ -159,3 +159,74 @@ LEFT JOIN Rating ON Movie.id = Rating.movie_id
 LEFT JOIN MovieCast ON Movie.id = MovieCast.movie_id
 JOIN Actor ON MovieCast.actor_id = Actor.id;
 ```
+
+### Exercício 6
+a) Essa é uma relação do tipo N:M, pois um filme pode ganhar tanto *Óscar de melhor filme* com *Óscar de melhor direção*. Ao mesmo tempo que um *Óscar de melhor filme* e *Óscar de melhor direção* pode ser dado para mais de um filme, desde que o ano seja diferente.
+
+b) A query é:
+```
+CREATE TABLE MovieOscar (
+	movie_id VARCHAR(255),
+	name ENUM(
+		'Óscar de melhor filme', 
+        'Óscar de melhor direção', 
+        'Óscar de melhor roteiro',
+        'Óscar de melhor figurino'
+	),
+    award_date DATE NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES Movie(id)
+);
+```
+
+c) A query é:
+```
+INSERT INTO MovieOscar (movie_id, name, award_date) 
+VALUES 
+(
+	'001',
+    'Óscar de melhor direção',
+    '2007-10-02'
+),(
+	'002',
+    'Óscar de melhor filme',
+    '2013-06-06'
+),
+(
+	'002',
+    'Óscar de melhor direção',
+    '2013-06-06'
+),
+(
+	'003',
+    'Óscar de melhor filme',
+    '2018-11-06'
+),
+(
+	'003',
+    'Óscar de melhor direção',
+    '2018-11-06'
+),
+(
+	'004',
+    'Óscar de melhor filme',
+    '2020-11-20'
+),
+(
+	'004',
+    'Óscar de melhor direção',
+    '2020-11-20'
+),
+(
+	'004',
+    'Óscar de melhor roteiro',
+    '2020-11-20'
+);
+```
+
+d) A query é:
+```
+SELECT m.id as movie_id, m.title, mo.name as award, mo.award_date 
+FROM Movie m
+LEFT JOIN MovieOscar mo
+ON m.id = mo.movie_id;
+```
