@@ -112,6 +112,28 @@ const averageByGender = async (gender: string): Promise<any> => {
 
 // averageByGender("female");
 
+const createActor = async ( 
+    name: string, 
+    salary: number, 
+    dateOfBirth: Date, 
+    gender: string 
+    ) : Promise<void> => {
+    try {
+        await connection.raw(`
+            INSERT INTO Actor (name, salary, birth_date, gender)
+            VALUES (
+                '${name}',
+                ${salary},
+                '${dateOfBirth.toLocaleDateString("pt-br")}',
+                '${gender}'
+            );
+        `);
+        console.log("Ator inserido com sucesso");
+    } catch (error) {
+        console.log(error.sqlMessage || error.message);
+    };
+};
+
 // ENDPOINTS
 // getActorById
 app.get("/actor/:id", async (req: Request, res: Response) => {
@@ -145,9 +167,27 @@ app.get("/actor", async (req: Request, res: Response) => {
 
         res.status(200).send({ gender: gender, count: count});
     } catch (error) {
-        res.status(400).send({ message: error.message });
+        res.status(errorCode).send({ message: error.message });
     };
 });
+
+app.post("/actor", async (req: Request, res: Response) => {
+    try {
+      await createActor(
+        req.body.name,
+        req.body.salary,
+        new Date(req.body.dateOfBirth),
+        req.body.gender
+      );
+  
+      res.status(200).send();
+    } catch (err) {
+      res.status(400).send({
+        message: err.message,
+      });
+    }
+});
+
 
 // Server settings
 const server = app.listen(process.env.PORT || 3003, () => {
