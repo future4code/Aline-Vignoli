@@ -103,3 +103,28 @@ b) A query é:
 SELECT Movie.id, title, rate FROM Movie
 INNER JOIN Rating ON Movie.id = Rating.movie_id;
 ```
+
+### Exercício 4
+a) A query é:
+```
+SELECT Movie.id, title, rate, comment FROM Movie
+LEFT JOIN Rating
+ON Movie.id = Rating.movie_id;
+```
+
+b) A query é:
+```
+SELECT Movie.id as movie_id, title, MovieCast.actor_id as actor_id
+FROM Movie
+RIGHT JOIN MovieCast
+ON Movie.id = MovieCast.movie_id;
+```
+
+c) A query é:
+```
+SELECT Movie.id as movie_id, title, AVG(Rating.rate) as rate 
+FROM Movie
+LEFT JOIN Rating 
+ON Movie.id = Rating.movie_id 
+GROUP BY Movie.id;
+```
