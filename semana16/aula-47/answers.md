@@ -128,3 +128,34 @@ LEFT JOIN Rating
 ON Movie.id = Rating.movie_id 
 GROUP BY Movie.id;
 ```
+
+### Exercício 5
+a) Essa query está pegando a tabela de filmes, juntando com a tabela de elenco e em seguida juntando com a tabela de atores. Precisamos usar dois `JOIN` para poder exibir as informações das 3 tabelas.
+
+b) A query alterada ficaria assim:
+```
+SELECT m.id as movie_id, m.title, mc.actor_id as actor_id, a.name as actor_name 
+FROM Movie m
+LEFT JOIN MovieCast mc ON m.id = mc.movie_id
+JOIN Actor a ON a.id = mc.actor_id;
+```
+
+c) A mensagem de erro retornada é:
+> Error Code: 1054. Unknown column 'm' in 'field list'
+
+Tem uma vírgula separando `m,title` e o SQL entende como sendo uma nova coluna. Então o retorno é que a coluna não existe. Para resolver esse problema devemos corrigir dessa forma: `m.title`.
+
+d) A query é:
+```
+SELECT 
+    Movie.id as movie_id, 
+    Movie.title, 
+    Actor.id as actor_id,
+    Actor.name as actor_name, 
+    rate, 
+    comment 
+FROM Movie
+LEFT JOIN Rating ON Movie.id = Rating.movie_id
+LEFT JOIN MovieCast ON Movie.id = MovieCast.movie_id
+JOIN Actor ON MovieCast.actor_id = Actor.id;
+```
