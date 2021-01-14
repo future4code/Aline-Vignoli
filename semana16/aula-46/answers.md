@@ -75,3 +75,44 @@ const averageByGender = async (gender: string): Promise<any> => {
     };
 };
 ```
+
+### Exercício 3
+a)
+```
+app.get("/actor/:id", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const id = Number(req.params.id);
+        const actor = await getActorById(id);
+
+        if ( !actor ) {
+            errorCode = 400;
+            throw new Error("Ator não encontrado")
+        }
+
+        res.status(200).send({ actor: actor });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    };
+});
+```
+
+b) 
+```
+app.get("/actor", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const gender = req.query.gender as string;
+        const count: number = await countActorsByGender(gender);
+
+        if ( !count ) {
+            errorCode = 422;
+            throw new Error("Gênero informado inválido");
+        };
+
+        res.status(200).send({ gender: gender, count: count});
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    };
+});
+```
