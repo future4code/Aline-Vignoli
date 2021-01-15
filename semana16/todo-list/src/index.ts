@@ -46,12 +46,24 @@ const editUser = async (
     name: string,
     nickname: string
 ): Promise<void> => {
-
     await connection("TodoListUser")
     .update({ name: name, nickname: nickname })
     .where("id", id);
 }
 
+const createTask = async (
+    task: {
+        id: string,
+        title: string, 
+        description: string,
+        status: string,
+        limit_date: string,
+        creator_user_id: string
+    }
+): Promise<void> => {
+    await connection("TodoListTask")
+    .insert(task);
+}
 
 // ENDPOINTS
 // createUser
@@ -143,6 +155,42 @@ app.post('/user/edit/:id', async (req: Request, res: Response) => {
             message: error.sqlMessage || error.message
         });
     };
+});
+
+// createTask
+app.put("/task", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const { title, description, limitDate, creatorUserId } = req.body;
+
+        if ( !title || !description || !limitDate || !creatorUserId ) {
+            errorCode = 422;
+            throw new Error("Algum campo está faltando! Por favor, preencha corretamente.");
+        }
+
+        const id = uuidv4();
+        const splitedDate = limitDate.split("/");
+        const formatDate = `${splitedDate[2]}-${splitedDate[1]}-${splitedDate[0]}`
+
+        const task = {
+            id: id,
+            title: title, 
+            description: description,
+            status: 'to do',
+            limit_date: formatDate,
+            creator_user_id: creatorUserId
+        }
+
+        await createTask(task);
+  
+        res.status(200).send({ 
+            message: "Tarefa adicionada com sucesso!"
+        });
+    } catch (error) {
+        res.status(errorCode).send({
+            message: error.sqlMessage || error.message,
+        });
+    }
 });
 
 
