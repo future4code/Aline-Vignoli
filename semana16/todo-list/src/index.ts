@@ -1,38 +1,72 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import knex from 'knex';
-import Knex from 'knex';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const connection: Knex = knex({
-    client: "mysql",
-    connection: {
-        host: process.env.DB_HOST,
-        port: 3306,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-    }
-});
-
-const getActors = async (): Promise<any> => {
-    const result = await connection.raw(`
-      SELECT * FROM Actor;
-    `)
-  
-    console.log(result[0])
-    // return result[0][0]
-}
-
-getActors();
+import connection from './setup/connection';
+import { v4 as uuidv4 } from 'uuid';
 
 const app: Express = express();
 
 app.use(express.json());
 app.use(cors());
+
+
+const createUser = async ( 
+    id: string, 
+    name: string, 
+    nickname: string, 
+    email: string 
+    ) : Promise<void> => {
+    try {
+        await connection.raw(`
+            INSERT INTO TodoListUser (id, name, nickname, email)
+            VALUES (
+                '${id}',
+                '${name}',
+                '${nickname}',
+                '${email}'
+            );
+        `);
+        console.log("Usuário inserido com sucesso");
+    } catch (error) {
+        console.log(error.sqlMessage || error.message);
+    };
+};
+
+// ENPOINTS
+// createUser
+app.post("/user", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const { name, nickname, email } = req.body;
+        if ( !name || !nickname || !email ) {
+            errorCode = 422;
+            throw new Error("Algum campo está faltando! Por favor, preencha corretamente.");
+        }
+
+        const id = uuidv4();
+
+        createUser(
+            id,
+            name,
+            nickname,
+            email
+        );
+  
+        res.status(200).send({ 
+            message: "Usuário criado com sucesso!",
+            user: {
+                id: id,
+                name: name,
+                nickname: nickname,
+                email: email
+            }
+        });
+    } catch (error) {
+        res.status(errorCode).send({
+            message: error.sqlMessage || error.message,
+        });
+    }
+});
 
 
 const server = app.listen( process.env.PORT || 3003, () => {
