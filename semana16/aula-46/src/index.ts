@@ -23,7 +23,7 @@ const connection: Knex = knex({
        password: process.env.DB_PASSWORD,
        database: process.env.DB_NAME
     }
- });
+});
 
 const getActorById = async (id: number): Promise<any> => {
     const result = await connection.raw(`
@@ -33,8 +33,6 @@ const getActorById = async (id: number): Promise<any> => {
     console.log(result[0][0])
     return result[0][0]
 }
-
-// getActorById(6);
 
 const getActorByName = async (name: string) : Promise<any> => {
     try {
@@ -65,9 +63,6 @@ const countActorsByGender = async (gender: string): Promise<any> => {
     };
 };
 
-// countActorsByGender('female');
-
-
 const updateSalary = async (
     id: number, 
     salary: number
@@ -81,9 +76,6 @@ const updateSalary = async (
         throw new Error(error.sqlMessage || error.message);
     };
 };
-
-// updateSalary(2, 9000000);
-
 
 const deleteActor = async (id: number) : Promise<void> => {
     try {
@@ -144,12 +136,12 @@ app.get("/actor/:id", async (req: Request, res: Response) => {
 
         if ( !actor ) {
             errorCode = 400;
-            throw new Error("Ator não encontrado")
+            throw new Error("Ator não encontrado");
         }
 
         res.status(200).send({ actor: actor });
     } catch (error) {
-        res.status(400).send({ message: error.message });
+        res.status(errorCode).send({ message: error.message });
     };
 });
 
@@ -171,6 +163,7 @@ app.get("/actor", async (req: Request, res: Response) => {
     };
 });
 
+// createActor
 app.post("/actor", async (req: Request, res: Response) => {
     try {
       await createActor(
@@ -180,12 +173,35 @@ app.post("/actor", async (req: Request, res: Response) => {
         req.body.gender
       );
   
-      res.status(200).send();
+      res.status(200).send("Ator criado com sucesso!");
     } catch (err) {
       res.status(400).send({
         message: err.message,
       });
     }
+});
+
+// updateSalary
+
+app.put("/actor", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        await updateSalary(
+            Number(req.body.id),
+            Number(req.body.salary)
+        );
+
+        const actor = await getActorById(req.body.id);
+
+        if ( !actor ) {
+            errorCode = 400;
+            throw new Error("Ator não encontrado")
+        };
+  
+        res.status(200).send("Salário alterado com sucesso");
+    } catch (error) {
+        res.status(400).send(error.sqlMessage || error.message);
+    };
 });
 
 
