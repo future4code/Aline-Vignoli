@@ -10,6 +10,15 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
+const getAllUsers = async () : Promise<any> => {
+    try {
+        const result = await connection("TodoListUser")
+        .select();
+        return result;
+    } catch (error) {
+        console.log(error.sqlMessage || error.message);
+    };
+};
 
 const createUser = async ( 
     id: string, 
@@ -81,6 +90,29 @@ const getTaskById = async (id: string): Promise<any> => {
 };
 
 // ENDPOINTS
+
+// getAllUsers
+app.get("/user/all", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const users = await getAllUsers();
+
+        if ( !users ) {
+            errorCode = 404;
+            throw new Error("Nenhum usuário encontrado");
+        };
+
+        res.status(200).send({
+            message: "Success",
+            users: users
+        });
+    } catch (error) {
+        res.status(errorCode).send({
+            message: error.sqlMessage || error.message
+        })
+    };
+});
+
 // createUser
 app.post("/user", async (req: Request, res: Response) => {
     let errorCode: number = 400;
