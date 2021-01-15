@@ -168,6 +168,13 @@ app.put("/task", async (req: Request, res: Response) => {
             throw new Error("Algum campo está faltando! Por favor, preencha corretamente.");
         }
 
+        const creatorUser = await getUserById(creatorUserId);
+
+        if ( !creatorUser ) {
+            errorCode = 404;
+            throw new Error("Usuário informado não está cadastrado!");
+        }
+
         const id = uuidv4();
         const splitedDate = limitDate.split("/");
         const formatDate = `${splitedDate[2]}-${splitedDate[1]}-${splitedDate[0]}`
