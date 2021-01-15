@@ -35,11 +35,23 @@ const createUser = async (
 const getUserById = async (id: string): Promise<any> => {
     const result = await connection.raw(`
       SELECT * FROM TodoListUser WHERE id = '${id}';
-    `)
+    `);
   
-    console.log(result[0][0])
-    return result[0][0]
+    console.log(result[0][0]);
+    return result[0][0];
 }
+
+const editUser = async (
+    id: string,
+    name: string,
+    nickname: string
+): Promise<void> => {
+
+    await connection("TodoListUser")
+    .update({ name: name, nickname: nickname })
+    .where("id", id);
+}
+
 
 // ENDPOINTS
 // createUser
@@ -78,12 +90,6 @@ app.get('/user/:id', async (req: Request, res: Response) => {
     let errorCode: number = 400;
     try {
         const id = req.params.id as string;
-
-        if ( !req.params ) {
-            errorCode = 422;
-            throw new Error('Id do usuário não foi informado.')
-        }
-
         const user = await getUserById(id);
 
         if ( !user ) {
@@ -103,6 +109,40 @@ app.get('/user/:id', async (req: Request, res: Response) => {
             message: error.sqlMessage || error.message
         });
     }
+});
+
+// editUser
+app.post('/user/edit/:id', async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const id = req.params.id as string;
+        const { name, nickname } = req.body;
+        const user = await getUserById(id);
+
+        if ( !name && !nickname ) {
+            errorCode = 422;
+            throw new Error("Preencha um dos campos para editar.");
+        }
+
+        if ( !user ) {
+            errorCode = 404;
+            throw new Error("Usuário não encontrado!")
+        }
+
+        await editUser(id, name || user.name, nickname || user.nickname);
+
+        res.status(200).send({ 
+            message: 'Success', 
+            user: {
+                name: name || user.name,
+                nickname: nickname || user.nickname
+            }
+        });
+    } catch (error) {
+        res.status(errorCode).send({ 
+            message: error.sqlMessage || error.message
+        });
+    };
 });
 
 
