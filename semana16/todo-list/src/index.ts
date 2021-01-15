@@ -3,6 +3,7 @@ import cors from 'cors';
 import { AddressInfo } from 'net';
 import connection from './setup/connection';
 import { v4 as uuidv4 } from 'uuid';
+import { dateFormat, dateToDBFormat } from './util/dateFormat';
 
 const app: Express = express();
 
@@ -36,10 +37,9 @@ const getUserById = async (id: string): Promise<any> => {
     const result = await connection.raw(`
       SELECT * FROM TodoListUser WHERE id = '${id}';
     `);
-  
-    console.log(result[0][0]);
+
     return result[0][0];
-}
+};
 
 const editUser = async (
     id: string,
@@ -49,7 +49,7 @@ const editUser = async (
     await connection("TodoListUser")
     .update({ name: name, nickname: nickname })
     .where("id", id);
-}
+};
 
 const createTask = async (
     task: {
@@ -63,7 +63,22 @@ const createTask = async (
 ): Promise<void> => {
     await connection("TodoListTask")
     .insert(task);
-}
+};
+
+const getTaskById = async (id: string): Promise<any> => {
+    const result = await connection('TodoListTask')
+    .select(
+        'id as taskId', 
+        'title', 
+        'description', 
+        'status', 
+        'limit_date as limitDate',
+        'creator_user_id as creatorUserId'
+    )
+    .where('id', id);
+
+    return result[0];
+};
 
 // ENDPOINTS
 // createUser
@@ -176,15 +191,13 @@ app.put("/task", async (req: Request, res: Response) => {
         }
 
         const id = uuidv4();
-        const splitedDate = limitDate.split("/");
-        const formatDate = `${splitedDate[2]}-${splitedDate[1]}-${splitedDate[0]}`
 
         const task = {
             id: id,
             title: title, 
             description: description,
             status: 'to do',
-            limit_date: formatDate,
+            limit_date: dateToDBFormat(limitDate),
             creator_user_id: creatorUserId
         }
 
@@ -200,7 +213,39 @@ app.put("/task", async (req: Request, res: Response) => {
     }
 });
 
+//getTaskById
+app.get('/task/:id', async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const id = req.params.id as string;
+        const task = await getTaskById(id);
 
+        if ( !task ) {
+            errorCode = 404;
+            throw new Error("Tarefa não encontrada!")
+        }
+
+        const formatDate = dateFormat(task.limitDate);
+
+        res.status(200).send({ 
+            message: 'Success', 
+            task: {
+                taskId: id,
+                title: task.title,
+                description: task.description,
+                status: task.status,
+                limitDate: formatDate,
+                creatorUserId: task.creatorUserId
+            }
+        });
+    } catch (error) {
+        res.status(errorCode).send({
+            message: error.sqlMessage || error.message
+        });
+    }
+});
+
+// SERVER SETTINGS
 const server = app.listen( process.env.PORT || 3003, () => {
     if ( server ) {
         const address = server.address() as AddressInfo;
