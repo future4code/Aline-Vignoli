@@ -1,22 +1,34 @@
 ## Instruções
 ### Instalando as dependências:
 * `npm install`:
-instala todas as dependências listadas no `package.json`.
+Instala todas as dependências listadas no `package.json`.
+
+### Criando o arquivo .env:
+Criar o arquivo `.env` e configurar com as informações de seu banco de dados.
+```
+DB_HOST = host
+DB_USER = usuario
+DB_PASSWORD = senha
+DB_NAME = nome-do-banco-de-dados
+```
 
 ### Criando a tabela:
-* `npm run set-table`:
+* `npm run set-table`
 Cria a tabela de usuários.
+*Esse script deve ser executado apenas uma única vez*
 
 ### Populando a tabela:
-* `npm run populate`:
+* `npm run populate`
 Popula a tabela com dados de usuários.
+*Esse script deve ser executado apenas uma única vez*
 
 ### Executar o projeto:
-* `npm run start`:
-Executa o projeto no servidor `localhost`.
+* `npm run start`
+Estabelece a conexão com o banco de dados e executa o projeto no servidor `localhost`.
+É necessário executar esse comando toda a vez que algum dos arquivos sofrer alteração.
 
 * `npm run dev`:
-Reinicia automaticamente o servidor `localhost` toda a vez que o projeto for salvo.
+Estabelece a conexão com o banco de dados e reinicia automaticamente o servidor `localhost` toda a vez que o projeto for alterado e salvo.
 
 ### Endpoints:
 #### getAllUsers
