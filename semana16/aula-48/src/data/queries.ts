@@ -44,3 +44,22 @@ export const selectUsersPagination = async (
  
     return result;
 };
+
+export const selectUsers = async (
+        orderBy: string,
+        orderType: string,
+        resultsPerPage: number,
+        offset: number,
+        key?: string, 
+        value?: string
+    ) : Promise<any> => {
+    const result = await connection
+        .select("*")
+        .from("aula48_exercicio")
+        .where(`${key}`, "LIKE", `%${value? value : "%"}%`)  
+        .orderBy(orderBy, orderType)
+        .limit(resultsPerPage)
+        .offset(offset);
+    
+    return result;
+};
