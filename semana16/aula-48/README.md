@@ -24,7 +24,7 @@ Popula a tabela com dados de usuários.
 
 ### Executar o projeto:
 * `npm run start`
-Estabelece a conexão com o banco de dados e executa o projeto no servidor `localhost`.
+*Estabelece a conexão com o banco de dados e executa o projeto no servidor `localhost`.*
 É necessário executar esse comando toda a vez que algum dos arquivos sofrer alteração.
 
 * `npm run dev`:
@@ -36,7 +36,7 @@ Estabelece a conexão com o banco de dados e reinicia automaticamente o servidor
 * Path:`/users/all`
 * Retorna todos os usuários.
 
-#### getFilteresUsers
+#### getFilteredUsers
 * Method: `GET`
 * Path:`/users/search/name`
 * PathParams: `/users/search/name?name=value`
