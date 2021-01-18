@@ -1,14 +1,17 @@
 import express, { Express, Request, Response } from "express";
 import connection from './setup/connection';
 import cors from "cors";
-import dotenv from "dotenv";
 import { AddressInfo } from "net";
-import { recipe } from "./types/recipe";
-import { searchRecipeInput } from "./types/searchRecipeInput"
+import { searchRecipeInput } from "./types/searchRecipeInput";
+import { getAllUsers, getFilteredUsers } from './endpoints/endpoints';
 
 const app: Express = express();
 app.use(express.json());
 app.use(cors())
+
+app.get("/users/all", getAllUsers);
+
+app.get("/users/search", getFilteredUsers);
 
 app.get("/recipes/all", async function (
    req: Request,
