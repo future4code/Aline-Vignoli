@@ -19,3 +19,15 @@ export const selectFilteredUsers = async (key: string, value: string) : Promise<
  
     return result;
 };
+
+export const selectOrderedUsers = async (
+    orderBy: string,
+    orderType: string
+    ) : Promise<any> => {
+    const result = await connection
+    .select("*")
+    .from("aula48_exercicio")
+    .orderBy(orderBy, orderType);
+ 
+    return result;
+};
