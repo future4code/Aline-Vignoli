@@ -3,7 +3,7 @@ import connection from './setup/connection';
 import cors from "cors";
 import { AddressInfo } from "net";
 import { searchRecipeInput } from "./types/searchRecipeInput";
-import { getAllUsers, getFilteredUsers, getOrderedUsers, getUsersByType } from './endpoints/endpoints';
+import { getAllUsers, getFilteredUsers, getOrderedUsers, getUsersByType, getUsersPagination } from './endpoints/endpoints';
 
 const app: Express = express();
 app.use(express.json());
@@ -16,6 +16,8 @@ app.get("/users/search/name", getFilteredUsers);
 app.get("/users/search/type", getUsersByType);
 
 app.get("/users/all/order", getOrderedUsers);
+
+app.get("/users/page", getUsersPagination);
 
 app.get("/recipes/all", async function (
    req: Request,

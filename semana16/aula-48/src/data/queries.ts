@@ -31,3 +31,16 @@ export const selectOrderedUsers = async (
  
     return result;
 };
+
+export const selectUsersPagination = async (
+    resultsPerPage: number,
+    offset: number
+    ) : Promise<any> => {
+    const result = await connection
+    .select("*")
+    .from("aula48_exercicio")
+    .limit(resultsPerPage)
+    .offset(offset)
+ 
+    return result;
+};

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { selectAllUsers, selectFilteredUsers, selectOrderedUsers } from '../data/queries';
+import { selectAllUsers, selectFilteredUsers, selectOrderedUsers, selectUsersPagination } from '../data/queries';
 import { searchUserInput } from '../types/searchUserInput';
 
 export const getAllUsers = async(req: Request, res: Response): Promise<void> =>{
@@ -74,6 +74,36 @@ export const getOrderedUsers = async(req: Request, res: Response): Promise<void>
         }
 
         const users = await selectOrderedUsers(orderBy, orderType);
+    
+        if(!users.length){
+            res.statusCode = 404
+            throw new Error("No users found");
+        };
+    
+        res.status(200).send(users);
+       
+    } catch (error) {
+        console.log(error);
+        res.send(error.message || error.sqlMessage);
+    };
+};
+
+export const getUsersPagination = async(req: Request, res: Response): Promise<void> =>{
+    try {
+        const {
+            page = "1"
+        } = req.query as searchUserInput;
+        const pageNumber: number = Number(page);
+
+        if (!pageNumber) {
+            res.statusCode = 422
+            throw new Error(`"page" deve ser um número positivo`)
+        }
+   
+        const resultsPerPage: number = 5
+        const offset: number = resultsPerPage * (pageNumber - 1)
+
+        const users = await selectUsersPagination(resultsPerPage, offset);
     
         if(!users.length){
             res.statusCode = 404
