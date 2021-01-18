@@ -11,11 +11,11 @@ export const selectAllUsers = async () : Promise<any> => {
     return result[0];
 };
 
-export const selectFilteredUsers = async (name: string) : Promise<any> => {
+export const selectFilteredUsers = async (key: string, value: string) : Promise<any> => {
     const result = await connection
     .select("*")
     .from("aula48_exercicio")
-    .where("name", "LIKE", `%${name}%`);
+    .where(`${key}`, "LIKE", `%${value}%`);
  
     return result;
 };
