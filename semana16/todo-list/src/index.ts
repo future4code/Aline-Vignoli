@@ -145,9 +145,8 @@ app.get("/task?", async (req: Request, res: Response) => {
             errorCode = 404;
             throw new Error("Usuário não encontrado");
         };
-
+        
         const tasks = await getTasksPerUser(user.id);
-        console.log(tasks)
 
         res.status(200).send({
             message: "Success",
