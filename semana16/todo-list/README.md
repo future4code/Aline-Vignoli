@@ -1,6 +1,22 @@
 ### Instruções
+
 * `npm install`:
 Instala as dependências do projeto.
+
+## Criar o arquivo .env
+Criar o arquivo `.env` com as informações do seu banco de dados.
+```
+DB_HOST = host
+DB_USER = usuario
+DB_PASSWORD = senha
+DB_NAME = nome-do-banco-de-dados
+```
+
+* `npm run set-tables`:
+Cria as tabelas necessárias para o projeto.
+
+* `npm run populate`:
+Popula a tabela de usuários com dados iniciais.
 
 * `npm run start`: 
 Inicia a conexão com o banco de dados e roda o projeto.

@@ -104,6 +104,7 @@ app.get("/user/all", async (req: Request, res: Response) => {
 
         res.status(200).send({
             message: "Success",
+            quantity: users.length,
             users: users
         });
     } catch (error) {

@@ -4,6 +4,8 @@
   "description": "Lista de tarefas utilizando SQL",
   "main": "index.js",
   "scripts": {
+    "set-tables": "tsc && node ./build/setup/tables.js",
+    "populate": "tsc && node ./build/setup/data.js",
     "start": "tsc && node ./build/index.js",
     "dev": "ts-node-dev ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
