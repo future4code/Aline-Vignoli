@@ -89,6 +89,25 @@ const getTaskById = async (id: string): Promise<any> => {
     return result[0];
 };
 
+const getTasksPerUser = async (id: string): Promise<any> => {
+    const result = await connection.raw(`
+        SELECT 
+            TodoListTask.id as taskId,
+            title,
+            description,
+            limit_date as limitDate,
+            creator_user_id as creatorUserId,
+            status,
+            nickname as creatorUserNickname
+        FROM TodoListUser
+        JOIN TodoListTask
+        ON TodoListUser.id = TodoListTask.creator_user_id
+        WHERE TodoListUser.id = "${id}";
+    `);
+
+    return result[0];
+};
+
 // ENDPOINTS
 
 // getAllUsers
@@ -113,6 +132,34 @@ app.get("/user/all", async (req: Request, res: Response) => {
         })
     };
 });
+
+// getTasksPerUser
+app.get("/task?", async (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    try {
+        const { creatorUserId } = req.query;
+
+        const user = await getUserById(creatorUserId as string);
+
+        if ( !user ) {
+            errorCode = 404;
+            throw new Error("Usuário não encontrado");
+        };
+
+        const tasks = await getTasksPerUser(user.id);
+        console.log(tasks)
+
+        res.status(200).send({
+            message: "Success",
+            tasks: tasks
+        });
+    } catch (error) {
+        res.status(errorCode).send({
+            message: error.sqlMessage || error.message
+        })
+    };
+});
+
 
 // createUser
 app.post("/user", async (req: Request, res: Response) => {

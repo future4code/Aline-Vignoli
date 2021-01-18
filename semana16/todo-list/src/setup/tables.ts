@@ -28,7 +28,7 @@ const createTables = async (): Promise<void> => {
             );
         `);
 
-        console.log('Tables created successfully, run script "populate" to populate the TodoListUser table with dummy values');   
+        console.log('Tables created successfully, run "npm run populate" to populate the TodoListUser table with dummy values');   
         connection.destroy();   
     } catch (error) {
         console.log(error.sqlMessage || error.message);
