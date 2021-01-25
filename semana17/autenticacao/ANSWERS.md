@@ -35,3 +35,27 @@ export const insertUser = async (user: User) => {
     }).into(USER_TABLE);
 };
 ```
+
+### Exercício 3
+a) O segundo argumento da funcão `sign` precisa ser do tipo `string`. Como nós não sabemos se o valor que está vindo do `process.env.JWT_KEY` é uma `string` (ele pode ser `undefined`), nós temos uma forma de "forçar" o nosso código garantindo que nós só vamos receber esse valor como uma `string`, usando a palavra reservada `as`.
+
+b) Função para gerar token:
+```
+import * as jwt from 'jsonwebtoken';
+
+const expiresIn = '1min';
+
+export const generateToken = (input: AuthenticationData): string => {
+    const token = jwt.sign(
+        { id: input.id },
+        process.env.JWT_KEY as string,
+        { expiresIn }
+    );
+
+    return token;
+};
+
+export type AuthenticationData = {
+    id: string
+};
+```
