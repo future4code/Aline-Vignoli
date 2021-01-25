@@ -5,3 +5,15 @@ export type User = {
     email: string,
     password: string
 };
+
+export const toUserModel = (obj: any): User => {
+    const user: User = {
+        id: obj.id,
+        name: obj.name,
+        nickname: obj.nickname,
+        email: obj.email,
+        password: obj.password
+    };
+
+    return user;
+};
