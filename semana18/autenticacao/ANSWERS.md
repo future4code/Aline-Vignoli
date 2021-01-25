@@ -206,3 +206,6 @@ if ( !input.email.includes("@") ) {
     throw new Error('Um endereço de "email" válido deve conter "@".');
 };
 ```
+
+### Exercício 7
+a) A linha `as any` está dizendo que o payload pode ser de qualquer tipo. Precisamos dela pois estamos retornando um AuthorizationData e precisamos acessar o seu id. Sem o `as any` retornaria um erro.

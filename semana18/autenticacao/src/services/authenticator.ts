@@ -12,6 +12,15 @@ export const generateToken = (input: AuthenticationData): string => {
     return token;
 };
 
+export const getData = (token: string): AuthenticationData => {
+    const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
+    const result = {
+      id: payload.id,
+    };
+    
+    return result;
+};
+
 export type AuthenticationData = {
     id: string
 };
