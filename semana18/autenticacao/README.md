@@ -14,7 +14,7 @@ JWT_KEY = chave-token
 JWT_EXPIRE_TIME = tempo-de-expiracao-token
 ```
 
-### Criar e popular as tabelas
+### Criar a tabela
 * `npm run tables`:
 Cria a tabela User.
 

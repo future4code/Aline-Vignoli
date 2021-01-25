@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { selectUserByEmail } from '../data/selectUserByEmail';
 import { AuthenticationData, generateToken } from '../services/authenticator';
 import { User } from '../types/User';
+import { checkPassword } from '../services/encoder';
 
 export const login = async (
     req: Request,
@@ -31,10 +32,10 @@ export const login = async (
             throw new Error('Usuário não encontrado!');
         };
 
-        if ( input.password !== user.password ) {
+        if ( !checkPassword(input.password, user.password) ) {
             errorCode = 401;
             throw new Error('Senha incorreta.');
-        };
+        }
 
         const authData: AuthenticationData = {id: user.id};
         const token = generateToken(authData);

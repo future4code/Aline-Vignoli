@@ -3,6 +3,7 @@ import { insertUser } from '../data/insertUser';
 import { AuthenticationData, generateToken } from '../services/authenticator';
 import { generate } from '../services/idGenerator';
 import { User } from '../types/User';
+import { hashPassword } from '../services/encoder';
 
 export const signup = async (
     req: Request,
@@ -30,7 +31,7 @@ export const signup = async (
         const user: User = {
             id: generate(),
             email: email,
-            password: password
+            password: hashPassword(password)
         };
 
         await insertUser(user);
