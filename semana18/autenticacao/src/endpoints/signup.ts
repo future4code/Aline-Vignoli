@@ -14,14 +14,24 @@ export const signup = async (
 
         if ( !email || !password ) {
             errorCode = 406;
-            throw new Error('Preencha o "email" e "password" para se cadastrar');
+            throw new Error('Preencha o "email" e "password" para se cadastrar.');
+        };
+
+        if ( !email.includes("@") ) {
+            errorCode = 406;
+            throw new Error('Um endereço de "email" válido deve conter "@".');
+        };
+
+        if ( password.length < 6 ) {
+            errorCode = 406;
+            throw new Error('A senha deve conter no mínimo 6 caracteres.');
         };
 
         const user: User = {
             id: generate(),
             email: email,
             password: password
-        }
+        };
 
         await insertUser(user);
 
@@ -31,6 +41,6 @@ export const signup = async (
         res.status(200).send({token});
 
     } catch (error) {
-        res.status(errorCode).send(error.message || error.sqlMessage);
+        res.status(errorCode).send(error.sqlMessage || error.message );
     };
 };
