@@ -12,8 +12,8 @@ b) A query utilizada foi:
 ```
 CREATE TABLE ${USER_TABLE} (
     id VARCHAR(64) NOT NULL PRIMARY KEY,
-    name VARCHAR(64) NOT NULL,
-    nickname VARCHAR(64) NOT NULL UNIQUE,
+    name VARCHAR(64),
+    nickname VARCHAR(64),
     email VARCHAR(64) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 );
@@ -23,7 +23,7 @@ c) Função que insere usuários na tabela:
 ```
 import { User } from '../types/User';
 import { connection } from './connection';
-import { USER_TABLE } from '../setup/tables';
+export const USER_TABLE = "User";
 
 export const insertUser = async (user: User) => {
     await connection.insert({
@@ -59,3 +59,5 @@ export type AuthenticationData = {
     id: string
 };
 ```
+
+### Exercício 4

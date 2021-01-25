@@ -1,6 +1,6 @@
 import { User } from '../types/User';
 import { connection } from './connection';
-import { USER_TABLE } from '../setup/tables';
+export const USER_TABLE = "User";
 
 export const insertUser = async (user: User) => {
     await connection.insert({

@@ -1,14 +1,13 @@
 import { connection } from '../data/connection';
-
-export const USER_TABLE = "User";
+import { USER_TABLE } from '../data/insertUser';
 
 const createUserTable = async () => {
     try {
         await connection.raw(`
             CREATE TABLE ${USER_TABLE} (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
-                name VARCHAR(64) NOT NULL,
-                nickname VARCHAR(64) NOT NULL UNIQUE,
+                name VARCHAR(64),
+                nickname VARCHAR(64),
                 email VARCHAR(64) NOT NULL UNIQUE,
                 password VARCHAR(255) NOT NULL
             );
