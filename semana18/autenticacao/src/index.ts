@@ -1,12 +1,14 @@
 import express from "express";
 import { AddressInfo } from "net";
 import { signup } from './endpoints/signup';
+import { login } from './endpoints/login';
 
 // Express settings
 const app = express();
 app.use(express.json());
 
 app.post('/user/signup', signup);
+app.post('/user/login', login);
 
 
 // Server settings
