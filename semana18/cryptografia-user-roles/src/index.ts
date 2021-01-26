@@ -8,7 +8,7 @@ import { getLoggedUser } from "./endpoints/getLoggedUser";
 const app = express();
 app.use(express.json());
 
-app.get('/user', getLoggedUser);
+app.get('/user/profile', getLoggedUser);
 app.post('/user/signup', signup);
 app.post('/user/login', login);
 

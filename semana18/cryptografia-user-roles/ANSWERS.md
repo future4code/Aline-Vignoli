@@ -25,6 +25,127 @@ export const compare = (
 ```
 
 ### Exercício 2
+a) Devemos primeiro modificar o endpoint de cadastro.
+Pois assim, nós primeiro salvamos no Banco de Dados a senha criptografada. Em seguida, no endpoint de login, nós verificamos se a senha passada no `body` é compatível com a senha que está salva no Banco, atravéz da nossa função `compare`.
+
+b) Endpoint de signup refatorado:
+```
+import { Request, Response } from 'express';
+import { insertUser } from '../data/insertUser';
+import { AuthenticationData, generateToken } from '../services/authenticator';
+import { generate } from '../services/idGenerator';
+import { User } from '../types/User';
+import { hash } from '../services/hashManager';
+
+export const signup = async (
+    req: Request,
+    res: Response
+) : Promise<void> =>  {
+    let errorCode: number = 400;
+    try {
+        const { email, password } = req.body;
+
+        if ( !email || !password ) {
+            errorCode = 406;
+            throw new Error('Preencha o "email" e "password" para se cadastrar.');
+        };
+
+        if ( !email.includes("@") ) {
+            errorCode = 406;
+            throw new Error('Um endereço de "email" válido deve conter "@".');
+        };
+
+        if ( password.length < 6 ) {
+            errorCode = 406;
+            throw new Error('A senha deve conter no mínimo 6 caracteres.');
+        };
+
+        const id: string = generate();
+        const cypherPassword: string = hash(password);
+
+        const user: User = {
+            id,
+            email,
+            password: cypherPassword
+        };
+
+        await insertUser(user);
+
+        const authData: AuthenticationData = {id: user.id};
+        const token = generateToken(authData);
+
+        res.status(200).send({token});
+
+    } catch (error) {
+        res.status(errorCode).send(error.sqlMessage || error.message );
+    };
+};
+```
+
+c) Endpoint de login refatorado:
+```
+import { Request, Response } from 'express';
+import { selectUserByEmail } from '../data/selectUserByEmail';
+import { AuthenticationData, generateToken } from '../services/authenticator';
+import { User } from '../types/User';
+import { compare } from '../services/hashManager';
+
+export const login = async (
+    req: Request,
+    res: Response
+) : Promise<void> =>  {
+    let errorCode: number = 400;
+    try {
+        const input: loginInput = {
+            email: req.body.email,
+            password: req.body.password
+        };
+
+        if ( !input.email || !input.password ) {
+            errorCode = 406;
+            throw new Error('Preencha o "email" e "password" para fazer o login.');
+        };
+
+        if ( !input.email.includes("@") ) {
+            errorCode = 406;
+            throw new Error('Um endereço de "email" válido deve conter "@".');
+        };
+
+        const user: User | null = await selectUserByEmail(input.email);
+
+        if ( !user ) {
+            errorCode = 404;
+            throw new Error('Usuário não encontrado!');
+        };
+
+        const passwordIsCorrect: boolean = compare(
+            input.password,
+            user.password
+        );
+
+        if ( !passwordIsCorrect ) {
+            errorCode = 401;
+            throw new Error('Senha incorreta.');
+        };
+
+        const authData: AuthenticationData = {id: user.id};
+        const token = generateToken(authData);
+
+        res.status(200).send({token});
+
+    } catch (error) {
+        res.status(errorCode).send(error.sqlMessage || error.message );
+    };
+};
+
+type loginInput = {
+    email: string,
+    password: string
+};
+```
+
+d) Esse endpoint não precisa ser alterado pois ele apenas pega o `id` do usuário, que está encriptado no `token` passado pelo `authorization`, e verifica no banco se esse usuário existe. 
+Caso ele exista, nós enviamos como resposta informações desse usuário.
 
 ### Exercício 3
 
