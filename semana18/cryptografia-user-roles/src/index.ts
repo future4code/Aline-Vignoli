@@ -2,14 +2,16 @@ import express from "express";
 import { AddressInfo } from "net";
 import { signup } from './endpoints/signup';
 import { login } from './endpoints/login';
-import { getLoggedUser } from "./endpoints/getLoggedUser";
+import { getUserProfile } from "./endpoints/getUserProfile";
 import { removeUser } from "./endpoints/removeUser";
+import { getUserById } from "./endpoints/getUserById";
 
 // Express settings
 const app = express();
 app.use(express.json());
 
-app.get('/user/profile', getLoggedUser);
+app.get('/user/profile', getUserProfile);
+app.get('/user', getUserById);
 app.post('/user/signup', signup);
 app.post('/user/login', login);
 app.delete('/user/:id', removeUser);

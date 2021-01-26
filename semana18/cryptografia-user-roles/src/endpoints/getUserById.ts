@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { selectUserById } from '../data/selectUserById';
 import { getData } from '../services/authenticator';
-import { User, USER_ROLES } from '../types/User';
+import { User } from '../types/User';
 
-export const getLoggedUser = async (
+export const getUserById = async (
     req: Request,
     res: Response
 ) : Promise<void> =>  {
@@ -12,12 +12,6 @@ export const getLoggedUser = async (
         const token = req.headers.authorization as string;
         const authData = getData(token);
         const user: User | null = await selectUserById(authData.id);
-        const unauthorized: boolean = authData.role !== USER_ROLES.NORMAL;
-
-        if ( unauthorized ) {
-            errorCode = 401;
-            throw new Error('Você não tem permissão para acessar essas informações');
-        };
 
         if ( !user ) {
             errorCode = 404;
@@ -25,7 +19,7 @@ export const getLoggedUser = async (
         };
 
         res.status(200).send(
-            { user: { id: user.id, name: user.name, email: user.email} }
+            { user: { id: user.id, email: user.email, role: user.role } }
         );
 
     } catch (error) {

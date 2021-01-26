@@ -321,14 +321,14 @@ type loginInput = {
 ```
 
 ### Exercício 4
-a) Endpoint getLoggedUser refatorado:
+a) Endpoint getUserProfile refatorado:
 ```
 import { Request, Response } from 'express';
 import { selectUserById } from '../data/selectUserById';
 import { getData } from '../services/authenticator';
 import { User, USER_ROLES } from '../types/User';
 
-export const getLoggedUser = async (
+export const getUserProfile = async (
     req: Request,
     res: Response
 ) : Promise<void> =>  {
@@ -398,3 +398,34 @@ export const removeUser = async (req: Request, res: Response) : Promise<void> =>
 ```
 
 ### Exercício 6
+a) Endpoint getUserById
+```
+import { Request, Response } from 'express';
+import { selectUserById } from '../data/selectUserById';
+import { getData } from '../services/authenticator';
+import { User } from '../types/User';
+
+export const getUserById = async (
+    req: Request,
+    res: Response
+) : Promise<void> =>  {
+    let errorCode: number = 400;
+    try {
+        const token = req.headers.authorization as string;
+        const authData = getData(token);
+        const user: User | null = await selectUserById(authData.id);
+
+        if ( !user ) {
+            errorCode = 404;
+            throw new Error('Usuário não encontrado!');
+        };
+
+        res.status(200).send(
+            { user: { id: user.id, email: user.email, role: user.role } }
+        );
+
+    } catch (error) {
+        res.status(errorCode).send(error.sqlMessage || error.message );
+    };
+};
+```
