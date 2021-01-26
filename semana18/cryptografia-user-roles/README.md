@@ -1,10 +1,10 @@
-# Instruções
+## Instruções
 
 * `npm install`:
 Instala as dependências do projeto.
 
-## Criar o arquivo .env
-Criar o arquivo `.env` com as informações do seu banco de dados.
+### Criar o arquivo .env
+Criar o arquivo `.env` com as informações sensíveis do projeto (banco de dados, chave de acesso JWT e configurações de criptografia).
 ```
 DB_HOST = host
 DB_USER = usuario
@@ -17,18 +17,19 @@ JWT_EXPIRE_TIME = tempo-de-expiracao-token
 BCRYPT_COST = numero-de-rounds
 ```
 
-## Criar a tabela
+### Criar a tabela
 * `npm run tables`:
 Cria a tabela User.
 
-## Executar o projeto
+### Executar o projeto
 
 * `npm run start`: 
 Inicia a conexão com o banco de dados e roda o projeto.
-Precisa dar o comando `ctrl + C` para parar a execução.
+
+*OU*
 
 * `npm run dev`:
-Reinicia o servidor automaticamente toda a vez que o projeto for salvo.
+Executa o projeto e reinicia o servidor automaticamente toda a vez que o projeto for salvo.
 
 ## ENDPOINTS 
 
@@ -76,4 +77,4 @@ Reinicia o servidor automaticamente toda a vez que o projeto for salvo.
   * Path: `/user/:id`
   * Headers: Authorization (Token de acesso, acesso restrito para role `ADMIN`)
   * Body de Resposta: (retornar um erro se não encontrar)
-    * Usuário excluído com sucesso!    
+    * Usuário excluído com sucesso!  
