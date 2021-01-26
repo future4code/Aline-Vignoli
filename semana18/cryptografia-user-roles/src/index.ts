@@ -3,6 +3,7 @@ import { AddressInfo } from "net";
 import { signup } from './endpoints/signup';
 import { login } from './endpoints/login';
 import { getLoggedUser } from "./endpoints/getLoggedUser";
+import { removeUser } from "./endpoints/removeUser";
 
 // Express settings
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.get('/user/profile', getLoggedUser);
 app.post('/user/signup', signup);
 app.post('/user/login', login);
+app.delete('/user/:id', removeUser);
 
 
 // Server settings
