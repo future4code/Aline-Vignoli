@@ -6,10 +6,7 @@ export const generateToken = (
 ): string => {
 
     const token: string = jwt.sign(
-        {
-            id: payload.id,
-            role: payload.role
-        },
+        payload,
         process.env.JWT_KEY as string,
         {expiresIn: process.env.JWT_EXPIRE_TIME}
     );
@@ -18,9 +15,9 @@ export const generateToken = (
 };
 
 export const getData = (token: string): AuthenticationData => {
-    const payload = jwt.verify(token, process.env.JWT_KEY!);
- 
-    return payload as AuthenticationData;
+    const { id, role } = jwt.verify(token, process.env.JWT_KEY!) as AuthenticationData;
+
+    return { id, role };
 };
 
 export type AuthenticationData = {

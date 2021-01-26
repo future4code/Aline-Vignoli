@@ -18,7 +18,8 @@ export const toUserModel = (obj: any): User => {
         name: obj.name,
         nickname: obj.nickname,
         email: obj.email,
-        password: obj.password
+        password: obj.password,
+        role: obj.role
     };
 
     return user;
