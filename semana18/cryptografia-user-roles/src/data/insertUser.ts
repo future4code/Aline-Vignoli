@@ -8,6 +8,7 @@ export const insertUser = async (user: User) => {
         name: user.name,
         nickname: user.nickname,
         email: user.email,
-        password: user.password
+        password: user.password,
+        role: user.role
     }).into(USER_TABLE);
 };

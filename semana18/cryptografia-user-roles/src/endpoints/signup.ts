@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { insertUser } from '../data/insertUser';
 import { AuthenticationData, generateToken } from '../services/authenticator';
 import { generate } from '../services/idGenerator';
-import { User } from '../types/User';
+import { User, USER_ROLES } from '../types/User';
 import { hash } from '../services/hashManager';
 
 export const signup = async (
@@ -11,11 +11,18 @@ export const signup = async (
 ) : Promise<void> =>  {
     let errorCode: number = 400;
     try {
-        const { email, password } = req.body;
+        const { name, nickname, email, password, role } = req.body;
 
-        if ( !email || !password ) {
+        if ( !email || !password || !name || !nickname ) {
             errorCode = 406;
-            throw new Error('Preencha o "email" e "password" para se cadastrar.');
+            throw new Error('Preencha "name", "nickname", "email" e "password" para se cadastrar.');
+        };
+
+        if ( role !== USER_ROLES.ADMIN &&
+             role !== USER_ROLES.NORMAL
+        ) {
+            errorCode = 406;
+            throw new Error('"role" precisa ser "ADMIN" ou "NORMAL".');
         };
 
         if ( !email.includes("@") ) {
@@ -33,13 +40,20 @@ export const signup = async (
 
         const user: User = {
             id,
+            name,
+            nickname,
             email,
-            password: cypherPassword
+            password: cypherPassword,
+            role
         };
 
         await insertUser(user);
 
-        const authData: AuthenticationData = {id: user.id};
+        const authData: AuthenticationData = {
+            id: user.id,
+            role
+        };
+
         const token = generateToken(authData);
 
         res.status(200).send({token});

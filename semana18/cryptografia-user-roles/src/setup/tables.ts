@@ -6,10 +6,11 @@ const createUserTable = async () => {
         await connection.raw(`
             CREATE TABLE ${USER_TABLE} (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
-                name VARCHAR(64),
-                nickname VARCHAR(64),
+                name VARCHAR(64) NOT NULL,
+                nickname VARCHAR(64) NOT NULL,
                 email VARCHAR(64) NOT NULL UNIQUE,
-                password VARCHAR(255) NOT NULL
+                password VARCHAR(255) NOT NULL,
+                role enum('NORMAL','ADMIN') DEFAULT 'NORMAL'
             );
         `);
 

@@ -1,9 +1,15 @@
+export enum USER_ROLES {
+    ADMIN = 'ADMIN',
+    NORMAL = 'NORMAL'
+};
+
 export type User = {
     id: string, 
-    name?: string,
-    nickname?: string,
+    name: string,
+    nickname: string,
     email: string,
-    password: string
+    password: string,
+    role?: USER_ROLES
 };
 
 export const toUserModel = (obj: any): User => {

@@ -42,7 +42,7 @@ export const login = async (
             throw new Error('Senha incorreta.');
         };
 
-        const authData: AuthenticationData = {id: user.id};
+        const authData: AuthenticationData = {id: user.id, role: user.role!};
         const token = generateToken(authData);
 
         res.status(200).send({token});
