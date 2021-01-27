@@ -7,6 +7,7 @@ import { hash } from '../services/hashManager';
 import { address } from '../types/address';
 import { getAddressByCep } from '../services/addressManager';
 import { insertAddress } from '../data/insertAddress';
+import { insertUserAddressRelation } from '../data/insertUserAddressRelation';
 
 export const signup = async (
     req: Request,
@@ -86,6 +87,7 @@ export const signup = async (
 
         await insertUser(user);
         await insertAddress(address);
+        await insertUserAddressRelation(user.id, addressId);
 
         const authData: AuthenticationData = {
             id: user.id,
