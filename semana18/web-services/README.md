@@ -17,9 +17,9 @@ JWT_EXPIRE_TIME = tempo-de-expiracao-token
 BCRYPT_COST = numero-de-rounds
 ```
 
-### Criar a tabela
+### Criar as tabelas
 * `npm run tables`:
-Cria a tabela User.
+Cria as tabelas 'User', 'Address' e 'User_Address'
 
 ### Executar o projeto
 
