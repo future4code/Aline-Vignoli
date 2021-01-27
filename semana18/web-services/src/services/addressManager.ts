@@ -8,7 +8,7 @@ export const getAddressByCep = async (cep: string) => {
         const result = await axios.get(`${BASE_URL}/${cep}/json`);
         const address: address = {
             name: result.data.logradouro,
-            neighbourhood: result.data.bairro,
+            neighborhood: result.data.bairro,
             city: result.data.localidade,
             state: result.data.uf
         };

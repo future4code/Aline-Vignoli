@@ -4,6 +4,9 @@ import { AuthenticationData, generateToken } from '../services/authenticator';
 import { generate } from '../services/idGenerator';
 import { User, USER_ROLES } from '../types/User';
 import { hash } from '../services/hashManager';
+import { address } from '../types/address';
+import { getAddressByCep } from '../services/addressManager';
+import { insertAddress } from '../data/insertAddress';
 
 export const signup = async (
     req: Request,
@@ -13,9 +16,26 @@ export const signup = async (
     try {
         const { name, nickname, email, password, role } = req.body;
 
+        if ( !req.body.address ) {
+            errorCode = 406;
+            throw new Error('Informe o campo "address" com "cep", "number" e "additionalInfo"');
+        }
+
+        const { cep, number, additionalInfo } = req.body.address;
+
         if ( !email || !password || !name || !nickname ) {
             errorCode = 406;
             throw new Error('Preencha "name", "nickname", "email" e "password" para se cadastrar.');
+        };
+
+        if ( !cep || !number ) {
+            errorCode = 406;
+            throw new Error('Preencha seus endereços "cep" e "number"');
+        };
+
+        if ( isNaN(Number(cep)) || cep.includes("-") ) {
+            errorCode = 406;
+            throw new Error("Apenas números são válidos");
         };
 
         if ( role !== USER_ROLES.ADMIN &&
@@ -37,6 +57,23 @@ export const signup = async (
 
         const id: string = generate();
         const cypherPassword: string = hash(password);
+        const myAddress: address = await getAddressByCep(cep);
+
+        if (!myAddress) {
+            errorCode = 404;
+            throw new Error('CEP não encontrado');
+        };
+
+        const addressId: string = generate();
+        const address: address = {
+            id: addressId,
+            name: myAddress.name,
+            number: number,
+            neighborhood: myAddress.neighborhood,
+            additionalInfo: additionalInfo,
+            city: myAddress.city,
+            state: myAddress.state
+        }
 
         const user: User = {
             id,
@@ -48,6 +85,7 @@ export const signup = async (
         };
 
         await insertUser(user);
+        await insertAddress(address);
 
         const authData: AuthenticationData = {
             id: user.id,
