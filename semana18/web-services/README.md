@@ -15,6 +15,12 @@ JWT_KEY = chave-token
 JWT_EXPIRE_TIME = tempo-de-expiracao-token
 
 BCRYPT_COST = numero-de-rounds
+
+# Nodemailer infos
+NM_HOST = host-email
+NM_PORT = porta-servidor-email
+NM_USER = usuario
+NM_PASS = senha
 ```
 
 ### Criar as tabelas
