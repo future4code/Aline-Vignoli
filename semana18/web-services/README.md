@@ -42,6 +42,11 @@ Executa o projeto e reinicia o servidor automaticamente toda a vez que o projeto
     * email (obrigatório)
     * password (obrigatório)
     * role (obrigatório => `ADMIN` ou `NORMAL`)
+    * address {
+      * cep (obrigatório)
+      * number (obrigatório)
+      * additionalInfo
+    }
 
 * ### login
   * Método: POST
