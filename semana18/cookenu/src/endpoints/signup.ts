@@ -3,17 +3,21 @@ import { insertUser } from '../data/insertUser';
 import { AuthenticationData, generateToken } from '../service/authenticator';
 import { hash } from '../service/hashManager';
 import { generate } from '../service/idGenerator';
+import { input } from '../types/input';
 import { user, USER_ROLES } from '../types/user';
+import { checkInputs, checkValidRoles } from '../util/validate';
 
 export const signup = async (req: Request, res: Response) : Promise<void> => {
     let errorCode: number = 400;
     try {
         const { name, email, password, role } = req.body;
+        const inputs: input[] = [
+            { name: "name", value: name },
+            { name: "email", value: email },
+            { name: "password", value: password }
+        ];
 
-        if ( !name || !email || !password ) {
-            errorCode = 422;
-            throw new Error("Please, fill the request body with the fields 'name', 'email' and 'password'.");
-        };
+        checkInputs(inputs);
 
         if ( role && !checkValidRoles(role) ) {
             errorCode = 406;
@@ -40,8 +44,4 @@ export const signup = async (req: Request, res: Response) : Promise<void> => {
     } catch (error) {
         res.status(errorCode).send({ message: error.sqlMessage || error.message });
     };
-};
-
-const checkValidRoles = (role: string) : boolean => {
-    return role === USER_ROLES.NORMAL || role === USER_ROLES.ADMIN;
 };

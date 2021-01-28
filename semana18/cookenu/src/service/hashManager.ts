@@ -1,21 +1,19 @@
-import * as bcrypt from "bcryptjs"
-import dotenv from "dotenv"
+import * as bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config();
 
-export function hash(
-   plainText:string
-):string{
-   const cost: number = Number(process.env.BCRYPT_COST)
-   const salt: string = bcrypt.genSaltSync(cost)
-   const cypherText: string = bcrypt.hashSync(plainText, salt)
+export const hash = (plainText: string): string => {
+   const cost: number = Number(process.env.BCRYPT_COST);
+   const salt: string = bcrypt.genSaltSync(cost);
+   const cypherText: string = bcrypt.hashSync(plainText, salt);
 
-   return cypherText
-}
+   return cypherText;
+};
 
-export function compare(
-   plainText:string,
-   cypherText:string
-):boolean{
-   return bcrypt.compareSync(plainText, cypherText)
-}
+export const compare = (
+   plainText: string,
+   cypherText: string
+): boolean => {
+   return bcrypt.compareSync(plainText, cypherText);
+};
