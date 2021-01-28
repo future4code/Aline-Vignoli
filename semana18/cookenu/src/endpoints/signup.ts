@@ -5,7 +5,7 @@ import { hash } from '../service/hashManager';
 import { generate } from '../service/idGenerator';
 import { input } from '../types/input';
 import { user, USER_ROLES } from '../types/user';
-import { checkInputs, checkValidRoles } from '../util/validate';
+import { checkInputs, checkPassword, checkValidRoles } from '../util/validate';
 
 export const signup = async (req: Request, res: Response) : Promise<void> => {
     let errorCode: number = 400;
@@ -18,6 +18,7 @@ export const signup = async (req: Request, res: Response) : Promise<void> => {
         ];
 
         checkInputs(inputs);
+        checkPassword(password);
 
         if ( role && !checkValidRoles(role) ) {
             errorCode = 406;

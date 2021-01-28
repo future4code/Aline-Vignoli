@@ -2,10 +2,12 @@ import express from "express";
 import { AddressInfo } from "net";
 import { signup } from "./endpoints/signup";
 import { login } from "./endpoints/login";
+import { getLoggedUser } from "./endpoints/getLoggedUser";
 
 const app = express();
 app.use(express.json());
 
+app.get('/user/profile', getLoggedUser);
 app.post('/signup', signup);
 app.post('/login', login);
 
