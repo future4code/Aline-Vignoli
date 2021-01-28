@@ -1,27 +1,17 @@
-import express from 'express'
-import knex from 'knex'
-import cors from 'cors'
-import dotenv from 'dotenv'
+import express from "express";
+import { AddressInfo } from "net";
+import { signup } from "./endpoints/signup";
 
-dotenv.config()
+const app = express();
+app.use(express.json());
 
-export const connection = knex({
-    client: 'mysql',
-    connection: {
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-        port: 3306
-    }
-})
+app.post('/signup', signup);
 
-const app = express()
-app.use(express.json())
-app.use(cors())
-
-
-
-app.listen(3000, ()=>{
-    console.log('Servidor rodando na porta 3000')
-})
+const server = app.listen(process.env.PORT || 3000, () => {
+  if (server) {
+    const address = server.address() as AddressInfo;
+    console.log(`Server is running in http://localhost:${address.port}`);
+  } else {
+    console.error(`Failure upon starting server.`);
+  }
+});
