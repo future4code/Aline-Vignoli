@@ -8,11 +8,13 @@ import { createRecipe } from "./endpoints/createRecipe";
 import { getRecipeById } from "./endpoints/getRecipeById";
 import { followUser } from "./endpoints/followUser";
 import { unfollowUser } from "./endpoints/unfollowUser";
+import { getAllRecipes } from "./endpoints/getAllRecipes";
 
 const app = express();
 app.use(express.json());
 
 app.get('/user/profile', getLoggedUser);
+app.get('/user/feed', getAllRecipes);
 app.get('/user/:id', getUserProfile);
 app.post('/signup', signup);
 app.post('/login', login);

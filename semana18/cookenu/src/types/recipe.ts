@@ -3,7 +3,8 @@ export type recipe = {
     title: string,
     description: string,
     createdAt: string,
-    userId: string
+    userId: string,
+    userName?: string
 };
  
  export const toRecipeModel = (object: any) : recipe => {
@@ -12,7 +13,8 @@ export type recipe = {
        title: object.title,
        description: object.description,
        createdAt: object.createdAt,
-       userId: object.userId
+       userId: object.userId,
+       userName: object.userName
     };
  
     return recipe;
