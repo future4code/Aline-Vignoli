@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { checkInputs } from '../util/validate';
+import { checkInputs } from '../service/validate';
 import { input } from '../types/input';
 import { user } from '../types/user';
 import { compare } from '../service/hashManager';

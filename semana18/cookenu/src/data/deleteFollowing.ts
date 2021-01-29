@@ -1,5 +1,5 @@
 import connection from './connection';
-import { USER_FOLLOWING } from '../constants/tableNames';
+import { USER_FOLLOWING } from '../setup/tableNames';
 
 export const deleteFollowing = async ( 
     followingUserId: string

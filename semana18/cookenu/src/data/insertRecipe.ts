@@ -1,5 +1,5 @@
 import connection from './connection';
-import { RECIPE_TABLE } from '../constants/tableNames';
+import { RECIPE_TABLE } from '../setup/tableNames';
 import { recipe } from '../types/recipe';
 
 export const insertRecipe = async (recipe: recipe) : Promise<void> => {

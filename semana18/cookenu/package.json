@@ -6,6 +6,7 @@
     "scripts": {
         "start": "tsc && node --inspect ./build/index.js",
         "dev": "ts-node-dev ./src/index.ts",
+        "tables": " echo \"Transpiling files…\" && tsc && echo \"Creating tables…\" && node ./build/setup/tables.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [

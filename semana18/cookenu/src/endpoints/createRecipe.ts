@@ -7,7 +7,7 @@ import { generate } from '../service/idGenerator';
 import { input } from '../types/input';
 import { recipe } from '../types/recipe';
 import { user } from '../types/user';
-import { checkInputs } from '../util/validate';
+import { checkInputs } from '../service/validate';
 
 export const createRecipe = async (req: Request, res: Response) : Promise<void> => {
     let errorCode: number = 400;

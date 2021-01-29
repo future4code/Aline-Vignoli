@@ -5,7 +5,7 @@ import { hash } from '../service/hashManager';
 import { generate } from '../service/idGenerator';
 import { input } from '../types/input';
 import { user, USER_ROLES } from '../types/user';
-import { checkInputs, checkPassword, checkValidRoles } from '../util/validate';
+import { checkInputs, checkPassword, checkValidRoles } from '../service/validate';
 
 export const signup = async (req: Request, res: Response) : Promise<void> => {
     let errorCode: number = 400;

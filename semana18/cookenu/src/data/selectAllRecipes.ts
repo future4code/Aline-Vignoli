@@ -1,6 +1,6 @@
 import connection from './connection';
-import { RECIPE_TABLE, USER_TABLE } from '../constants/tableNames';
-import { recipe, toRecipeModel } from '../types/recipe';
+import { RECIPE_TABLE, USER_TABLE } from '../setup/tableNames';
+import { recipe } from '../types/recipe';
 
 export const selectAllRecipes = async () 
 : Promise<recipe[] | null> => {

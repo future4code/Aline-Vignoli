@@ -1,5 +1,5 @@
 import connection from './connection';
-import { USER_TABLE } from '../constants/tableNames';
+import { USER_TABLE } from '../setup/tableNames';
 import { user } from '../types/user';
 
 export const insertUser = async (user: user) : Promise<void> => {

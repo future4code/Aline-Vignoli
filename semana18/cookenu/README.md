@@ -17,8 +17,11 @@ JWT_EXPIRE_TIME = tempo-de-expiracao-token
 BCRYPT_COST = numero-de-rounds
 ```
 
-### Executar o projeto
+### Criar as tabelas
+* `npm run tables`:
+Cria as tabelas 'Cookenu_User', 'Cookenu_Recipe', 'Cookenu_User_Following' e 'Cookenu_User_Followers'
 
+### Executar o projeto
 * `npm run start`: 
 Inicia a conexão com o banco de dados e roda o projeto.
 
