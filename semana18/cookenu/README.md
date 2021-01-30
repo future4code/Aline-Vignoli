@@ -136,4 +136,14 @@ Executa o projeto e reinicia o servidor automaticamente toda a vez que o projeto
       * userName
       }
     ]
-        
+
+* ### updateRecipe
+  * Método: PUT
+  * Path: `/recipe/edit/:id`
+  * Path params: `id`
+  * Headers: Authorization (token de acesso)
+  * Body: (informar 'title' *ou* 'description')
+    * title
+    * description
+  * Body de Resposta: (retornar um erro se a receita for de outro usuário ou se o id for inválido)
+    * Recipe updated successfuly!        
