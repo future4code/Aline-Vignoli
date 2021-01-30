@@ -23,14 +23,14 @@ export const unfollowUser = async (req: Request, res: Response): Promise<void> =
 
         const authData = getTokenData(token);
         const loggedUser: user | null = await selectUserByPropriety("id", authData.id);
-        const userToFollow: user | null = await selectUserByPropriety("id", userToUnfollowId);
+        const userToUnfollow: user | null = await selectUserByPropriety("id", userToUnfollowId);
 
         if ( !loggedUser ) {
             errorCode = 404;
             throw new Error('User not found');
         };
 
-        if ( !userToFollow ) {
+        if ( !userToUnfollow ) {
             errorCode = 404;
             throw new Error(
                 "The profile you are trying to unfollow were not found. Please, make sure you have the correct 'id'"
