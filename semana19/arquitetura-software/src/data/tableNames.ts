@@ -1,0 +1,1 @@
+export const USER_TABLE = "User_Arq";

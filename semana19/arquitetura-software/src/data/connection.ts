@@ -1,7 +1,7 @@
-import knex from 'knex'
-import dotenv from 'dotenv'
+import knex from 'knex';
+import dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config();
 
 export const connection = knex({
    client: 'mysql',
@@ -10,6 +10,12 @@ export const connection = knex({
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      port: 3306
+      port: 3306,
+      multipleStatements: true
    }
-})
+});
+
+export const destroyConnection = async () => {
+   connection.destroy();
+   console.log('database has disconnected');
+};
