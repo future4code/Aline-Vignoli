@@ -1,12 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import { login, signup } from './controller/userController';
+import { getAllUsers, login, signup } from './controller/userController';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get('/all', getAllUsers);
 app.put('/signup', signup);
 app.post('/login', login);
 

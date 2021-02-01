@@ -1,4 +1,4 @@
-import { insertUser, selectUserByEmail } from "../data/userDatabase";
+import { insertUser, selectAllUsers, selectUserByEmail } from "../data/userDatabase";
 import { authenticationData, user } from "./entities/user";
 import { generateToken } from "./services/authenticator";
 import { compare, hash } from "./services/hashManager";
@@ -67,4 +67,21 @@ export const getUserByEmail = async (
     const token: string = generateToken(payload);
 
     return token;
+};
+
+export const businessGetAllUsers = async (
+    token: string
+) : Promise<user[]> => {
+
+    if ( !token ) {
+        throw new Error("Please inform 'email' and 'password' to proceed");
+    };
+
+    const users: user[] | null = await selectAllUsers();
+
+    if ( !users ) {
+        throw new Error("No users to show");
+    };
+
+    return users;
 };

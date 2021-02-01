@@ -24,3 +24,12 @@ export const selectUserByEmail = async (
 
     return result[0] ? toUserModel(result[0]) : null;
 };
+
+export const selectAllUsers = async () 
+: Promise<user[] | null> => {
+    const result = await connection
+    .select("*")
+    .from(USER_TABLE);
+
+    return result;
+};

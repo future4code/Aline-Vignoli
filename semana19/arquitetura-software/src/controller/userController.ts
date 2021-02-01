@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { businessSignup, getUserByEmail } from '../business/userBusiness';
+import { user } from '../business/entities/user';
+import { businessGetAllUsers, businessSignup, getUserByEmail } from '../business/userBusiness';
 import { destroyConnection } from '../data/connection';
 
 export const signup = async (
@@ -28,6 +29,21 @@ export const login = async (
         const token: string = await getUserByEmail(input);
 
         res.status(200).send({ token });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message || error.sqlMessage });
+    }
+};
+
+export const getAllUsers = async (
+    req: Request,
+    res: Response
+) : Promise<void> => {
+    try {
+        const token: string = req.headers.authorization!;
+        const users: user[] = await businessGetAllUsers(token);
+    
+        res.status(200).send({ users });
 
     } catch (error) {
         res.status(400).send({ message: error.message || error.sqlMessage });
