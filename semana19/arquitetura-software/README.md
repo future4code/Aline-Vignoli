@@ -19,7 +19,7 @@ BCRYPT_COST = numero-de-rounds
 
 ### Criar tabela
 * `npm run tables`:
-Cria a tabela User_Arq'
+Cria a tabela User_Arq
 
 ### Executar o projeto
 
