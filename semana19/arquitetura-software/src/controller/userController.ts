@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { businessSignup } from '../business/userBusiness';
+import { businessSignup, getUserByEmail } from '../business/userBusiness';
 import { destroyConnection } from '../data/connection';
 
 export const signup = async (
@@ -16,6 +16,20 @@ export const signup = async (
     } catch (error) {
         res.status(400).send({ message: error.message || error.sqlMessage });
     };
+};
 
-    await destroyConnection();
+export const login = async (
+    req: Request,
+    res: Response
+) : Promise<void> => {
+    try {
+        const { email, password } = req.body;
+        const input = { email, password };
+        const token: string = await getUserByEmail(input);
+
+        res.status(200).send({ token });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message || error.sqlMessage });
+    }
 };

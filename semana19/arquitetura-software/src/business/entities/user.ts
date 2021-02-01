@@ -20,3 +20,15 @@ export type input = {
     name: string,
     value: string
 };
+
+export const toUserModel = (object: any) : user => {
+    const userModel: user = {
+        id: object.id,
+        name: object.name,
+        email: object.email,
+        password: object.password,
+        role: object.role
+    };
+
+    return userModel;
+};

@@ -1,13 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import { signup } from './controller/userController';
+import { login, signup } from './controller/userController';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 app.put('/signup', signup);
+app.post('/login', login);
 
 const server = app.listen(process.env.PORT || 3000, () => {
    if (server) {
