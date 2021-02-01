@@ -77,6 +77,8 @@ export const businessGetAllUsers = async (
         throw new Error("You need to login to access this information");
     };
 
+    getTokenData(token);
+
     const users: user[] | null = await selectAllUsers();
 
     if ( !users ) {

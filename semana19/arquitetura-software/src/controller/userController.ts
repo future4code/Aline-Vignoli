@@ -16,6 +16,8 @@ export const signup = async (
 
     } catch (error) {
         res.status(400).send({ message: error.message || error.sqlMessage });
+    } finally {
+        destroyConnection();
     };
 };
 
@@ -32,7 +34,9 @@ export const login = async (
 
     } catch (error) {
         res.status(400).send({ message: error.message || error.sqlMessage });
-    }
+    } finally {
+        destroyConnection();
+    };
 };
 
 export const getAllUsers = async (
@@ -47,7 +51,9 @@ export const getAllUsers = async (
 
     } catch (error) {
         res.status(400).send({ message: error.message || error.sqlMessage });
-    }
+    } finally {
+        destroyConnection();
+    };
 };
 
 export const removeUser = async (
@@ -64,5 +70,7 @@ export const removeUser = async (
 
     } catch (error) {
         res.status(400).send({ message: error.message || error.sqlMessage });
+    } finally {
+        destroyConnection();
     }
 };
