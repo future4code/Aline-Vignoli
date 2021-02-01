@@ -1,5 +1,33 @@
 # Arquitetura de Software
 
+## Instruções
+
+* `npm install`:
+Instala as dependências do projeto.
+
+### Criar o arquivo .env
+Criar o arquivo `.env` com as informações sensíveis do projeto (banco de dados, chave de acesso JWT e configurações de criptografia).
+```
+DB_HOST = host
+DB_USER = usuario
+DB_PASSWORD = senha
+DB_NAME = nome-do-banco-de-dados
+JWT_KEY = chave-token
+JWT_EXPIRE_TIME = tempo-de-expiracao-token
+BCRYPT_COST = numero-de-rounds
+```
+
+### Criar tabela
+* `npm run tables`:
+Cria a tabela User_Arq'
+
+### Executar o projeto
+
+* `npm run dev`:
+Executa o projeto e reinicia o servidor automaticamente toda a vez que o projeto for salvo.
+
+---
+
 ## ESTRUTURA DE DADOS  
   
 * ## Users
@@ -9,20 +37,6 @@
   * password
   * role (`NORMAL` ou `ADMIN`)
    
----
-
-## TABELAS - MySQL
-
-```sql
-CREATE TABLE User_Arq(
-	id VARCHAR(255) PRIMARY KEY,
-	name VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL UNIQUE,
-	password VARCHAR(255) NOT NULL,
-	role ENUM ("ADMIN", "NORMAL") DEFAULT "NORMAL"
-);
-```
-
 ---
 
 ## ENDPOINTS 

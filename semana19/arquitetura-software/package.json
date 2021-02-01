@@ -1,11 +1,12 @@
 {
-    "name": "to-do-list",
+    "name": "arquitetura-de-dados",
     "version": "1.0.0",
-    "description": "## ESTRUTURA DE DADOS",
+    "description": "## Trabalhando com arquitetura de dados em camada",
     "main": "index.js",
     "scripts": {
         "start": "tsc && node --inspect ./build/index.js",
         "dev": "ts-node-dev ./src/index.ts",
+        "tables": " echo \"Transpiling files…\" && tsc && echo \"Creating table…\" && node ./build/data/tables.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
