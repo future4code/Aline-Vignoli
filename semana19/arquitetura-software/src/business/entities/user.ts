@@ -16,11 +16,6 @@ export type authenticationData = {
     role: USER_ROLES
 };
 
-export type input = {
-    name: string,
-    value: string
-};
-
 export const toUserModel = (object: any) : user => {
     const userModel: user = {
         id: object.id,

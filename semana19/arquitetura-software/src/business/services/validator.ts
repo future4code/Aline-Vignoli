@@ -1,12 +1,4 @@
-import { USER_ROLES, input } from "../entities/user";
-
-export const checkInputs = (inputs: input[]) : void => {
-    for (let input of inputs) {
-        if ( !input.value ) {
-            throw new Error(`The input '${input.name}' is required`);
-        };
-    };
-};
+import { USER_ROLES } from "../entities/user";
 
 export const checkPassword = (password: string) : void => {
     if ( password.length < 6 ) {
