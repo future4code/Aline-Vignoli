@@ -14,13 +14,14 @@ export const insertUser = async (
     }).into(USER_TABLE);
 };
 
-export const selectUserByEmail = async (
-    email: string
+export const selectUserByPropriety = async (
+    name: string,
+    value: string
 ) : Promise<user | null> => {
     const result = await connection
     .select("*")
     .from(USER_TABLE)
-    .where({ email });
+    .where( name, "=",  `${value}` );
 
     return result[0] ? toUserModel(result[0]) : null;
 };
@@ -32,4 +33,13 @@ export const selectAllUsers = async ()
     .from(USER_TABLE);
 
     return result;
+};
+
+export const deleteUser = async (
+    id: string
+) : Promise<void> => {
+    await connection
+    .delete()
+    .from(USER_TABLE)
+    .where({ id });
 };

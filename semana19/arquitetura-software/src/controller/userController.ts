@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { user } from '../business/entities/user';
-import { businessGetAllUsers, businessSignup, getUserByEmail } from '../business/userBusiness';
+import { businessGetAllUsers, businessRemoveUser, businessSignup, getUserByEmail } from '../business/userBusiness';
 import { destroyConnection } from '../data/connection';
 
 export const signup = async (
@@ -44,6 +44,23 @@ export const getAllUsers = async (
         const users: user[] = await businessGetAllUsers(token);
     
         res.status(200).send({ users });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message || error.sqlMessage });
+    }
+};
+
+export const removeUser = async (
+    req: Request,
+    res: Response
+) : Promise<void> => {
+    try {
+        const { id } = req.params;
+        const token: string = req.headers.authorization!;
+        
+        await businessRemoveUser(token, id);
+    
+        res.status(200).send({ message: "User deleted successfuly" });
 
     } catch (error) {
         res.status(400).send({ message: error.message || error.sqlMessage });

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import { getAllUsers, login, signup } from './controller/userController';
+import { getAllUsers, login, removeUser, signup } from './controller/userController';
 
 const app = express();
 app.use(express.json());
@@ -10,6 +10,7 @@ app.use(cors());
 app.get('/all', getAllUsers);
 app.put('/signup', signup);
 app.post('/login', login);
+app.delete('/:id', removeUser);
 
 const server = app.listen(process.env.PORT || 3000, () => {
    if (server) {

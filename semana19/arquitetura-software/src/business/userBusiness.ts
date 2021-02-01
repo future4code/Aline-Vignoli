@@ -1,6 +1,6 @@
-import { insertUser, selectAllUsers, selectUserByEmail } from "../data/userDatabase";
-import { authenticationData, user } from "./entities/user";
-import { generateToken } from "./services/authenticator";
+import { deleteUser, insertUser, selectAllUsers, selectUserByPropriety } from "../data/userDatabase";
+import { authenticationData, user, USER_ROLES } from "./entities/user";
+import { generateToken, getTokenData } from "./services/authenticator";
 import { compare, hash } from "./services/hashManager";
 import { generateId } from "./services/idGenerator";
 import { checkPassword, checkValidRoles } from "./services/validator";
@@ -48,7 +48,7 @@ export const getUserByEmail = async (
         throw new Error("Please inform 'email' and 'password' to proceed");
     };
 
-    const userFromDB: user | null = await selectUserByEmail(email);
+    const userFromDB: user | null = await selectUserByPropriety("email", email);
 
     if ( !userFromDB ) {
         throw new Error("User not found");
@@ -74,7 +74,7 @@ export const businessGetAllUsers = async (
 ) : Promise<user[]> => {
 
     if ( !token ) {
-        throw new Error("Please inform 'email' and 'password' to proceed");
+        throw new Error("You need to login to access this information");
     };
 
     const users: user[] | null = await selectAllUsers();
@@ -84,4 +84,28 @@ export const businessGetAllUsers = async (
     };
 
     return users;
+};
+
+export const businessRemoveUser = async (
+    token: string,
+    userToRemoveId: string
+) : Promise<void> => {
+
+    if ( !token ) {
+        throw new Error("You need to login to delete an user!");
+    };
+
+    const tokenData: authenticationData = getTokenData(token);
+
+    if ( tokenData.role !== USER_ROLES.ADMIN ) {
+        throw new Error("Only an administrator can delete an user!");
+    };
+
+    const userToRemove = await selectUserByPropriety("id", userToRemoveId);
+
+    if ( !userToRemove ) {
+        throw new Error("The user you are trying to delete was not found!");
+    };
+
+    await deleteUser(userToRemoveId);
 };
