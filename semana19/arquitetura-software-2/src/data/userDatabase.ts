@@ -1,10 +1,9 @@
 import { connection } from "./connection"
 import { user } from "../business/entities/user"
 
-
 export const insertUser = async(
    user: user
-) => {
+): Promise<void> => {
    await connection.insert({
       id: user.id,
       name: user.name,
@@ -12,8 +11,8 @@ export const insertUser = async(
       email: user.email,
       password: user.password,
       role: user.role
-   }).into('to_do_list_users')
-}
+   }).into('to_do_list_users');
+};
 
 export const selectUserByEmail = async (
    email: string
