@@ -3,45 +3,42 @@ import { insertUser, selectUserByEmail } from "../data/userDatabase";
 import { generateToken } from "./services/authenticator";
 import { generateId } from "./services/idGenerator";
 import { user, USER_ROLES } from "./entities/user";
+import { signupInputDTO, stringToUserRole } from "../data/model/userModel";
 
-export const businessSignup = async (
-   name: string,
-   nickname: string,
-   email: string,
-   password: string,
-   role: USER_ROLES
-) => {
+export const businessSignup = async (input: signupInputDTO) 
+: Promise<string> => {
 
    if (
-      !name ||
-      !nickname ||
-      !email ||
-      !password ||
-      !role
+      !input.name ||
+      !input.nickname ||
+      !input.email ||
+      !input.password ||
+      !input.role
    ) {
-      throw new Error('Preencha os campos "name", "nickname", "email", "password" e "role"')
-   }
+      throw new Error('Preencha os campos "name", "nickname", "email", "password" e "role"');
+   };
 
-   const id: string = generateId()
-
-   const cypherPassword = await hash(password);
-
-   await insertUser({
+   const id: string = generateId();
+   const cypherPassword = hash(input.password);
+   const role: USER_ROLES = stringToUserRole(input.role);
+   const user: user = {
       id,
-      name,
-      nickname,
-      email,
+      name: input.name,
+      nickname: input.nickname,
+      email: input.email,
       password: cypherPassword,
       role
-   })
+   };
+
+   await insertUser(user);
 
    const token: string = generateToken({
       id,
-      role: role
-   })
+      role
+   });
 
-   return token
-}
+   return token;
+};
 
 export const businessLogin = async (
    email: string,
@@ -57,7 +54,7 @@ export const businessLogin = async (
       throw new Error("Usuário não encontrado ou senha incorreta")
    }
 
-   const passwordIsCorrect: boolean = await compare(password, user.password)
+   const passwordIsCorrect: boolean = compare(password, user.password)
 
    if (!passwordIsCorrect) {
       throw new Error("Usuário não encontrado ou senha incorreta")
