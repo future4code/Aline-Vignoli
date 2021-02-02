@@ -8,10 +8,10 @@ export const generateToken = (
       payload,
       process.env.JWT_KEY as string,
       {
-         expiresIn: "24min"
+         expiresIn: process.env.JWT_EXPIRE_TIME
       }
-   )
-}
+   );
+};
 
 export const getTokenData = (
    token: string
@@ -19,5 +19,5 @@ export const getTokenData = (
    return jwt.verify(
       token,
       process.env.JWT_KEY as string
-   ) as authenticationData
-}
+   ) as authenticationData;
+};

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { businessLogin, businessSignup } from "../business/userBusiness";
-import { signupInputDTO } from "../data/model/userModel";
+import { businessGetUserProfile, businessLogin, businessSignup } from "../business/userBusiness";
+import { signupInputDTO, userProfileOutputDTO } from "../data/model/userModel";
 
 export const signup = async (
    req: Request,
@@ -22,28 +22,44 @@ export const signup = async (
          .send({
             message: "Usuário criado!",
             token
-         })
+         });
 
    } catch (error) {
-      res.status(400).send(error.message)
-   }
-}
+      res.status(400).send(error.message);
+   };
+};
 
 export const login = async (
    req: Request,
    res: Response
 ): Promise<void> => {
    try {
-      const { email, password } = req.body
-
-      const token = await businessLogin(email, password)
+      const { email, password } = req.body;
+      const token = await businessLogin(email, password);
 
       res.send({
          message: "Usuário logado!",
          token
-      })
+      });
 
    } catch (error) {
-      res.status(400).send(error.message)
-   }
-}
+      res.status(400).send(error.message);
+   };
+};
+
+export const getUserProfile = async (
+   req: Request,
+   res: Response
+): Promise<void> => {
+   try {
+      const token: string = req.headers.authorization!;
+      const user: userProfileOutputDTO = await businessGetUserProfile(token);
+
+      res.send({
+         user
+      });
+
+   } catch (error) {
+      res.status(400).send(error.message);
+   };
+};

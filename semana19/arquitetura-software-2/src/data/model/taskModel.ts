@@ -1,7 +1,7 @@
 import { task } from "../../business/entities/task";
 
 export const toTaskModel = (obj: any) : task => {
-    return {
+    return obj && {
         id: obj.id,
         title: obj.title,
         description: obj.description,

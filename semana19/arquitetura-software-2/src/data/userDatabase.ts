@@ -14,13 +14,14 @@ export const insertUser = async(
    }).into('to_do_list_users');
 };
 
-export const selectUserByEmail = async (
-   email: string
+export const selectUserByPropriety = async (
+   name: string,
+   value: string
 ): Promise<user> => {
    try {
       const result = await connection("to_do_list_users")
          .select("*")
-         .where({ email })
+         .where( name, "=", value);
 
       return {
          id: result[0].id,

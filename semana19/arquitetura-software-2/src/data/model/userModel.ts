@@ -1,3 +1,4 @@
+import { task } from "../../business/entities/task";
 import { USER_ROLES } from "../../business/entities/user";
 
 export type signupInputDTO = {
@@ -6,6 +7,14 @@ export type signupInputDTO = {
     email: string,
     password: string,
     role: string
+};
+
+export type userProfileOutputDTO = {
+    id: string,
+    name: string,
+    nickname: string,
+    email: string,
+    tasks: task[]
 };
 
 export const userRoleToString = (role: USER_ROLES)

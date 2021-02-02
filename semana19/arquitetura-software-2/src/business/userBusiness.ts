@@ -1,12 +1,15 @@
 import { compare, hash } from "./services/hashManager";
-import { insertUser, selectUserByEmail } from "../data/userDatabase";
-import { generateToken } from "./services/authenticator";
+import { insertUser, selectUserByPropriety } from "../data/userDatabase";
+import { generateToken, getTokenData } from "./services/authenticator";
 import { generateId } from "./services/idGenerator";
-import { user, USER_ROLES } from "./entities/user";
-import { signupInputDTO, stringToUserRole } from "../data/model/userModel";
+import { authenticationData, user, USER_ROLES } from "./entities/user";
+import { signupInputDTO, stringToUserRole, userProfileOutputDTO } from "../data/model/userModel";
+import { task } from "./entities/task";
+import { selectTasksByUserId } from "../data/taskDatabase";
 
-export const businessSignup = async (input: signupInputDTO) 
-: Promise<string> => {
+export const businessSignup = async (
+   input: signupInputDTO
+): Promise<string> => {
 
    if (
       !input.name ||
@@ -48,7 +51,7 @@ export const businessLogin = async (
       throw new Error("'email' e 'senha' são obrigatórios")
    }
 
-   const user: user = await selectUserByEmail(email)
+   const user: user = await selectUserByPropriety("email", email);
 
    if (!user) {
       throw new Error("Usuário não encontrado ou senha incorreta")
@@ -66,4 +69,27 @@ export const businessLogin = async (
    })
 
    return token
-}
+};
+
+export const businessGetUserProfile = async (
+   token: string
+): Promise<userProfileOutputDTO> => {
+   const payload: authenticationData = getTokenData(token);
+   const user: user = await selectUserByPropriety("id", payload.id);
+
+   if (!user) {
+      throw new Error("Usuário não encontrado ou senha incorreta");
+   };
+
+   const tasks: task[] = await selectTasksByUserId(payload.id);
+
+   const userDTO : userProfileOutputDTO = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      nickname: user.nickname,
+      tasks
+   };
+
+   return userDTO;
+};
