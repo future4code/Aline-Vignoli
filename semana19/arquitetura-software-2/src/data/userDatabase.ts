@@ -1,5 +1,6 @@
 import { connection } from "./connection"
 import { user } from "../business/entities/user"
+import { toUserModel } from "./model/userModel";
 
 export const insertUser = async(
    user: user
@@ -23,16 +24,9 @@ export const selectUserByPropriety = async (
          .select("*")
          .where( name, "=", value);
 
-      return {
-         id: result[0].id,
-         name: result[0].name,
-         nickname: result[0].nickname,
-         email: result[0].email,
-         password: result[0].password,
-         role: result[0].role
-      }
+      return toUserModel(result[0]);
 
    } catch (error) {
-      throw new Error(error.slqMessage || error.message)
-   }
-}
+      throw new Error(error.slqMessage || error.message);
+   };
+};

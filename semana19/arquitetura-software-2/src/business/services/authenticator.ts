@@ -1,5 +1,5 @@
-import * as jwt from "jsonwebtoken"
-import { authenticationData } from "../entities/user"
+import * as jwt from "jsonwebtoken";
+import { authenticationData } from "../entities/user";
 
 export const generateToken = (
    payload: authenticationData

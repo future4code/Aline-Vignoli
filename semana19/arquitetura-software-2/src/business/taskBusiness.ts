@@ -1,43 +1,42 @@
+import { createTaskInputDT0 } from "../data/model/taskModel";
 import { insertTask, selectTaskById } from "../data/taskDatabase"
 import { task } from "./entities/task"
 import { generateId } from "./services/idGenerator"
 
 export const businessCreateTask = async (
-   title: string,
-   description: string,
-   deadline: string,
-   authorId: string
+   input: createTaskInputDT0
 ) => {
 
    if (
-      !title ||
-      !description ||
-      !deadline ||
-      !authorId
+      !input.title ||
+      !input.description ||
+      !input.deadline ||
+      !input.authorId
    ) {
-      throw new Error('"title", "description", "deadline" e "authorId" são obrigatórios')
+      throw new Error('"title", "description", "deadline" and "authorId" are requireds');
+   };
+
+   const id: string = generateId();
+   const task: task = {
+      id,
+      title: input.title,
+      description: input.description,
+      deadline: input.deadline,
+      authorId: input.authorId
    }
 
-   const id: string = generateId()
-
-   await insertTask({
-      id,
-      title,
-      description,
-      deadline,
-      authorId,
-   })
-}
+   await insertTask(task);
+};
 
 export const businessGetTaskById = async(
    id:string
-)=>{
+) : Promise<task>=> {
 
-   const result = await selectTaskById(id)
+   const result = await selectTaskById(id);
 
    if (!result) {
-      throw new Error("Tarefa não encontrada")
-   }
+      throw new Error("Task not found");
+   };
 
    const task: task = {
       id: result.id,
@@ -46,16 +45,6 @@ export const businessGetTaskById = async(
       deadline: result.deadline,
       authorId: result.authorId
    };
-
-   // const taskWithUserInfo = {
-   //    id: result.id,
-   //    title: result.title,
-   //    description: result.description,
-   //    deadline: result.deadline,
-   //    status: result.status,
-   //    authorId: result.author_id,
-   //    authorNickname: result.nickname
-   // }
 
    return task;
 };

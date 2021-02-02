@@ -1,42 +1,41 @@
 import { Request, Response } from "express";
+import { task } from "../business/entities/task";
 import { businessCreateTask, businessGetTaskById } from "../business/taskBusiness";
+import { createTaskInputDT0 } from "../data/model/taskModel";
 
 export const getTaskById = async (
    req: Request,
    res: Response
 ) => {
    try {
+      const { id } = req.params;
+      const task: task = await businessGetTaskById(id);
 
-      const { id } = req.params
-
-      const taskWithUserInfo = await businessGetTaskById(id)
-
-      res.status(200).send(taskWithUserInfo)
+      res.status(200).send(task);
 
    } catch (error) {
-      res.status(400).send(error.message)
-   }
-}
+      res.status(400).send(error.message);
+   };
+};
 
 export const createTask = async (
    req: Request,
    res: Response
 ) => {
    try {
+      const input: createTaskInputDT0 = {
+         title: req.body.title,
+         description: req.body.description,
+         deadline: req.body.deadline,
+         authorId: req.body.authorId
+      };
 
-      const { title, description, deadline, authorId } = req.body
+      await businessCreateTask(input);
 
-      await businessCreateTask(
-         title,
-         description,
-         deadline,
-         authorId
-      )
-
-      res.status(201).end()
+      res.status(201).end();
 
    } catch (error) {
       res.statusMessage = error.message
-      res.status(500).end()
-   }
-}
+      res.status(500).end();
+   };
+};

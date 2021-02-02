@@ -1,5 +1,12 @@
 import { task } from "../../business/entities/task";
 
+export type createTaskInputDT0 = {
+    title: string,
+    description: string,
+    deadline: string,
+    authorId: string
+};
+
 export const toTaskModel = (obj: any) : task => {
     return obj && {
         id: obj.id,

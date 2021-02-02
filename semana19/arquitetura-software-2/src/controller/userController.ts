@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { businessGetUserProfile, businessLogin, businessSignup } from "../business/userBusiness";
-import { signupInputDTO, userProfileOutputDTO } from "../data/model/userModel";
+import { loginInputDTO, signupInputDTO, userProfileOutputDTO } from "../data/model/userModel";
 
 export const signup = async (
    req: Request,
@@ -34,8 +34,12 @@ export const login = async (
    res: Response
 ): Promise<void> => {
    try {
-      const { email, password } = req.body;
-      const token = await businessLogin(email, password);
+      const input: loginInputDTO = {
+         email: req.body.email,
+         password: req.body.password
+      }
+
+      const token = await businessLogin(input);
 
       res.send({
          message: "Usuário logado!",

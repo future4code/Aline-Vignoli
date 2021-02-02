@@ -1,5 +1,5 @@
 import { task } from "../../business/entities/task";
-import { USER_ROLES } from "../../business/entities/user";
+import { user, USER_ROLES } from "../../business/entities/user";
 
 export type signupInputDTO = {
     name: string,
@@ -9,12 +9,28 @@ export type signupInputDTO = {
     role: string
 };
 
+export type loginInputDTO = {
+    email: string,
+    password: string
+};
+
 export type userProfileOutputDTO = {
     id: string,
     name: string,
     nickname: string,
     email: string,
     tasks: task[]
+};
+
+export const toUserModel = (obj: any) : user => {
+    return obj && {
+        id: obj.id,
+        name: obj.name,
+        nickname: obj.nickname,
+        email: obj.email,
+        password: obj.password,
+        role: obj.role
+    };
 };
 
 export const userRoleToString = (role: USER_ROLES)

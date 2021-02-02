@@ -3,7 +3,7 @@ import { insertUser, selectUserByPropriety } from "../data/userDatabase";
 import { generateToken, getTokenData } from "./services/authenticator";
 import { generateId } from "./services/idGenerator";
 import { authenticationData, user, USER_ROLES } from "./entities/user";
-import { signupInputDTO, stringToUserRole, userProfileOutputDTO } from "../data/model/userModel";
+import { loginInputDTO, signupInputDTO, stringToUserRole, userProfileOutputDTO } from "../data/model/userModel";
 import { task } from "./entities/task";
 import { selectTasksByUserId } from "../data/taskDatabase";
 
@@ -44,31 +44,30 @@ export const businessSignup = async (
 };
 
 export const businessLogin = async (
-   email: string,
-   password: string
+   input: loginInputDTO
 ) => {
-   if (!email || !password) {
-      throw new Error("'email' e 'senha' são obrigatórios")
-   }
+   if (!input.email || !input.password) {
+      throw new Error("'email' and 'password' required");
+   };
 
-   const user: user = await selectUserByPropriety("email", email);
+   const user: user = await selectUserByPropriety("email", input.email);
 
    if (!user) {
-      throw new Error("Usuário não encontrado ou senha incorreta")
+      throw new Error("User not found");
    }
 
-   const passwordIsCorrect: boolean = compare(password, user.password)
+   const passwordIsCorrect: boolean = compare(input.password, user.password);
 
    if (!passwordIsCorrect) {
-      throw new Error("Usuário não encontrado ou senha incorreta")
+      throw new Error("Incorrect password");
    }
 
    const token: string = generateToken({
       id: user.id,
       role: user.role
-   })
+   });
 
-   return token
+   return token;
 };
 
 export const businessGetUserProfile = async (
@@ -78,7 +77,7 @@ export const businessGetUserProfile = async (
    const user: user = await selectUserByPropriety("id", payload.id);
 
    if (!user) {
-      throw new Error("Usuário não encontrado ou senha incorreta");
+      throw new Error("User not found");
    };
 
    const tasks: task[] = await selectTasksByUserId(payload.id);
