@@ -1,3 +1,5 @@
+import { Post } from "../../business/entities/Post";
+
 export enum POST_TYPES {
     NORMAL = "normal",
     EVENT = "event"
@@ -34,4 +36,16 @@ export const stringToPostType = (
     };
 
     throw new Error("The valid values for post types are 'normal' ou 'event'");
+};
+
+export const toPostModel = (obj: any)
+: Post => {
+    return obj && new Post (
+        obj.id,
+        obj.photo,
+        obj.description,
+        obj.type,
+        obj.created_at,
+        obj.author_id
+    );
 };

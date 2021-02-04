@@ -1,6 +1,6 @@
 import { Post } from "../business/entities/Post";
 import { BaseDatabase } from "./BaseDatabase";
-import { PostToDatabase } from "./model/postModel";
+import { PostToDatabase, toPostModel } from "./model/postModel";
 
 export class PostDatabase extends BaseDatabase {
     
@@ -20,5 +20,16 @@ export class PostDatabase extends BaseDatabase {
             });
 
             console.log(post.createdAt)
+    };
+
+    selectPostByPropriety = async (
+        name: string,
+        value: string
+    ): Promise<Post> => {
+        const result = await BaseDatabase.connection(this.tableName)
+            .select("*")
+            .where(name, "=", value);
+    
+        return toPostModel(result[0]);
     };
 };

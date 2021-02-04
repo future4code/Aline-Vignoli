@@ -1,6 +1,7 @@
 import { CreatePostInputDTO, PostToDatabase, postTypeToString } from "../data/model/postModel";
 import { PostDatabase } from "../data/PostDatabase";
 import { UserDatabase } from "../data/UserDatabase";
+import { Post } from "./entities/Post";
 import { User } from "./entities/User";
 import { AuthenticationData, Authenticator } from "./services/Authenticator";
 import { DateManager } from "./services/DateManager";
@@ -47,5 +48,21 @@ export class PostBusiness {
         console.log(createdAt)
 
         await postDatabase.insertPost(post);
+    };
+
+    protected static getPostById = async (
+        id: string
+    ) => {
+        if (!id) {
+            throw new Error("Param 'id' must be informed");
+        };
+
+        const post: Post = await postDatabase.selectPostByPropriety("id", id);
+
+        if (!post) {
+            throw new Error("Post not found");
+        };
+
+        return post;
     };
 };
