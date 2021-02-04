@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express"
 import cors from "cors"
 import { userRouter } from "./controller/routes/userRouter";
+import { postRouter } from "./controller/routes/postRouter";
 
 /**************************** CONFIG ******************************/
 
@@ -9,113 +10,9 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/users', userRouter);
-
-/**************************** TYPES ******************************/
-
-type User = {
-   id: string,
-   name: string,
-   email: string,
-   password: string
-}
-
-enum POST_TYPES {
-   NORMAL = "normal",
-   EVENT = "event"
-}
-
-type Post = {
-   id: string,
-   photo: string,
-   description: string,
-   type: POST_TYPES,
-   createdAt: Date,
-   authorId: string
-}
+app.use('/posts', postRouter);
 
 /**************************** ENDPOINTS ******************************/
-
-// app.post('/users/login', async (req: Request, res: Response) => {
-//    try {
-//       let message = "Success!"
-
-//       const { email, password } = req.body
-
-//       if (!email || !password) {
-//          res.statusCode = 406
-//          message = '"email" and "password" must be provided'
-//          throw new Error(message)
-//       }
-
-//       const queryResult: any = await connection("labook_users")
-//          .select("*")
-//          .where({ email })
-
-//       if (!queryResult[0]) {
-//          res.statusCode = 401
-//          message = "Invalid credentials"
-//          throw new Error(message)
-//       }
-
-//       const user: User = {
-//          id: queryResult[0].id,
-//          name: queryResult[0].name,
-//          email: queryResult[0].email,
-//          password: queryResult[0].password
-//       }
-
-//       const passwordIsCorrect: boolean = await compare(password, user.password)
-
-//       if (!passwordIsCorrect) {
-//          res.statusCode = 401
-//          message = "Invalid credentials"
-//          throw new Error(message)
-//       }
-
-//       const token: string = generateToken({
-//          id: user.id
-//       })
-
-//       res.status(200).send({ message, token })
-
-//    } catch (error) {
-//       let message = error.sqlMessage || error.message
-//       res.statusCode = 400
-
-//       res.send({ message })
-//    }
-// })
-
-// app.post('/posts/create', async (req: Request, res: Response) => {
-//    try {
-//       let message = "Success!"
-
-//       const { photo, description, type } = req.body
-
-//       const token: string = req.headers.authorization as string
-
-//       const tokenData: AuthenticationData = getTokenData(token)
-
-//       const id: string = generateId()
-
-//       await connection("labook_posts")
-//          .insert({
-//             id,
-//             photo,
-//             description,
-//             type,
-//             author_id: tokenData.id
-//          })
-
-//       res.status(201).send({ message })
-
-//    } catch (error) {
-//       let message = error.sqlMessage || error.message
-//       res.statusCode = 400
-
-//       res.send({ message })
-//    }
-// })
 
 // app.get('/posts/:id', async (req: Request, res: Response) => {
 //    try {

@@ -1,9 +1,9 @@
 import { LoginInputDTO, SignupInputDTO } from '../data/model/userModel';
-import { UserDatabase } from '../data/userDatabase';
+import { UserDatabase } from '../data/UserDatabase';
 import { User } from './entities/User';
 import { Authenticator } from './services/Authenticator';
 import { HashManager } from './services/HashManager';
-import { IdGenerator } from './services/idGenerator';
+import { IdGenerator } from './services/IdGenerator';
 
 const userDatabase = new UserDatabase();
 
@@ -43,7 +43,7 @@ export class UserBusiness {
             throw new Error('"email" and "password" must be provided');
         };
 
-        const user: User = await userDatabase.selectUserByEmail(email);
+        const user: User = await userDatabase.selectUserByPropriety("email", email);
 
         if ( !user ) {
             throw new Error('User not found');

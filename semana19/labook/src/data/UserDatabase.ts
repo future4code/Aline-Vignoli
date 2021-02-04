@@ -18,12 +18,13 @@ export class UserDatabase extends BaseDatabase {
             });
     };
     
-    selectUserByEmail = async (
-        email: string
+    selectUserByPropriety = async (
+        name: string,
+        value: string
     ): Promise<User> => {
         const result = await BaseDatabase.connection(this.tableName)
             .select("*")
-            .where({ email });
+            .where(name, "=", value);
     
         return toUserModel(result[0]);
     };
