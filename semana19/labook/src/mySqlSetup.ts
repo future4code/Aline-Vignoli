@@ -1,5 +1,4 @@
 import { BaseDatabase } from "./data/BaseDatabase"
-// import {connection} from "./index"
 
 export class MySqlSetup extends BaseDatabase {
    
