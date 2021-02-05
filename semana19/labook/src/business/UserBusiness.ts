@@ -73,4 +73,24 @@ export class UserBusiness {
         await userDatabase.insertFriendship(userData.id, friend.id);
         await userDatabase.insertFriendship(friend.id, userData.id);
     };
+
+    protected static businessRemoveFriend = async (
+        token: string,
+        friendId: string
+    ): Promise<void> => {
+        const userData = Authenticator.getTokenData(token);
+        const isFriend: boolean = await userDatabase.checkFriendship(
+            userData.id, 
+            friendId
+        );
+
+        if (!isFriend) {
+            throw new Error(
+                'You cannot remove from your friend list an user who is not your friend'
+            );
+        };
+
+        await userDatabase.deleteFriendship(userData.id, friendId);
+        await userDatabase.deleteFriendship(friendId, userData.id);
+    };
 };

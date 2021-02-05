@@ -68,4 +68,24 @@ export class UserController extends UserBusiness {
             });
         };
     };
+
+    removeFriend = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
+        try {
+            const token: string = req.headers.authorization!;
+            const { id } = req.params;
+
+            await UserBusiness.businessRemoveFriend(token, id);
+
+            res.status(200).send({ message: "Friend removed successfuly" });
+
+        } catch (error) {
+            res.status(400).send({
+                message: error.sqlMessage ||
+                error.message
+            });
+        };
+    };
 };

@@ -40,4 +40,28 @@ export class UserDatabase extends BaseDatabase {
                 friend_id: friendId
             });
     };
+
+    checkFriendship = async (
+        userId: string,
+        friendId: string
+    ): Promise<boolean> => {
+        const result = await BaseDatabase.connection(this.friendshipTable)
+            .select("*")
+            .where("user_id", "=", userId)
+            .and
+            .where("friend_id", "=", friendId);
+
+        return result[0] ? true : false;  
+    };
+
+    deleteFriendship = async (
+        userId: string,
+        friendId: string
+    ): Promise<void> => {
+        await BaseDatabase.connection(this.friendshipTable)
+            .delete()
+            .where("user_id", "=", userId)
+            .and
+            .where("friend_id", "=", friendId);
+    };
 };
