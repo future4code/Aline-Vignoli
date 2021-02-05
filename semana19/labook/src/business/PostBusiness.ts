@@ -17,14 +17,6 @@ export class PostBusiness {
         input: CreatePostInputDTO
     ): Promise<void> => {
         const tokenData: AuthenticationData = Authenticator.getTokenData(token);
-        const user: User = await userDatabase.selectUserByPropriety(
-            "id", 
-            tokenData.id
-        );
-
-        if (!user) {
-            throw new Error("User not found");
-        };
 
         const { photo, description, type } = input;
         if (!photo || !description || !type) {
@@ -71,5 +63,25 @@ export class PostBusiness {
         };
 
         return postOutputDTO;
+    };
+
+    protected static getPosts = async (
+        token: string
+    ) => {
+        const tokenData: AuthenticationData = Authenticator.getTokenData(token);
+        const posts = await postDatabase.selectFriendsPosts(tokenData.id);
+
+        const postsOutputDTO = posts.map((post) => {
+            return {
+                id: post.id,
+                photo: post.photo,
+                description: post.description,
+                type: post.type,
+                createdAt: DateManager.formatDate(post.createdAt),
+                authorId: post.authorId
+            }
+        });
+
+        return postsOutputDTO;
     };
 };
