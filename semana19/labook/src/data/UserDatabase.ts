@@ -35,10 +35,16 @@ export class UserDatabase extends BaseDatabase {
         friendId: string
     ): Promise<void> => {
         await BaseDatabase.connection(this.friendshipTable)
-            .insert({
-                user_id: userId,
-                friend_id: friendId
-            });
+            .insert([
+                {
+                    user_id: userId,
+                    friend_id: friendId
+                },
+                {
+                    user_id: friendId,
+                    friend_id: userId
+                }
+            ]);    
     };
 
     checkFriendship = async (
@@ -47,9 +53,10 @@ export class UserDatabase extends BaseDatabase {
     ): Promise<boolean> => {
         const result = await BaseDatabase.connection(this.friendshipTable)
             .select("*")
-            .where("user_id", "=", userId)
-            .and
-            .where("friend_id", "=", friendId);
+            .where({ 
+                user_id: userId, 
+                friend_id: friendId 
+            });
 
         return result[0] ? true : false;  
     };
@@ -59,9 +66,17 @@ export class UserDatabase extends BaseDatabase {
         friendId: string
     ): Promise<void> => {
         await BaseDatabase.connection(this.friendshipTable)
-            .delete()
-            .where("user_id", "=", userId)
-            .and
-            .where("friend_id", "=", friendId);
+            .del()
+            .where({
+                user_id: userId, 
+                friend_id: friendId,
+            });
+        
+        await BaseDatabase.connection(this.friendshipTable)
+            .del()
+            .where({
+                user_id: friendId, 
+                friend_id: userId
+            });
     };
 };

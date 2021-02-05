@@ -70,8 +70,16 @@ export class UserBusiness {
             throw new Error('User not found');
         };
 
+        const isFriend: boolean = await userDatabase.checkFriendship(
+            userData.id, 
+            id
+        );
+
+        if (isFriend) {
+            throw new Error('This user already is your friend');
+        };
+
         await userDatabase.insertFriendship(userData.id, friend.id);
-        await userDatabase.insertFriendship(friend.id, userData.id);
     };
 
     protected static businessRemoveFriend = async (
@@ -91,6 +99,5 @@ export class UserBusiness {
         };
 
         await userDatabase.deleteFriendship(userData.id, friendId);
-        await userDatabase.deleteFriendship(friendId, userData.id);
     };
 };
