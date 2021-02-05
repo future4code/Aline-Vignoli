@@ -33,18 +33,16 @@ export class PostController extends PostBusiness {
         res: Response
     ): Promise<void> => {
         try {
-        
             const { id } = req.params;
-        
             const post = await PostBusiness.getPostById(id);
         
-            res.status(200).send({ post })
+            res.status(200).send({ post });
         
         } catch (error) {
             let message = error.sqlMessage || error.message
             res.statusCode = 400
         
-            res.send({ message })
-        }             
+            res.send({ message });
+        };          
     };
 };

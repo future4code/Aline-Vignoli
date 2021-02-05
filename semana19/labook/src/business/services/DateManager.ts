@@ -8,7 +8,7 @@ export class DateManager extends Date {
     };
 
     public static formatDate = (
-        date: string
+        date: Date
     ): string => {
         return dayjs(date).format('DD/MM/YYYY');
     };

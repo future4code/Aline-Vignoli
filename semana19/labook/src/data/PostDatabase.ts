@@ -4,7 +4,7 @@ import { PostToDatabase, toPostModel } from "./model/postModel";
 
 export class PostDatabase extends BaseDatabase {
     
-    tableName = "labook_posts"
+    tableName = "labook_posts";
 
     insertPost = async (
         post: PostToDatabase
@@ -18,8 +18,6 @@ export class PostDatabase extends BaseDatabase {
                 created_at: post.createdAt,
                 author_id: post.authorId
             });
-
-            console.log(post.createdAt)
     };
 
     selectPostByPropriety = async (

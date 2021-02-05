@@ -1,4 +1,4 @@
-import { CreatePostInputDTO, PostToDatabase, postTypeToString } from "../data/model/postModel";
+import { CreatePostInputDTO, GetPostOutputDTO, PostToDatabase, postTypeToString } from "../data/model/postModel";
 import { PostDatabase } from "../data/PostDatabase";
 import { UserDatabase } from "../data/UserDatabase";
 import { Post } from "./entities/Post";
@@ -45,8 +45,6 @@ export class PostBusiness {
             authorId: tokenData.id
         };
 
-        console.log(createdAt)
-
         await postDatabase.insertPost(post);
     };
 
@@ -63,6 +61,15 @@ export class PostBusiness {
             throw new Error("Post not found");
         };
 
-        return post;
+        const postOutputDTO: GetPostOutputDTO = {
+            id,
+            photo: post.photo,
+            description: post.description,
+            type: post.type,
+            createdAt: DateManager.formatDate(post.createdAt),
+            authorId: post.authorId
+        };
+
+        return postOutputDTO;
     };
 };
