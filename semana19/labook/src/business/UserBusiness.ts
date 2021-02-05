@@ -1,6 +1,8 @@
 import { LoginInputDTO, SignupInputDTO } from '../data/model/userModel';
 import { UserDatabase } from '../data/UserDatabase';
 import { User } from './entities/User';
+import { NotAcceptableError } from './errors/NotAcceptableError';
+import { NotFoundError } from './errors/NotFoundError';
 import { Authenticator } from './services/Authenticator';
 import { HashManager } from './services/HashManager';
 import { IdGenerator } from './services/IdGenerator';
@@ -15,7 +17,7 @@ export class UserBusiness {
         const { name, email, password } = input;
 
         if (!name || !email || !password) {
-            throw new Error('"name", "email" and "password" must be provided');
+            throw new NotAcceptableError('"name", "email" and "password" must be provided');
         };
 
         const id: string = IdGenerator.generateId();
@@ -46,7 +48,7 @@ export class UserBusiness {
         const user: User = await userDatabase.selectUserByPropriety("email", email);
 
         if ( !user ) {
-            throw new Error('User not found');
+            throw new NotFoundError("User not found");
         };
 
         const isPasswordCorrect: boolean = HashManager.compare(password, user.password);
@@ -67,7 +69,7 @@ export class UserBusiness {
         const friend = await userDatabase.selectUserByPropriety("id", id);
 
         if (!friend) {
-            throw new Error('User not found');
+            throw new NotFoundError('User not found');
         };
 
         const isFriend: boolean = await userDatabase.checkFriendship(

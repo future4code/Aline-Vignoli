@@ -4,11 +4,11 @@ import { PostToDatabase, toPostModel } from "./model/postModel";
 
 export class PostDatabase extends BaseDatabase {
     
-    postTable = "labook_posts";
-    userTable = "labook_users";
-    friendshipTable = "labook_friendship_relation";
+    private postTable = "labook_posts";
+    private userTable = "labook_users";
+    private friendshipTable = "labook_friendship_relation";
 
-    insertPost = async (
+    public insertPost = async (
         post: PostToDatabase
     ): Promise<void> => {
         await BaseDatabase.connection(this.postTable)
@@ -22,7 +22,7 @@ export class PostDatabase extends BaseDatabase {
             });
     };
 
-    selectPostByPropriety = async (
+    public selectPostByPropriety = async (
         name: string,
         value: string
     ): Promise<Post> => {
@@ -33,7 +33,7 @@ export class PostDatabase extends BaseDatabase {
         return toPostModel(result[0]);
     };
 
-    selectFriendsPosts = async (
+    public selectFriendsPosts = async (
         userId: string
     ): Promise<Post[]> => {
         const result = await BaseDatabase.connection.raw(`

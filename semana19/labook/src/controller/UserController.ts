@@ -20,7 +20,7 @@ export class UserController extends UserBusiness {
             res.status(201).send({ token });
     
         } catch (error) {
-            res.status(400).send({
+            res.status(error.statusCode || 400).send({
                 message: error.sqlMessage || 
                 error.message 
             });
@@ -42,7 +42,9 @@ export class UserController extends UserBusiness {
             res.status(200).send({ token });
     
         } catch (error) {
-            res.status(400).send({
+            res
+            .status(error.statusCode || 400)
+            .send({
                 message: error.sqlMessage || 
                 error.message 
             });
@@ -62,7 +64,7 @@ export class UserController extends UserBusiness {
             res.status(200).send({ message: "Friend added successfuly" });
             
         } catch (error) {
-            res.status(400).send({
+            res.status(error.statusCode || 400).send({
                 message: error.sqlMessage || 
                 error.message 
             });

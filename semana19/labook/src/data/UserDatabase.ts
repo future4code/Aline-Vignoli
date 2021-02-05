@@ -4,10 +4,10 @@ import { toUserModel } from "./model/userModel";
 
 export class UserDatabase extends BaseDatabase {
 
-    userTable = "labook_users";
-    friendshipTable = "labook_friendship_relation";
+    private userTable = "labook_users";
+    private friendshipTable = "labook_friendship_relation";
 
-    insertUser = async (
+    public insertUser = async (
         user: User
     ): Promise<void> => {
         await BaseDatabase.connection(this.userTable)
@@ -19,7 +19,7 @@ export class UserDatabase extends BaseDatabase {
             });
     };
     
-    selectUserByPropriety = async (
+    public selectUserByPropriety = async (
         name: string,
         value: string
     ): Promise<User> => {
@@ -30,7 +30,7 @@ export class UserDatabase extends BaseDatabase {
         return toUserModel(result[0]);
     };
 
-    insertFriendship = async (
+    public insertFriendship = async (
         userId: string,
         friendId: string
     ): Promise<void> => {
@@ -47,7 +47,7 @@ export class UserDatabase extends BaseDatabase {
             ]);    
     };
 
-    checkFriendship = async (
+    public checkFriendship = async (
         userId: string,
         friendId: string
     ): Promise<boolean> => {
@@ -61,7 +61,7 @@ export class UserDatabase extends BaseDatabase {
         return result[0] ? true : false;  
     };
 
-    deleteFriendship = async (
+    public deleteFriendship = async (
         userId: string,
         friendId: string
     ): Promise<void> => {

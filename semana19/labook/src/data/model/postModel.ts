@@ -11,15 +11,6 @@ export interface CreatePostInputDTO {
     type: POST_TYPES
 };
 
-export interface GetPostOutputDTO {
-    id: string,
-    photo: string,
-    description: string,
-    type: string,
-    createdAt: string,
-    authorId: string
-};
-
 export interface PostToDatabase {
     id: string,
     photo: string,

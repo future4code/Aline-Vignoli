@@ -1,4 +1,5 @@
 import * as jwt from "jsonwebtoken";
+import { NotAcceptableError } from "../errors/NotAcceptableError";
 
 export interface AuthenticationData {
     id: string
@@ -22,10 +23,10 @@ export class Authenticator {
         token: string
     ): AuthenticationData {
         const result: any = jwt.verify(
-           token,
-           process.env.JWT_KEY as string
+            token,
+            process.env.JWT_KEY as string
         );
-     
+      
         return { id: result.id, };
     };
 };

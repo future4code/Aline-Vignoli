@@ -21,10 +21,10 @@ export class PostController extends PostBusiness {
             res.status(201).send({ message: "Post created successfuly" });
      
         } catch (error) {
-           let message = error.sqlMessage || error.message
-           res.statusCode = 400;
-     
-           res.send({ message });
+            res.status(error.statusCode || 400).send({
+                message: error.sqlMessage || 
+                error.message 
+            });
         };
     };
 
@@ -34,15 +34,17 @@ export class PostController extends PostBusiness {
     ): Promise<void> => {
         try {
             const { id } = req.params;
-            const post = await PostBusiness.getPostById(id);
+            const token: string = req.headers.authorization!;
+
+            const post = await PostBusiness.getPostById(token, id);
         
             res.status(200).send({ post });
         
         } catch (error) {
-            let message = error.sqlMessage || error.message
-            res.statusCode = 400;
-        
-            res.send({ message });
+            res.status(error.statusCode || 400).send({
+                message: error.sqlMessage || 
+                error.message 
+            });
         };          
     };
 
