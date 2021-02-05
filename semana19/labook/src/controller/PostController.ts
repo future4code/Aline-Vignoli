@@ -22,7 +22,7 @@ export class PostController extends PostBusiness {
      
         } catch (error) {
            let message = error.sqlMessage || error.message
-           res.statusCode = 400
+           res.statusCode = 400;
      
            res.send({ message });
         };
@@ -40,7 +40,7 @@ export class PostController extends PostBusiness {
         
         } catch (error) {
             let message = error.sqlMessage || error.message
-            res.statusCode = 400
+            res.statusCode = 400;
         
             res.send({ message });
         };          

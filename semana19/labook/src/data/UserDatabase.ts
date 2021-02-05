@@ -4,12 +4,13 @@ import { toUserModel } from "./model/userModel";
 
 export class UserDatabase extends BaseDatabase {
 
-    tableName = "labook_users"
+    userTable = "labook_users";
+    friendshipTable = "labook_friendship_relation";
 
     insertUser = async (
         user: User
     ): Promise<void> => {
-        await BaseDatabase.connection(this.tableName)
+        await BaseDatabase.connection(this.userTable)
             .insert({
                 id: user.id,
                 name: user.name,
@@ -22,10 +23,21 @@ export class UserDatabase extends BaseDatabase {
         name: string,
         value: string
     ): Promise<User> => {
-        const result = await BaseDatabase.connection(this.tableName)
+        const result = await BaseDatabase.connection(this.userTable)
             .select("*")
             .where(name, "=", value);
     
         return toUserModel(result[0]);
+    };
+
+    insertFriendship = async (
+        userId: string,
+        friendId: string
+    ): Promise<void> => {
+        await BaseDatabase.connection(this.friendshipTable)
+            .insert({
+                user_id: userId,
+                friend_id: friendId
+            });
     };
 };

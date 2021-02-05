@@ -58,4 +58,19 @@ export class UserBusiness {
         const token: string = Authenticator.generateToken({ id: user.id });
         return token;
     };
-}
+
+    protected static businessAddFriend = async (
+        token: string,
+        id: string
+    ): Promise<void> => {
+        const userData = Authenticator.getTokenData(token);
+        const friend = await userDatabase.selectUserByPropriety("id", id);
+
+        if (!friend) {
+            throw new Error('User not found');
+        };
+
+        await userDatabase.insertFriendship(userData.id, friend.id);
+        await userDatabase.insertFriendship(friend.id, userData.id);
+    };
+};
