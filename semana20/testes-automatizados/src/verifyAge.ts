@@ -1,29 +1,34 @@
-### Exercício 1
-a) Interface User:
-```
+export enum LOCATION {
+    EUA = "EUA",
+    BRAZIL = "BRAZIL"
+};
+
+export enum NACIONALITY {
+    AMERICAN = "AMERICAN",
+    BRAZILIAN = "BRAZILIAN"
+};
+
 export interface User {
     name: string,
-    balance: number
+    age: number,
+    nacionality: NACIONALITY
 };
-```
 
-b) Função performPurchase:
-```
-export const performePurchase = (user: User, value: number) 
-: User | undefined => {
-    if (user.balance >= value) {
-        return {
-            ...user, 
-            balance: user.balance - value
-        };
-    };
-    return undefined;
+export interface Casino {
+    name: string,
+    location: LOCATION
 };
-```
 
-### Exercício 2
-b) Função verifyAge:
-```
+export interface Result {
+    brazilians: ResultItem,
+    americans: ResultItem
+};
+
+export interface ResultItem {
+    allowed: string[];
+    unallowed: string[];
+};
+
 export const verifyAge = (
     casino: Casino, 
     users: User[]
@@ -65,8 +70,3 @@ export const verifyAge = (
 
     return { brazilians, americans };
 };
-```
-
-c) Resposta:
-O mais difícil foi pensar em como organizar a ordem das verificações.
-Tive dúvidas se deveria primeiro montar um array de allowed e outro de unallowed ou se deveria primeiro montar um array de brazilians e outro de americans.
