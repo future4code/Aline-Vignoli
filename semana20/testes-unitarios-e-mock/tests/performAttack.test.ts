@@ -1,13 +1,9 @@
 import { PerformAttackResult, performAttackDI } from "../src/performAttack";
-import { Character } from "../src/validateCharacter";
+import { Character, validateCharacter } from "../src/validateCharacter";
 
 describe("Testing performAttack", () => {
 
-    const validatorMockFalse = jest.fn (()=> {
-        return false;
-    });
-
-    test("Should return 'true' if defender's life after the attack is 1300", () => {
+    test("Should perform attack", () => {
         expect.assertions(4);
 
         const validatorMockTrue = jest.fn (()=> {
@@ -40,7 +36,38 @@ describe("Testing performAttack", () => {
         expect(validatorMockTrue).toHaveReturnedTimes(2);
     });
 
-    test("Should return false", () => {
-        
+    test("Should return 'Invalid Character' error", () => {
+        expect.assertions(4);
+
+        const validatorMockFalse = jest.fn (()=> {
+            return false;
+        });
+
+        const attacker: Character = {
+            name: "",
+            life: 1500,
+            strength: 500,
+            defense: 100
+        };
+
+        const defender: Character = {
+            name: "Defender",
+            life: 1500,
+            strength: 500,
+            defense: 300
+        };
+
+        try {
+            performAttackDI(
+                attacker,
+                defender,
+                validatorMockFalse
+            );
+        } catch (error) {
+            expect(error.message).toEqual("Invalid Character");
+            expect(validatorMockFalse).toHaveBeenCalled();
+            expect(validatorMockFalse).toHaveBeenCalledTimes(2);
+            expect(validatorMockFalse).toHaveReturnedTimes(2);
+        };
     });
 });
