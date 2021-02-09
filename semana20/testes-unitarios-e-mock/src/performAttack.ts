@@ -12,6 +12,7 @@ export const performAttack = (
     };
 
     let updatedDefender: Character = defender;
+    
     const finalAttackValue: number = attacker.strength - defender.defense;
     if (defender.defense <= attacker.strength) {
         updatedDefender = {
@@ -42,6 +43,7 @@ export const performAttackDI = (
 
     let updatedDefender: Character = defender;
     const finalAttackValue: number = attacker.strength - defender.defense;
+
     if (defender.defense <= attacker.strength) {
         updatedDefender = {
             ...defender,
