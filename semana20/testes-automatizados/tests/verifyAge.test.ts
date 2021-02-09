@@ -86,4 +86,25 @@ describe("verifyAge", () => {
         expect(result.brazilians.unallowed).toEqual(["Aline", "Aline"]);
         expect(result.americans.allowed).toEqual(["Theresa Wayman", "Theresa Wayman"]);
     });
+
+    test("Brazilian allowed & brazilians allowed array length less than 2 and greater than 0", () => {
+        const brazilian: User = {
+            name: "Aline",
+            age: 33,
+            nacionality: NACIONALITY.BRAZILIAN
+        };
+
+        const casino: Casino = {
+            name: "Casinero",
+            location: LOCATION.BRAZIL
+        };
+
+        const result = verifyAge(
+            casino,
+            [ brazilian ]
+        );
+
+        expect(result.brazilians.allowed.length).toBeGreaterThan(0);
+        expect(result.brazilians.allowed.length).toBeLessThan(2);
+    });
 });
