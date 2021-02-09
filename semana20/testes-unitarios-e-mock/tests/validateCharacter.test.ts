@@ -78,4 +78,19 @@ describe("Testing validateCharacter", () => {
         expect(outputNegativeStrength).toBe(false);
         expect(outputNegativeDefense).toBe(false);
     });
+
+    test("Should return 'true' for valid input", () => {
+        expect.assertions(1);
+
+        const input: Character = {
+            name: "My Character",
+            life: 1500,
+            strength: 200,
+            defense: 50
+        };
+
+        const output: boolean = validateCharacter(input);
+
+        expect(output).toBe(true);
+    });
 });
