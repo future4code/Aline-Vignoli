@@ -12,7 +12,7 @@ export const performAttack = (
     };
 
     let updatedDefender: Character = defender;
-    
+
     const finalAttackValue: number = attacker.strength - defender.defense;
     if (defender.defense <= attacker.strength) {
         updatedDefender = {
@@ -32,7 +32,7 @@ export const performAttack = (
 export const performAttackDI = (
     attacker: Character,
     defender: Character,
-    validator: (input: any)=> boolean
+    validator: (input: any) => boolean
 ): PerformAttackResult => {
     const validAttacker = validator(attacker);
     const validDefender = validator(defender);
@@ -59,7 +59,7 @@ export const performAttackDI = (
     return result;
 };
 
-interface PerformAttackResult {
+export interface PerformAttackResult {
     attacker: Character,
     defender: Character
 };
