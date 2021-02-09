@@ -2,9 +2,6 @@ import { PerformAttackResult, performAttackDI } from "../src/performAttack";
 import { Character } from "../src/validateCharacter";
 
 describe("Testing performAttack", () => {
-    const validatorMockTrue = jest.fn (()=> {
-        return true;
-    });
 
     const validatorMockFalse = jest.fn (()=> {
         return false;
@@ -12,6 +9,10 @@ describe("Testing performAttack", () => {
 
     test("Should return 'true' if defender's life after the attack is 1300", () => {
         expect.assertions(4);
+
+        const validatorMockTrue = jest.fn (()=> {
+            return true;
+        });
 
         const attacker: Character = {
             name: "Attacker",
