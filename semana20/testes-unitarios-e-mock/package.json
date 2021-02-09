@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/jest/bin/jest.js"
+    "test": "node ./node_modules/jest/bin/jest.js",
+    "dev": "ts-node-dev ./src/recoverCharacters.ts"
   },
   "author": "",
   "license": "ISC",
