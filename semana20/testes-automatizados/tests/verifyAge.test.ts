@@ -95,7 +95,7 @@ describe("verifyAge", () => {
         };
 
         const casino: Casino = {
-            name: "Casinero",
+            name: "Casinera",
             location: LOCATION.BRAZIL
         };
 
@@ -106,5 +106,25 @@ describe("verifyAge", () => {
 
         expect(result.brazilians.allowed.length).toBeGreaterThan(0);
         expect(result.brazilians.allowed.length).toBeLessThan(2);
+    });
+
+    test("American allowed & americans unallowed array length equal to 0", () => {
+        const american: User = {
+            name: "Theresa Wayman",
+            age: 39,
+            nacionality: NACIONALITY.BRAZILIAN
+        };
+
+        const casino: Casino = {
+            name: "Casinera",
+            location: LOCATION.EUA
+        };
+
+        const result = verifyAge(
+            casino,
+            [ american ]
+        );
+
+        expect(result.americans.unallowed.length).toEqual(0);
     });
 });
