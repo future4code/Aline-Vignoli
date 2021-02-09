@@ -18,12 +18,27 @@ describe("Testing validateCharacter", () => {
 
     test("Should return 'false' for life equal to 0", () => {
         expect.assertions(1);
-        
+
         const input: Character = {
             name: "My Character",
             life: 0,
             strength: 100,
             defense: 50
+        };
+
+        const output: boolean = validateCharacter(input);
+
+        expect(output).toBe(false);
+    });
+
+    test("Should return 'false' for defense equal to 0", () => {
+        expect.assertions(1);
+
+        const input: Character = {
+            name: "My Character",
+            life: 1500,
+            strength: 100,
+            defense: 0
         };
 
         const output: boolean = validateCharacter(input);
