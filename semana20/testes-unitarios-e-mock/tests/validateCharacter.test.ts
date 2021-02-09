@@ -45,4 +45,37 @@ describe("Testing validateCharacter", () => {
 
         expect(output).toBe(false);
     });
+
+    test("Should return 'false' for life, strength or defense with a negative number", () => {
+        expect.assertions(3);
+
+        const inputNegativeLife: Character = {
+            name: "My Character",
+            life: -1500,
+            strength: 100,
+            defense: 50
+        };
+
+        const inputNegativeStrength: Character = {
+            name: "My Character",
+            life: 1500,
+            strength: -100,
+            defense: 50
+        };
+
+        const inputNegativeDefense: Character = {
+            name: "My Character",
+            life: 1500,
+            strength: 100,
+            defense: -50
+        };
+
+        const outputNegativeLife: boolean = validateCharacter(inputNegativeLife);
+        const outputNegativeStrength: boolean = validateCharacter(inputNegativeStrength);
+        const outputNegativeDefense: boolean = validateCharacter(inputNegativeDefense);
+
+        expect(outputNegativeLife).toBe(false);
+        expect(outputNegativeStrength).toBe(false);
+        expect(outputNegativeDefense).toBe(false);
+    });
 });
