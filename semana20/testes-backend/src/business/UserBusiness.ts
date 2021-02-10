@@ -124,7 +124,7 @@ export class UserBusiness {
       };
    };
 
-   public async getUserProfile(token: string) {
+   public async getProfile(token: string) {
       try {
          const userData = this.tokenGenerator.verify(token);
          const user = await this.userDatabase.getUserById(userData.id);

@@ -6,7 +6,7 @@ import { TokenGenerator } from "../src/services/tokenGenerator";
 describe("Testing signup Business", () => {
 
     const idGenerator = { generate: jest.fn(() => "bananinha") } as IdGenerator;
-    const hashGenerator = {hash: jest.fn(async ()=> "senha cripto"), compareHash: jest.fn()} as HashGenerator;
+    const hashGenerator = {hash: jest.fn(()=> "senha cripto"), compareHash: jest.fn()} as HashGenerator;
     const userDatabase = {
         createUser: jest.fn()} as any;
     const tokenGenerator = {generate: jest.fn(()=>"token"), verify: jest.fn()} as TokenGenerator;

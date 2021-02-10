@@ -66,7 +66,7 @@ export class UserController {
    public async getUserProfile(req: Request, res: Response) {
       try {
          const token: string = req.headers.authorization!;
-         const result = await userBusiness.getUserProfile(token);
+         const result = await userBusiness.getProfile(token);
          res.status(200).send(result);
       } catch (error) {
          const { statusCode, message } = error
