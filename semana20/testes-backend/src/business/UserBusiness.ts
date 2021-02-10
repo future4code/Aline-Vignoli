@@ -123,6 +123,26 @@ export class UserBusiness {
          throw new CustomError(error.statusCode, error.message);
       };
    };
+
+   public async getUserProfile(token: string) {
+      try {
+         const userData = this.tokenGenerator.verify(token);
+         const user = await this.userDatabase.getUserById(userData.id);
+
+         if (!user) {
+            throw new CustomError(404, "User not found");
+         };
+
+         return {
+            id: user.getId(),
+            name: user.getName(),
+            email: user.getEmail(),
+            role: user.getRole()
+         };
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message);
+      };
+   }
 };
 
 export default new UserBusiness(new IdGenerator(), new HashGenerator(), new UserDatabase(), new TokenGenerator())

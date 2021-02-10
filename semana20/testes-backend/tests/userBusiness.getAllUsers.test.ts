@@ -66,12 +66,12 @@ describe("Testing getAllUsers Business", () => {
         );
         expect(userDatabase.getAllUsers).toHaveBeenCalled();
         expect(output.length).toBe(1);
-        expect(output).toEqual([{
+        expect(output).toContainEqual({
             id: "mockId",
             name: "Mock User",
             email: "mockuser@gmail.com",
             password: "mockpassword",
             role: UserRole.NORMAL
-        }]);   
+        });   
     });
 });
