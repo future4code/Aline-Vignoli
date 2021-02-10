@@ -14,5 +14,5 @@ const server = app.listen(3003, () => {
     console.log(`Server running in http://localhost:${address.port}`);
   } else {
     console.error(`Failure upon running server.`);
-  }
+  };
 });

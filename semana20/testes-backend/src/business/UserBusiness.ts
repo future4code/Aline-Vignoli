@@ -12,7 +12,7 @@ export class UserBusiness {
       private hashGenerator: HashGenerator,
       private userDatabase: UserDatabase,
       private tokenGenerator: TokenGenerator
-      ){}
+   ){}
 
    public async signup(
       name: string,
