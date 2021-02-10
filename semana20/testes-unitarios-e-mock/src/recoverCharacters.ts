@@ -1,7 +1,8 @@
-import { Character, validateCharacter } from "./validateCharacter";
+import { Character } from "./validateCharacter";
 
 export const recoverCharacters = (
-    characters: Character[]
+    characters: Character[],
+    validator: (input:any) => boolean
 ): Character[] => {
     if (characters.length < 2) {
         throw new Error("Array must contain at least 2 characters");
@@ -9,7 +10,7 @@ export const recoverCharacters = (
 
     let recoveredCharacters: Character[] = [];
     for (let character of characters) {
-        if (validateCharacter(character)) {
+        if (validator(character)) {
             const recoveredCharacter = {
                 ...character,
                 life: 1500
