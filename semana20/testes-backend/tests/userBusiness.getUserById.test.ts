@@ -1,5 +1,5 @@
 import { UserBusiness } from "../src/business/UserBusiness";
-import { stringToUserRole, User } from "../src/model/User";
+import { stringToUserRole, User, UserRole } from "../src/model/User";
 import { HashGenerator } from "../src/services/hashGenerator";
 import { IdGenerator } from "../src/services/idGenerator";
 import { TokenGenerator } from "../src/services/tokenGenerator";
@@ -56,7 +56,7 @@ describe("Testing getUserById", () => {
             id: "mockId",
             name: "Mock User",
             email:"mockuser@gmail.com",
-            role:"ADMIN"
+            role: UserRole.ADMIN
         });
     });
 });
