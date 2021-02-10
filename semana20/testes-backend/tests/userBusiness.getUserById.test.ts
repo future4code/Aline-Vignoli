@@ -4,7 +4,7 @@ import { HashGenerator } from "../src/services/hashGenerator";
 import { IdGenerator } from "../src/services/idGenerator";
 import { TokenGenerator } from "../src/services/tokenGenerator";
 
-describe("Testing getUserById", () => {
+describe("Testing getUserById Business", () => {
     let idGenerator = { } as IdGenerator;
     let hashGenerator = { } as HashGenerator;
     let userDatabase = { } as any;
