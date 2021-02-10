@@ -3,7 +3,7 @@ import { User } from "../model/User";
 
 export class UserDatabase extends BaseDataBase {
 
-   protected tableName: string = "INSIRA AQUI O NOME DA SUA TABELA DE USUÁRIOS";
+   protected tableName: string = "to_do_list_users";
 
    private toModel(dbModel?: any): User | undefined {
       return (

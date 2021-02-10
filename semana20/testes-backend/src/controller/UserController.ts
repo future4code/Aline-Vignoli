@@ -5,11 +5,12 @@ import { HashGenerator } from "../services/hashGenerator";
 import { UserDatabase } from "../data/UserDatabase";
 import { TokenGenerator } from "../services/tokenGenerator";
 
-const userBusiness =
- new UserBusiness(new IdGenerator(),
-                  new HashGenerator(),
-                  new UserDatabase(),
-                  new TokenGenerator());
+const userBusiness = new UserBusiness(
+   new IdGenerator(),
+   new HashGenerator(),
+   new UserDatabase(),
+   new TokenGenerator()
+);
 
 export class UserController {
 
@@ -26,8 +27,8 @@ export class UserController {
       } catch (error) {
          const { statusCode, message } = error
          res.status(statusCode || 400).send({ message });
-      }
-   }
+      };
+   };
 
    public async login(req: Request, res: Response) {
       try {
@@ -37,8 +38,19 @@ export class UserController {
       } catch (error) {
          const { statusCode, message } = error
          res.status(statusCode || 400).send({ message });
+      };
+   };
+
+   public async getUserById(req: Request, res: Response) {
+      try {
+         const id: string = req.params.id;
+         const result = await userBusiness.getUserById(id);
+         res.status(200).send(result);
+      } catch (error) {
+         const { statusCode, message } = error
+         res.status(statusCode || 400).send({ message });
       }
    }
-}
+};
 
-export default new UserController()
+export default new UserController();
